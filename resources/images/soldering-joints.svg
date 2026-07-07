@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="640" fill="#ffffff"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#0f172a">Solder Joints — good vs bad</text>
+
+  <!-- ===== GOOD JOINT (cross-section) ===== -->
+  <rect x="35" y="70" width="480" height="210" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="275" y="98" text-anchor="middle" font-size="17" font-weight="bold" fill="#14532d">GOOD through-hole joint (cross-section)</text>
+
+  <!-- PCB with hole -->
+  <rect x="80" y="185" width="130" height="24" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+  <rect x="240" y="185" width="130" height="24" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+  <!-- pads -->
+  <rect x="180" y="178" width="30" height="7" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="240" y="178" width="30" height="7" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="180" y="209" width="30" height="7" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="240" y="209" width="30" height="7" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  <!-- pin -->
+  <rect x="217" y="115" width="16" height="140" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+  <!-- concave fillet cone -->
+  <path d="M180 178 Q214 172 215 132 L235 132 Q236 172 270 178 L270 185 L180 185 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+  <path d="M204 168 Q212 160 212 146" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- labels -->
+  <line x1="225" y1="115" x2="300" y2="112" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="306" y="117" font-size="14" fill="#334155">pin (component lead)</text>
+  <line x1="252" y1="155" x2="300" y2="142" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="306" y="147" font-size="14" fill="#334155">concave solder fillet</text>
+  <line x1="265" y1="181" x2="300" y2="172" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="306" y="177" font-size="14" fill="#334155">copper pad</text>
+  <line x1="330" y1="197" x2="380" y2="197" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="386" y="202" font-size="14" fill="#334155">PCB</text>
+  <text x="275" y="258" text-anchor="middle" font-size="16" font-weight="bold" fill="#15803d">smooth, shiny, cone-shaped</text>
+
+  <!-- ===== TECHNIQUE legend ===== -->
+  <rect x="545" y="70" width="420" height="210" rx="12" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <text x="755" y="102" text-anchor="middle" font-size="17" font-weight="bold" fill="#854d0e">TECHNIQUE</text>
+  <text x="570" y="140" font-size="16" fill="#854d0e">• The iron heats BOTH the pad and the pin</text>
+  <text x="570" y="172" font-size="16" fill="#854d0e">• Feed solder into the joint, not the iron</text>
+  <text x="570" y="204" font-size="16" fill="#854d0e">• Use flux — it makes solder flow and wet</text>
+  <text x="570" y="236" font-size="16" fill="#854d0e">• 2–3 seconds is enough; then let it cool still</text>
+
+  <!-- ===== BAD JOINTS row ===== -->
+  <!-- Cold joint -->
+  <rect x="35" y="310" width="290" height="250" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="180" y="340" text-anchor="middle" font-size="17" font-weight="bold" fill="#0f172a">Cold joint</text>
+  <rect x="90" y="460" width="180" height="20" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+  <rect x="150" y="453" width="60" height="7" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="173" y="380" width="14" height="80" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+  <path d="M152 453 q-6 -20 8 -28 q6 -14 20 -12 q16 -4 22 10 q14 6 8 30 Z" fill="#64748b" stroke="#475569" stroke-width="2"/>
+  <text x="180" y="512" text-anchor="middle" font-size="14" font-weight="bold" fill="#b91c1c">dull blob — reheat with flux</text>
+
+  <!-- Dry joint / no wetting -->
+  <rect x="355" y="310" width="290" height="250" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="500" y="340" text-anchor="middle" font-size="17" font-weight="bold" fill="#0f172a">Dry joint / no wetting</text>
+  <rect x="410" y="460" width="180" height="20" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+  <rect x="470" y="453" width="60" height="7" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="493" y="380" width="14" height="80" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+  <circle cx="500" cy="422" r="18" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+  <path d="M478 446 L522 446" stroke="#dc2626" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="500" y="512" text-anchor="middle" font-size="14" font-weight="bold" fill="#b91c1c">ball clings to pin, never bonds to pad</text>
+
+  <!-- Bridge -->
+  <rect x="675" y="310" width="290" height="250" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="820" y="340" text-anchor="middle" font-size="17" font-weight="bold" fill="#0f172a">Bridge</text>
+  <rect x="730" y="460" width="180" height="20" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+  <rect x="752" y="450" width="46" height="10" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="842" y="450" width="46" height="10" fill="#f59e0b" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="768" y="396" width="14" height="54" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+  <rect x="858" y="396" width="14" height="54" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+  <ellipse cx="820" cy="446" rx="62" ry="16" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+  <text x="820" y="512" text-anchor="middle" font-size="14" font-weight="bold" fill="#dc2626">short circuit — wick it off</text>
+
+  <!-- bottom note -->
+  <text x="500" y="602" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">If in doubt: add flux, reheat, let it reflow into a shiny cone.</text>
+</svg>
