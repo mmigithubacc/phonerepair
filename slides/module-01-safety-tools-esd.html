@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 — Workshop Safety, Tools &amp; ESD</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 1 of 10</span>
+  <h1>Workshop Safety, Tools &amp; ESD</h1>
+  <p class="sub">Before you ever open a phone: protect yourself, protect the device.</p>
+  <p class="sub" style="margin-top:2rem">2 h theory &nbsp;·&nbsp; 2 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Welcome everyone. Do a round of introductions: name, why they joined, one phone fault they've personally had. Write recurring faults on the whiteboard — you'll refer back to them ("we cover that in Module 5").</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Set up a <span class="accent">grounded ESD workstation</span> and prove it works</li>
+    <li>Pick the <span class="accent">right tool</span> for any screw or opening job — without damage</li>
+    <li>Recite and apply the <span class="warn-t">8 workshop safety rules</span></li>
+    <li>Handle <span class="danger-t">lithium batteries</span> safely — including when things go wrong</li>
+  </ul>
+  <div class="notes"><p>Frame it as professional identity: "Anyone can pry a phone open. A technician opens it so it still works afterwards. Today separates you from the person with a butter knife on YouTube."</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>Your 6-week journey</h2>
+  <table>
+    <tr><th>Week</th><th>Modules</th></tr>
+    <tr><td>1</td><td>Safety, Tools &amp; ESD · Phone Anatomy</td></tr>
+    <tr><td>2</td><td>Disassembly &amp; Reassembly · Screen Replacement</td></tr>
+    <tr><td>3</td><td>Battery &amp; Power · Ports &amp; Small Parts</td></tr>
+    <tr><td>4</td><td>Soldering Fundamentals · Water Damage</td></tr>
+    <tr><td>5</td><td>Software &amp; Diagnostics · Business Skills</td></tr>
+    <tr><td>6</td><td>Final written + practical exams → Certification</td></tr>
+  </table>
+  <div class="notes"><p>Explain grading: 20% quizzes, 30% lab rubrics, 20% written final, 30% practical final. Pass = 70% overall AND passing the practical exam. Attendance ≥ 80% required.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>The two enemies you can't see</h2>
+  <div class="cols">
+    <div class="box danger">
+      <h3 class="danger-t">Fire</h3>
+      <p>Every phone contains a lithium battery — a small, flammable energy bomb if mistreated.</p>
+    </div>
+    <div class="box warn">
+      <h3 class="warn-t">Static (ESD)</h3>
+      <p>A spark you can't feel can kill a phone's chips — sometimes weeks later.</p>
+    </div>
+  </div>
+  <p style="margin-top:1.5rem">Everything in this module exists because of these two.</p>
+  <div class="notes"><p>Hook slide — keep it dramatic but honest. Both hazards are invisible until it's too late, which is why beginners dismiss them. Promise demos of both today.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>The 8 workshop safety rules</h2>
+  <ol>
+    <li><b>Wrist strap on</b> whenever a device is open</li>
+    <li><b>Battery disconnected first</b> — before any other internal work</li>
+    <li><b>Safety glasses</b> for battery, heat, and soldering work</li>
+    <li><b>Never</b> pry, bend, or puncture a lithium battery</li>
+  </ol>
+  <div class="notes"><p>For each rule give a consequence story. Rule 2 example: a tech replaced a screen with the battery connected — the backlight circuit shorted on reconnection, turning a $30 repair into a dead board. Ask class to suggest what could go wrong before you reveal each story.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>The 8 workshop safety rules (cont.)</h2>
+  <ol start="5">
+    <li><b>No food or drink</b> on the bench</li>
+    <li><b>Heat gun on its stand</b> when not in your hand; unplug after use</li>
+    <li><b>Soldering iron in its holder</b> — never passed hand-to-hand</li>
+    <li><b>Damaged or swollen batteries</b> go in the battery bin — never normal trash</li>
+  </ol>
+  <div class="box warn"><p>These rules are graded. Repeated violations = no certificate, regardless of skill.</p></div>
+  <div class="notes"><p>Point at the physical battery bin and fire extinguisher now — make every student physically look at where they are. Announce that you'll ask random students to recite rules at the start of every future session.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>Lithium batteries: why they burn</h2>
+  <img class="diagram" src="../resources/images/battery-safety.svg" alt="Battery thermal runaway diagram">
+  <div class="notes"><p>Walk the diagram left to right: puncture or bend → internal short circuit → heat → electrolyte ignites → thermal runaway (self-feeding). Key point: water doesn't easily stop it — the battery makes its own oxygen. Smother with sand or let it burn out in the bin.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>See it for yourself</h2>
+  <div class="video">Battery puncture demonstration — link in <code>resources/videos.md</code> (Video 1.1)</div>
+  <h3>After the video, answer:</h3>
+  <ul>
+    <li>Which <b>two repair-shop mistakes</b> cause exactly this?</li>
+    <li>What do you do the moment a battery starts smoking on your bench?</li>
+  </ul>
+  <div class="notes"><p>Answers: (1) prying under the battery with a metal tool, and overheating it with the heat gun. (2) Drop it in the battery bin / on the concrete floor away from people — do NOT carry it across the room slowly, do not blow on it, alert the trainer. Then demo the swollen battery in its sealed container — students look, never touch.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>ESD: the spark you can't feel</h2>
+  <ul>
+    <li>Walking on carpet can charge you to <span class="big warn-t">15,000&nbsp;V</span></li>
+    <li>You only <i>feel</i> a shock above <span class="big">~3,000&nbsp;V</span></li>
+    <li>Phone chips can die below <span class="big danger-t">100&nbsp;V</span></li>
+  </ul>
+  <div class="box danger"><p>So every discharge that damages a phone is one you never felt happen.</p></div>
+  <div class="notes"><p>Do the balloon demo here: rub balloon on hair, lift paper scraps. "You felt nothing — that force is thousands of volts of static." If you have a piezo lighter igniter, click it near your thumb to show a real (harmless) spark.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>Latent damage: the slow death</h2>
+  <div class="cols">
+    <div class="box danger"><h3>Catastrophic</h3><p>Chip dies instantly. Phone won't boot. You know immediately.</p></div>
+    <div class="box warn"><h3>Latent</h3><p>Chip is wounded, works today… fails in 2 weeks. Customer returns furious. You never learn why.</p></div>
+  </div>
+  <p style="margin-top:1.2rem">Latent damage is why "I've never had an ESD problem" is never true — you just never traced it back.</p>
+  <div class="notes"><p>This is the key persuasion slide. Ask: "Whose reputation dies when the customer's phone fails two weeks after your repair?" ESD discipline is business protection, not just electronics theory.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>The ESD-safe workstation</h2>
+  <img class="diagram" src="../resources/images/esd-workstation.svg" alt="ESD workstation setup diagram">
+  <div class="notes"><p>Trace the path on the diagram: your skin → wrist strap → coiled cord (contains a 1 MΩ safety resistor) → common ground point → mat → earth ground. The resistor protects YOU if you touch mains power while strapped. Everything at the same potential = no discharge.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>Setting it up — the daily ritual</h2>
+  <ol>
+    <li>Mat connected to the grounding point</li>
+    <li>Strap snug on skin (not over clothing)</li>
+    <li>Cord clipped to the mat's ground stud</li>
+    <li><b>Test the strap</b> — dead straps are common!</li>
+    <li>Phone and parts stay <b>on the mat</b> at all times</li>
+  </ol>
+  <div class="video">ESD explained + workstation setup — Video 1.2 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Demo the full setup live on the demo bench, including the strap tester. Trick question for the class: "Why is a strap with a broken cord WORSE than no strap at all?" — false confidence; you stop being careful because you think you're grounded.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>No mat? Field-expedient ESD habits</h2>
+  <ul>
+    <li>Touch a large grounded metal object before starting, and often</li>
+    <li>No carpet, no synthetic clothing, no rolling chairs with fabric</li>
+    <li>Handle boards <b>by the edges</b> — never touch chips or connectors</li>
+    <li>Keep parts in their anti-static bags until the moment of use</li>
+  </ul>
+  <div class="box ok"><p>Good habits cost nothing. In this classroom, the full setup is mandatory anyway.</p></div>
+  <div class="notes"><p>Be honest: many working techs skimp on ESD. Our standard is the professional one, and their rubric grade depends on it. Edge-handling and anti-static bags are the habits that survive into any environment.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>Your toolkit</h2>
+  <img class="diagram" src="../resources/images/toolkit.svg" alt="Standard repair toolkit diagram">
+  <div class="notes"><p>From here to slide 20, hold up each REAL tool as it appears. Pass tools around the room while you talk. Physical contact with tools beats any slide.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Screwdrivers: know your heads</h2>
+  <table>
+    <tr><th>Head</th><th>Sizes</th><th>Found in</th></tr>
+    <tr><td>Phillips (+)</td><td>PH000, PH00</td><td>Most Android internals</td></tr>
+    <tr><td>Pentalobe (5-point ★)</td><td>P2, P5</td><td>iPhone bottom screws</td></tr>
+    <tr><td>Tri-point (Y)</td><td>Y000</td><td>iPhone internals, AirPods</td></tr>
+    <tr><td>Torx (6-point ★)</td><td>T3–T6</td><td>Older phones, laptops</td></tr>
+  </table>
+  <div class="notes"><p>Hold each bit up to the camera/projector. Common beginner disaster: using a Phillips on a Pentalobe "because it sort of fits" — it strips the head and now the phone can't be opened without drilling. Sort-of-fits = doesn't fit.</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>The golden rule of screws</h2>
+  <p class="big" style="margin:1rem 0 2rem">If it slips, it strips.</p>
+  <ul>
+    <li>Use the <b>largest driver that fully seats</b> in the head</li>
+    <li>Press <b>down firmly</b>, turn slowly</li>
+    <li>If it doesn't turn — <b>stop</b>. Re-check the bit, add fresh grip, never force</li>
+    <li>Map every screw on the <b>magnetic mat</b> — position matters</li>
+  </ul>
+  <div class="box danger"><p>"Long screw damage": the wrong screw in the wrong hole drills through the circuit board. It has killed thousands of phones. Screw mapping prevents it.</p></div>
+  <div class="notes"><p>Draw a quick screw-map grid on the whiteboard: mat divided into zones matching phone areas. From Module 3 on, an unmapped bench loses rubric points automatically.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>Opening tools</h2>
+  <ul>
+    <li><b>Suction cup</b> — lifts the screen to create the first gap</li>
+    <li><b>Picks &amp; plastic cards</b> — ride the gap, slice adhesive</li>
+    <li><b>Plastic spudger</b> — pry connectors, safe near everything</li>
+    <li><b>Metal spudger</b> — stubborn frames only. <span class="danger-t">Never near the battery. Never on flex cables.</span></li>
+    <li><b>ESD tweezers</b> — straight for screws, curved for cables in tight spots</li>
+  </ul>
+  <div class="notes"><p>Show the difference in flex between a pick and a metal spudger. Rule of thumb: metal touches metal frames only. If a tool CAN puncture a battery, it never goes near one — connect this back to the fire video from slide 8.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>Heat: your adhesive key</h2>
+  <div class="cols">
+    <div class="box warn"><h3>Heat gun</h3><p>Fast, targeted, easy to overdo. Keep it moving, 10–15 cm away.</p></div>
+    <div class="box ok"><h3>Heating pad</h3><p>Even, gentle, beginner-safe. Slower but hard to get wrong.</p></div>
+  </div>
+  <ul style="margin-top:1.2rem">
+    <li>Target: <b>80–100 °C surface</b> — hot to touch, not scorching</li>
+    <li>Too much heat = damaged display, ignited adhesive, stressed battery</li>
+  </ul>
+  <div class="notes"><p>Demo: heat a donor phone edge, let students feel "correctly warm" with the back of a finger. This calibrates their hands before Module 4 where they heat screens for real.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Chemicals &amp; measurement</h2>
+  <ul>
+    <li><b>Isopropyl alcohol (IPA) ≥ 99%</b> — cleans flux, adhesive, corrosion.
+        <span class="warn-t">Household 70% is ⅓ water — never use it inside electronics.</span></li>
+    <li><b>Adhesives</b> — pre-cut strips, tape, or B-7000 glue for reassembly</li>
+    <li><b>Multimeter</b> — the continuity beeper finds broken connections; DC volts checks batteries</li>
+    <li><b>USB ammeter</b> — reads charging current; instant charging-port diagnosis</li>
+  </ul>
+  <div class="notes"><p>Show a multimeter beeping on a paperclip — that's 80% of how they'll use it in this course. Plug the USB ammeter into a charging phone and read the current aloud. Both get full lessons later (Modules 5–7); today is just recognition.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Tool care = tool trust</h2>
+  <ul>
+    <li>Every tool returns to its slot — a missing pick ends up inside a phone</li>
+    <li>Replace worn picks and stripped bits immediately (they cause damage)</li>
+    <li>Bench wiped, mat clear, strap hung up — <b>bench inspection is graded</b></li>
+  </ul>
+  <div class="box ok"><p>A customer judges your shop by your bench before they judge your work.</p></div>
+  <div class="notes"><p>Set the culture now: last 10 minutes of every session is cleanup, and you inspect. It feels strict on day one and becomes automatic by week three.</p></div>
+</section>
+
+<!-- ======================= SLIDE 21 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: explain the <b>ESD workstation setup</b> to the class, start to finish</li>
+    <li>Another volunteer: explain <b>how to choose the right screwdriver</b> and why it matters</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>Teach-back exposes gaps cheaply. Correct gently, praise specifics. If both go well, you're ready for the practical; if not, re-demo the weak part yourself before labs.</p></div>
+</section>
+
+<!-- ======================= SLIDE 22 ======================= -->
+<section class="slide">
+  <h2>Practical: 4 stations, 2 hours</h2>
+  <table>
+    <tr><th>Station</th><th>Task</th></tr>
+    <tr><td>A</td><td>Build &amp; verify an ESD workstation from scratch</td></tr>
+    <tr><td>B</td><td>Tool identification: 20 tools — name + purpose</td></tr>
+    <tr><td>C</td><td>Driver matching on donor phones — zero stripped screws</td></tr>
+    <tr><td>D</td><td>Safety scenario cards — act out the correct response</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Worksheet: <code>practicals/practical-01-safety-tools-esd.md</code></p>
+  <div class="notes"><p>Assign pairs to benches (mix experience levels). Rotate stations every ~25 minutes. Grade with the rubric as you circulate — don't leave grading to the end.</p></div>
+</section>
+
+<!-- ======================= SLIDE 23 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li>Memorize the <b>8 safety rules</b> — random recitals start next session</li>
+    <li>Watch <b>Video 1.3</b> (full phone teardown) — just watch, and note every tool you recognize</li>
+    <li>Quiz now: Module 1, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 2 — what's actually inside a phone.</p>
+  <div class="notes"><p>Hand out the quiz from assessments/module-quizzes.md. While they take it, do bench inspections. Collect quizzes, preview Module 2 in one sentence, dismiss.</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 23</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>

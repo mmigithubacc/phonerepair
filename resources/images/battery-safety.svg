@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="420" fill="#ffffff"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#0f172a">Lithium Battery Thermal Runaway — how one mistake becomes a fire</text>
+
+  <!-- Stage 1: puncture/bend -->
+  <g>
+    <rect x="30" y="90" width="200" height="150" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="130" y="120" text-anchor="middle" font-size="17" font-weight="bold" fill="#0f172a">1. Mechanical abuse</text>
+    <!-- battery with pry tool -->
+    <rect x="70" y="150" width="120" height="55" rx="8" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+    <rect x="185" y="165" width="12" height="25" fill="#475569"/>
+    <line x1="60" y1="130" x2="105" y2="170" stroke="#dc2626" stroke-width="6" stroke-linecap="round"/>
+    <text x="130" y="228" text-anchor="middle" font-size="14" fill="#334155">puncture · bend · pry</text>
+  </g>
+
+  <path d="M240 165 L280 165" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <!-- Stage 2: internal short -->
+  <g>
+    <rect x="285" y="90" width="200" height="150" rx="12" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+    <text x="385" y="120" text-anchor="middle" font-size="17" font-weight="bold" fill="#0f172a">2. Internal short</text>
+    <rect x="325" y="150" width="120" height="55" rx="8" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+    <path d="M375 152 l10 18 l-14 6 l12 20" stroke="#eab308" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <text x="385" y="228" text-anchor="middle" font-size="14" fill="#334155">layers touch inside</text>
+  </g>
+
+  <path d="M495 165 L535 165" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <!-- Stage 3: heat -->
+  <g>
+    <rect x="540" y="90" width="200" height="150" rx="12" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
+    <text x="640" y="120" text-anchor="middle" font-size="17" font-weight="bold" fill="#0f172a">3. Rapid heating</text>
+    <rect x="580" y="150" width="120" height="55" rx="8" fill="#fb923c" stroke="#c2410c" stroke-width="2"/>
+    <path d="M600 145 q6 -14 0 -24 M640 145 q6 -14 0 -24 M680 145 q6 -14 0 -24" stroke="#ea580c" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <text x="640" y="228" text-anchor="middle" font-size="14" fill="#334155">swelling · hissing · smoke</text>
+  </g>
+
+  <path d="M750 165 L790 165" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <!-- Stage 4: fire -->
+  <g>
+    <rect x="795" y="90" width="180" height="150" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="885" y="120" text-anchor="middle" font-size="17" font-weight="bold" fill="#0f172a">4. Fire</text>
+    <path d="M885 210 q-30 -12 -22 -42 q5 -18 22 -30 q-4 20 10 26 q16 8 12 26 q-4 22 -22 20 Z" fill="#dc2626"/>
+    <path d="M885 205 q-14 -8 -10 -24 q3 -10 12 -16 q-2 12 6 16 q8 5 6 14 q-2 12 -14 10 Z" fill="#fbbf24"/>
+    <text x="885" y="228" text-anchor="middle" font-size="14" fill="#334155">self-feeding — makes own oxygen</text>
+  </g>
+
+  <!-- prevention bar -->
+  <rect x="30" y="280" width="945" height="110" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="55" y="312" font-size="18" font-weight="bold" fill="#14532d">PREVENT IT:</text>
+  <text x="55" y="342" font-size="16" fill="#14532d">• Never pry under or against a battery with metal &nbsp;&nbsp;• Keep heat gun moving, never aimed at the battery &nbsp;&nbsp;• Disconnect battery before all work</text>
+  <text x="55" y="370" font-size="16" fill="#14532d">• Swollen battery = stop, don't press or charge → battery bin &nbsp;&nbsp;• If it burns: sand / fire bin — water won't easily stop it</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#0f172a"/>
+    </marker>
+  </defs>
+</svg>
