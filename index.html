@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cellphone Repair Training Course</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#273549; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+    line-height:1.55;padding-bottom:4rem}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 1.2rem}
+  header{padding:3.5rem 0 2rem;border-bottom:1px solid #334155;margin-bottom:2rem}
+  header h1{font-size:2.6rem;color:var(--accent);line-height:1.15}
+  header p{color:var(--muted);font-size:1.15rem;margin-top:.6rem;max-width:60ch}
+  .toplinks{margin-top:1.2rem;display:flex;gap:.8rem;flex-wrap:wrap}
+  .toplinks a{display:inline-block;background:var(--panel);border:1px solid var(--accent);color:var(--accent);
+    border-radius:999px;padding:.35rem 1.1rem;text-decoration:none;font-size:.95rem}
+  .toplinks a:hover{background:var(--accent);color:var(--bg)}
+  h2{font-size:1.5rem;color:var(--accent);margin:2.2rem 0 1rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem}
+  .card{background:var(--panel);border:1px solid #334155;border-radius:12px;padding:1.1rem 1.2rem;
+    display:flex;flex-direction:column;gap:.55rem}
+  .card:hover{border-color:var(--accent)}
+  .card .num{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .card h3{font-size:1.12rem;color:var(--text);line-height:1.3}
+  .card .links{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem}
+  .card .links a{font-size:.85rem;text-decoration:none;border-radius:6px;padding:.28rem .7rem;border:1px solid #475569;color:var(--text)}
+  .card .links a.slides{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600}
+  .card .links a:hover{border-color:var(--accent);color:var(--accent)}
+  .card .links a.slides:hover{color:var(--bg);filter:brightness(1.1)}
+  .card .hours{font-size:.85rem;color:var(--muted)}
+  .rowlinks{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.7rem}
+  .rowlinks a{background:var(--panel);border:1px solid #334155;border-radius:10px;padding:.75rem 1rem;
+    color:var(--text);text-decoration:none;font-size:.98rem}
+  .rowlinks a:hover{border-color:var(--accent);color:var(--accent)}
+  .hint{background:var(--panel2);border-left:4px solid var(--warn);border-radius:8px;padding:.8rem 1.1rem;
+    color:var(--muted);font-size:.95rem;margin-top:1rem}
+  .hint b{color:var(--warn)}
+  footer{margin-top:3rem;color:#475569;font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Cellphone Repair Training Course</h1>
+    <p>A complete 60-hour, 10-module classroom package: slides, lesson plans, hands-on practicals,
+       diagrams, curated videos, and assessments — everything a trainer needs.</p>
+    <div class="toplinks">
+      <a href="viewer.html?file=trainer-guide.md">Trainer Guide</a>
+      <a href="viewer.html?file=curriculum/00-course-overview.md">Course Overview</a>
+      <a href="viewer.html?file=resources/videos.md">Video Library</a>
+      <a href="viewer.html?file=README.md">About this package</a>
+    </div>
+    <div class="hint"><b>Slide controls:</b> → / ← navigate · <b>N</b> toggles trainer notes · <b>F</b> fullscreen · Home/End jump.</div>
+  </header>
+
+  <h2>Modules</h2>
+  <div class="grid" id="modules"></div>
+
+  <h2>Assessments</h2>
+  <div class="rowlinks">
+    <a href="viewer.html?file=assessments/module-quizzes.md">Module Quizzes 1–10 (with answer keys)</a>
+    <a href="viewer.html?file=assessments/final-written-exam.md">Final Written Exam</a>
+    <a href="viewer.html?file=assessments/final-practical-exam.md">Final Practical Exam (examiner pack)</a>
+    <a href="viewer.html?file=assessments/certification-checklist.md">Certification Checklist</a>
+  </div>
+
+  <h2>Teaching diagrams</h2>
+  <div class="rowlinks" id="diagrams"></div>
+
+  <footer>Static site — works offline once downloaded. Slide decks are self-contained HTML; documents render from markdown.</footer>
+</div>
+
+<script>
+const modules=[
+  ["safety-tools-esd","Workshop Safety, Tools & ESD","2 h theory · 2 h practical"],
+  ["anatomy-components","Mobile Phone Anatomy & Components","2 h theory · 2 h practical"],
+  ["disassembly-reassembly","Disassembly & Reassembly","1.5 h theory · 3 h practical"],
+  ["screen-replacement","Screen & Display Replacement","1.5 h theory · 3 h practical"],
+  ["battery-power","Battery & Power Issues","1.5 h theory · 3 h practical"],
+  ["ports-small-parts","Charging Ports, Buttons & Small Parts","1.5 h theory · 3 h practical"],
+  ["soldering","Soldering & Micro-Soldering Fundamentals","2 h theory · 4 h practical"],
+  ["water-damage","Water Damage & Corrosion Treatment","1.5 h theory · 3 h practical"],
+  ["software-diagnostics","Software Troubleshooting & Diagnostics","2 h theory · 3 h practical"],
+  ["business-final","Repair Business Skills + Final Assessment","2 h theory · 4 h exam"],
+];
+document.getElementById('modules').innerHTML=modules.map((m,i)=>{
+  const n=String(i+1).padStart(2,'0');
+  const practical=(i===9)?`practicals/practical-10-final-exam.md`:`practicals/practical-${n}-${m[0]}.md`;
+  return `<div class="card">
+    <span class="num">Module ${i+1}</span>
+    <h3>${m[1]}</h3>
+    <span class="hours">${m[2]}</span>
+    <div class="links">
+      <a class="slides" href="slides/module-${n}-${m[0]}.html">▶ Slides</a>
+      <a href="viewer.html?file=curriculum/module-${n}-${m[0]}.md">Lesson plan</a>
+      <a href="viewer.html?file=${practical}">Practical</a>
+    </div>
+  </div>`;
+}).join('');
+
+const diagrams=[
+  ["esd-workstation","ESD-safe workstation"],
+  ["toolkit","The standard toolkit"],
+  ["battery-safety","Battery thermal runaway"],
+  ["phone-anatomy-exploded","Phone exploded view"],
+  ["screen-layers","Screen layer stack"],
+  ["charging-circuit","The charging chain"],
+  ["soldering-joints","Good vs bad solder joints"],
+  ["water-damage-flowchart","Water damage treatment flow"],
+  ["diagnostic-flowchart","Hardware vs software triage"],
+  ["repair-workflow","Professional shop workflow"],
+];
+document.getElementById('diagrams').innerHTML=diagrams.map(d=>
+  `<a href="resources/images/${d[0]}.svg" target="_blank">${d[1]}</a>`).join('');
+</script>
+</body>
+</html>
