@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 6 — Charging Ports, Buttons &amp; Small-Part Repairs</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 6 of 10</span>
+  <h1>Charging Ports, Buttons &amp; Small-Part Repairs</h1>
+  <p class="sub">Quick jobs, high margins, happy customers — the bread and butter of a repair bench.</p>
+  <p class="sub" style="margin-top:2rem">1.5 h theory &nbsp;·&nbsp; 3 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Safety-rule recital first, then collect the homework battery-health numbers from Module 5 — quick round: highest and lowest health in the room. Then hook: "Today I'll teach you a two-minute repair that will make more customers love you than anything else in this course."</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Clean a charging port <span class="ok-t">safely</span> — and know why that fixes most "broken" ports</li>
+    <li>Diagnose charger vs cable vs port vs board by <span class="accent">substitution + ammeter</span></li>
+    <li>Replace a <span class="accent">charging sub-board</span>, loudspeaker, camera, and button flex</li>
+    <li>Handle SIM readers, vibration motors, and water seals correctly</li>
+    <li>Run a <span class="warn-t">full function test</span> so nothing leaves the bench half-checked</li>
+  </ul>
+  <div class="notes"><p>Position this module as the profit engine: small parts are cheap, jobs are fast, and most faults in this family are diagnosable in minutes. The discipline they're really learning today is TEST EVERYTHING AFTER — small-part repairs touch parts that share flexes.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>The #1 trade secret</h2>
+  <p class="big" style="margin:1rem 0 1.5rem">Most "broken charging ports" are just <span class="warn-t">LINT</span>.</p>
+  <ul>
+    <li>Pocket fluff gets rammed deeper with every plug-in, for months</li>
+    <li>Eventually the plug can't seat — it clicks loose, charges only at an angle, or not at all</li>
+    <li>The port itself is usually <b>fine</b></li>
+  </ul>
+  <div class="box ok"><p>A 2-minute cleaning = your cheapest hero moment. Customer expects a costly repair; you hand the phone back working in minutes. That story gets retold — it's free marketing.</p></div>
+  <div class="notes"><p>Show a real lint plug extracted from a port (keep one from a previous job, or extract one live from a volunteer's phone — there's almost always one in the room). Discuss pricing honestly: charge a small inspection/cleaning fee, not a part-replacement fee. The goodwill is worth more than the margin you didn't take.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>Port cleaning technique</h2>
+  <ol>
+    <li><b>Power the phone off</b></li>
+    <li>Use a <b>wooden or plastic pick</b> (toothpick, sharpened spudger tip)</li>
+    <li>Scrape gently <b>against the back wall</b> of the port — lint compacts there — and lift it out</li>
+    <li><b>Short air puffs</b> to clear loosened debris</li>
+    <li>Stubborn grime: pick lightly moistened with <b>IPA</b>, then let it dry before charging</li>
+  </ol>
+  <div class="box danger"><p><b>Never steel needles or pins</b> into the port — the pins bend, the plastic tongue cracks, and a scratch across contacts can short power pins. Metal turns a free fix into a real repair.</p></div>
+  <div class="notes"><p>Demo under the magnifier or a phone camera zoomed onto the port so everyone sees the lint plug come out in one satisfying piece. Point out the center tongue with the contacts — that's what steel destroys. Long steady blasts of compressed air can just compact lint deeper; short puffs after loosening work better.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>See the whole diagnosis</h2>
+  <div class="video">Charging port diagnosis &amp; cleaning — Video 6.1 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>What the tech checks <b>before</b> touching the port at all</li>
+    <li>The tool choice and scraping direction inside the port</li>
+    <li>The before/after ammeter readings</li>
+  </ul>
+  <div class="notes"><p>Most of the class watched this as homework — use it as review rather than first exposure. Quick quiz after: "What was the reading before cleaning? After? What would you have concluded if cleaning changed nothing?" That last question bridges into the substitution slide next.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>Diagnosis by substitution</h2>
+  <p style="margin-bottom:.8rem">Swap one link at a time — known-good charger, known-good cable — and read the <span class="accent">USB ammeter</span>:</p>
+  <table>
+    <tr><th>Test</th><th>Result</th><th>Conclusion</th></tr>
+    <tr><td>Known-good charger + cable</td><td>Normal current (~1–2 A)</td><td>Customer's charger or cable was the fault</td></tr>
+    <tr><td>Known-good everything</td><td>0 mA</td><td>Port or board — inspect &amp; clean port first</td></tr>
+    <tr><td>After port cleaning</td><td>Low or erratic current</td><td>Worn/damaged port → replace</td></tr>
+    <tr><td>After port replacement</td><td>Still 0 mA</td><td class="danger-t">Board-level (charging IC) → refer out</td></tr>
+  </table>
+  <div class="notes"><p>Reinforce Module 5's chain: cheapest link first, one variable at a time. The bench should have a labelled KNOWN-GOOD charger and cable that never leave the shop — if your reference gear is unreliable, every diagnosis is a coin flip. Wiggle test: gently move the plug while watching the ammeter; jumping current = mechanical port wear.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>How ports are mounted — check before you quote</h2>
+  <table>
+    <tr><th>Mounting</th><th>How it comes out</th><th>Difficulty</th></tr>
+    <tr><td>On a <b>flex cable</b></td><td>Unplug, unscrew, swap the flex</td><td class="ok-t">Easy swap — today</td></tr>
+    <tr><td>On a <b>sub-board</b></td><td>Unscrew the small board, transfer, swap</td><td class="ok-t">Easy swap — today</td></tr>
+    <tr><td><b>Soldered to the main board</b></td><td>Hot-air / soldering job</td><td class="warn-t">Module 7+ skill — quote accordingly</td></tr>
+  </table>
+  <div class="box warn"><p>Look up the model's teardown <b>before</b> quoting a port replacement — the same fault costs very different money depending on mounting.</p></div>
+  <div class="notes"><p>Show one example of each mounting from the donor-phone pile. Many iPhones use a flex assembly; many Androids use a sub-board; some budget models solder the port straight to the main board. Teach the habit: search "[model] charging port replacement" teardown before giving a price, not after opening.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Replacing a charging sub-board</h2>
+  <ol>
+    <li>Battery <b>disconnected first</b> — always</li>
+    <li>Unscrew the sub-board, unplug its interconnect flex/cable</li>
+    <li>Transfer any rubber seals, mesh, or brackets to the new board</li>
+    <li>Seat, screw down evenly, reconnect, battery last</li>
+  </ol>
+  <div class="box warn"><p>The sub-board often also carries the <b>microphone</b> and <b>loudspeaker contacts</b> — after the swap, test charging <b>and</b> mic <b>and</b> speaker before closing up.</p></div>
+  <div class="notes"><p>This is the classic comeback generator: tech replaces the port, charging works, customer returns next day because "people can't hear me on calls" — the mic was on the same sub-board and nobody tested it. Rule: whatever the part touches, you test. Show a real sub-board and point out port, mic hole, and the spring contacts for the speaker.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>Watch the swap</h2>
+  <div class="video">Charging sub-board / port-flex replacement — Video 6.2 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>Which small parts get <b>transferred</b> from the old board to the new one</li>
+    <li>The order of reconnection at the end</li>
+    <li>Every function the tech tests before closing the phone</li>
+  </ul>
+  <div class="notes"><p>Pause at the transfer step — students routinely bin the old sub-board with its rubber seals and mesh still attached, then wonder why the new part rattles or the mic sounds muffled. Count the post-repair tests in the video with the class; if the video's tech skips one, make the class catch it.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>Speakers: loud and quiet</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Loudspeaker (bottom)</h3>
+      <p>Music, speakerphone, ringtones. Usually a self-contained module held by <b>screws + spring contacts</b> — unscrew, swap, done.</p>
+    </div>
+    <div class="box">
+      <h3>Earpiece (top)</h3>
+      <p>Call audio against your ear. Smaller, sometimes under the screen assembly or on a flex — a fiddlier job, same principle.</p>
+    </div>
+  </div>
+  <p style="margin-top:1rem">Symptoms decide which one: "no ringtone" = loudspeaker; "can't hear calls unless on speakerphone" = earpiece.</p>
+  <div class="notes"><p>Intake questions do the diagnosis: play music (loudspeaker), make a call (earpiece). Also check the obvious first — many "blown speakers" are a mesh blocked by dirt, or simply volume/Do-Not-Disturb settings. Spring contacts must be clean and un-bent; a speaker that cuts out when the phone flexes has dirty or fatigued contacts.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>Microphones</h2>
+  <ul>
+    <li>Tiny — often just a <b>hole and a mesh</b> from the outside; the mic itself is a few mm across</li>
+    <li>Usually mounted <b>on a flex or the charging sub-board</b> — replaced by swapping that assembly</li>
+    <li>Modern phones have <b>several</b>: bottom (calls), top/back (noise cancelling, video)</li>
+    <li>Test each one: voice call, speakerphone call, video recording</li>
+  </ul>
+  <div class="box warn"><p>"People can't hear me" after a port repair? You disturbed the mic on the sub-board. Test before the customer does.</p></div>
+  <div class="notes"><p>Demo the multi-mic test routine: voice memo app (bottom mic), video recording (top/back mic), normal call and speaker call. A blocked mesh is the lint story again — gentle brush, never poke a pick THROUGH the mesh into the mic. Which mic serves which function varies by model; the test routine catches it regardless.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>Camera modules</h2>
+  <ul>
+    <li>Usually the easiest swap in the phone: <b>disconnect battery, unplug module, plug in new one</b></li>
+    <li>Handle by the sides — never touch the lens; dust under the lens shows in every photo</li>
+    <li>Test: photo front/back, video, flash, autofocus, portrait/zoom lenses if fitted</li>
+  </ul>
+  <div class="box warn"><p><b>iPhone serialization caveat:</b> recent iPhones pair cameras (and other parts) to the board. A swapped camera may show warnings or lose features (e.g. Face ID with front-camera assemblies). Check the model's behaviour and warn the customer <b>before</b> the repair.</p></div>
+  <div class="notes"><p>Serialization is the modern reality: Apple pairs parts to the logic board, and some Androids are following. The professional habit is expectation management — "on this model, a non-genuine camera works but shows a warning banner" said BEFORE the repair is service; said after, it's an argument. Keep a note of pairing behaviour per common model in the shop wiki.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>Vibration motors &amp; button flexes</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Vibration motor</h3>
+      <p>Small module (rotary or linear/"Taptic") — screws or adhesive plus a connector or contacts. Weak or rattly vibration = swap it.</p>
+    </div>
+    <div class="box">
+      <h3>Power / volume buttons</h3>
+      <p>Two failure layers: the <b>mechanical dome</b> that clicks, and the <b>flex cable</b> underneath. No click = dome/button hardware; clicks but no action = flex fault.</p>
+    </div>
+  </div>
+  <div class="notes"><p>The click test is the diagnostic: press the button and feel. A crisp click that does nothing means the signal path (flex) is broken; a mushy or jammed button is mechanical — sometimes just grit under the external button cap. Button flexes often route deep along the frame; budget realistic time when quoting, it's rarely a 5-minute job.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>SIM readers: the wrong-way tray</h2>
+  <ul>
+    <li>"No SIM" faults are often <b>bent reader pins</b> — usually from a tray inserted <b>backwards or upside down</b>, or a naked SIM pushed in without the tray</li>
+    <li>Inspect pins under magnification: all should sit at the same height</li>
+    <li>Slightly bent pin: <i>sometimes</i> coaxable back with a fine tool — one try, gently</li>
+    <li>Broken or flattened pins: reader replacement — often <b>soldered</b> (Module 7 territory)</li>
+  </ul>
+  <div class="notes"><p>Show a bent-pin reader under the magnifier next to a healthy one. Teach the intake question: "Did the tray go in hard at some point?" Also rule out software first — "No SIM" can be a software glitch; test with a known-good SIM before opening anything. Warn them: a snapped-off pin tip stuck in the reader ends any repair attempt.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Water seals &amp; gaskets</h2>
+  <ul>
+    <li>Water-resistant phones seal with <b>perimeter adhesive</b> and rubber <b>gaskets</b> on ports, trays, and buttons</li>
+    <li>Opening the phone <b>breaks the seal</b> — every time</li>
+    <li>Replacing the adhesive and seating gaskets properly <b>maintains resistance</b> — do it on every reassembly</li>
+  </ul>
+  <div class="box warn"><p>Tell every customer: <b>water sealing is never guaranteed after a repair.</b> Factory sealing is machine-applied and pressure-tested; a bench reseal is good practice, not a warranty. Put it in writing on the job sheet.</p></div>
+  <div class="notes"><p>This is a legal-protection slide as much as a technique slide. The nightmare scenario: you replace a speaker, customer swims with the phone a month later, it drowns, they blame you. The signed job-sheet line "water resistance not guaranteed after repair" is your defence. Demonstrate laying pre-cut perimeter adhesive and re-seating a SIM-tray gasket.</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>Small parts on video</h2>
+  <div class="video">Speaker, camera &amp; small-parts replacement — Video 6.3 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>How each module is gripped and by what edge</li>
+    <li>Spring contacts vs plug connectors — how each is handled</li>
+    <li>The function test at the end — write down every check the tech performs</li>
+  </ul>
+  <div class="notes"><p>Have students list the tech's final function tests, then compare with the checklist on the next-but-one slide's practical (station D). Any gap between the video and our checklist is a discussion point: "would YOU have caught a dead mic here?"</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>The rule that prevents comebacks</h2>
+  <p class="big" style="margin:1rem 0 1.5rem">Whatever the repair touched, you test. Then test the rest.</p>
+  <ul>
+    <li>Small-part repairs share flexes, screws, and sub-boards with <b>other functions</b></li>
+    <li>A full function-test checklist takes <b>5 minutes</b>; a comeback costs an hour plus your reputation</li>
+    <li>Checklist sign-off goes on the job sheet — every repair, every time</li>
+  </ul>
+  <div class="box ok"><p>Charging · mic · both speakers · both cameras · flash · buttons · vibration · SIM · Wi-Fi/signal · sensors · touch. Five minutes. Sign it.</p></div>
+  <div class="notes"><p>Make them copy the checklist into their notebooks now — this exact list is station D of today's practical and appears again in the final practical exam. Anecdote to tell: the shop that lost a corporate client over an untested mic after a routine port swap. Testing is what separates a repair SERVICE from a parts swap.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: demonstrate/describe <b>safe port cleaning</b> — tools, technique, and what you must never do</li>
+    <li>Another volunteer: a phone "won't charge" — run the <b>substitution + ammeter</b> logic to a conclusion</li>
+    <li>Third volunteer: you've just swapped a charging sub-board — <b>what do you test and why?</b></li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>Listen for: "power off" and "never steel" in the first; one-variable-at-a-time in the second; mic + speaker + charging in the third. If the third volunteer only says "test charging," let the class catch it before you do — that's the module's central lesson landing.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Practical: 3 hours at the bench</h2>
+  <table>
+    <tr><th>Station</th><th>Task</th></tr>
+    <tr><td>A</td><td>Port cleaning on lint-planted phones — record ammeter readings <b>before and after</b></td></tr>
+    <tr><td>B</td><td>Charging sub-board replacement + <b>full retest</b>: charge current, mic, loudspeaker</td></tr>
+    <tr><td>C</td><td>Loudspeaker replacement on a donor phone — contacts clean, audio verified</td></tr>
+    <tr><td>D</td><td>Function-test checklist: run the full 5-minute checklist on a "finished" phone and <b>sign it off</b></td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Worksheet: <code>practicals/practical-06-ports-small-parts.md</code></p>
+  <div class="notes"><p>Prep: plant lint (cotton fluff pressed in with a plastic pick) in station A phones; leave one deliberate fault in the station D phone (e.g. disconnected mic or taped-over speaker) — students must CATCH it via the checklist. Rubric: station A requires both numbers written down; station B fails if any of the three retests is skipped, even if the swap was perfect.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li>Clean <b>your own phone's charging port</b> (wooden pick only!) — note before/after charging behaviour</li>
+    <li>Memorize the <b>function-test checklist</b> — you'll run it from memory next time</li>
+    <li>Watch <b>Video 7.1</b> (soldering basics) — next module we melt metal</li>
+    <li>Quiz now: Module 6, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 7 — soldering &amp; micro-soldering fundamentals.</p>
+  <div class="notes"><p>Hand out the quiz from assessments/module-quizzes.md; inspect benches during it. Tease Module 7 with the soldered-port callback: "Remember the port soldered to the main board we couldn't touch today? Next session you start learning the skill that makes it possible." Remind them: safety glasses live on their bench from now on — soldering makes them non-negotiable.</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 20</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>

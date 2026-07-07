@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 9 — Software Troubleshooting &amp; Diagnostics</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 9 of 10</span>
+  <h1>Software Troubleshooting &amp; Diagnostics</h1>
+  <p class="sub">No screwdriver required: fixing the faults that live in the code.</p>
+  <p class="sub" style="margin-top:2rem">2 h theory &nbsp;·&nbsp; 3 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Open with the punchline early: "This is the most profitable module in the course — software fixes cost you zero parts." Ask who has ever 'fixed' a phone by restarting it. That IS software repair; today we make it systematic.</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Separate <span class="accent">hardware from software faults</span> with a repeatable flowchart</li>
+    <li>Use the <span class="accent">Android and iPhone recovery toolboxes</span>: safe mode, recovery, DFU</li>
+    <li>Triage <span class="warn-t">boot loops, slow phones, and battery drain</span></li>
+    <li>Run built-in and third-party <span class="accent">diagnostic tests</span></li>
+    <li>Know exactly where the <span class="danger-t">legal and ethical lines</span> are — and never cross them</li>
+  </ul>
+  <div class="notes"><p>Point at the last bullet and say it will get its own slide with a red border, and it's the one part of today that is absolutely non-negotiable. Setting that up early makes the ethics slide land harder.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>Half of "broken phones" aren't broken</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Roughly <span class="big accent">half</span> of walk-in "broken phone" cases are software</li>
+        <li>No parts cost, often fixed in under an hour</li>
+        <li>Highest-margin work you will ever do</li>
+      </ul>
+    </div>
+    <div class="box ok">
+      <h3>The trap</h3>
+      <p>A tech who only thinks in hardware replaces a screen on a phone that needed a cache wipe. The customer pays for parts they didn't need — and eventually figures that out.</p>
+    </div>
+  </div>
+  <div class="notes"><p>Story time: the classic is the "dead" phone that's a drained battery plus a broken charger cable — two minutes with a known-good cable "resurrects" it. Diagnosing software FIRST protects customers from unnecessary hardware charges and protects your reputation. Rule: cheapest hypothesis first.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>Intake questions that solve cases</h2>
+  <ul>
+    <li><b>"What happened right before it started?"</b> — the golden question</li>
+    <li>Did it <b>update</b> recently? (OS or apps)</li>
+    <li>Did you <b>install anything new</b>?</li>
+    <li>Was it <b>dropped or wet</b>? (watch the face, check the LCI)</li>
+    <li>Does it happen <b>always, or only in one app / one place</b>?</li>
+  </ul>
+  <div class="box warn"><p>"It just started by itself" is almost never true. Keep asking gently — the answer is usually in there.</p></div>
+  <div class="notes"><p>Roleplay: be a vague customer ("it's just being weird"). Show how each question narrows the tree: 'right after an update' → software, likely OS; 'after installing a game' → rogue app, safe mode will prove it; 'after the beach' → back to Module 8. Five questions typically save an hour of blind testing.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>Backup FIRST — the professional ethic</h2>
+  <div class="box warn">
+    <h3 class="warn-t">Never run a destructive step on a customer phone without a backup or written consent</h3>
+    <p>Factory resets, reflashes, and restores <b>erase everything</b>. A wiped wedding album, the last photos of a relative, years of business contacts — gone, unrecoverable, your fault.</p>
+    <p style="margin-top:.6rem"><b>One wiped photo library can end a repair business.</b></p>
+  </div>
+  <ul style="margin-top:.8rem">
+    <li>Backup possible? → do it, verify it, <b>then</b> proceed</li>
+    <li>Backup impossible (won't boot)? → customer signs data-loss consent <b>before</b> you touch it</li>
+  </ul>
+  <div class="notes"><p>Tell this as the module's cautionary tale — a real shop somewhere has been sued or destroyed on social media over exactly this. Rule to drill: the words "factory reset" never happen on a customer device without either a verified backup or a signature. Connect to Module 10's intake form, which has the consent line built in.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>Hardware or software? The flowchart</h2>
+  <img class="diagram" src="../resources/images/diagnostic-flowchart.svg" alt="Hardware vs software diagnostic flowchart">
+  <div class="notes"><p>This flowchart is the spine of the module and hangs at every practical station. Walk it once fully: Does it power at all? → No: charge with known-good cable 15 min, then hardware path. Yes → Does it reach the boot logo? → Does it finish booting or loop? → Does the fault survive safe mode? Each branch is a slide coming up.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>Walking the flowchart</h2>
+  <table>
+    <tr><th>Question</th><th>If NO</th><th>If YES</th></tr>
+    <tr><td>Any sign of power? (vibrate, light, sound)</td><td>Charge 15 min w/ known-good charger → still nothing = hardware</td><td>Continue ↓</td></tr>
+    <tr><td>Reaches boot logo?</td><td>Power/board fault likely — hardware path</td><td>Continue ↓</td></tr>
+    <tr><td>Finishes booting (no loop)?</td><td>Boot loop → software restore first (slide 14)</td><td>Continue ↓</td></tr>
+    <tr><td>Fault gone in safe mode?</td><td>Fault persists → OS or hardware</td><td>A third-party app is the culprit</td></tr>
+  </table>
+  <div class="notes"><p>Emphasize the discipline: answer each question with a TEST, not a guess. "Any sign of power" includes plugging into the USB ammeter from Module 1 — current draw means the board is alive even with a dead screen. That single reading separates "dead phone" from "dead display" instantly.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Android toolbox 1: safe mode</h2>
+  <ul>
+    <li>Boots Android with <b>all third-party apps disabled</b> — only stock apps run</li>
+    <li>Usually: hold power → long-press "Power off" on screen → "Reboot to safe mode"</li>
+    <li>Fault disappears in safe mode? → <span class="ok-t">a downloaded app is the culprit</span></li>
+    <li>Uninstall recent/suspicious apps one at a time, reboot normally, retest</li>
+  </ul>
+  <div class="box ok"><p>Safe mode is a free, non-destructive, five-minute test. It should be one of your first moves on crashes, freezes, popups, and battery drain.</p></div>
+  <div class="notes"><p>Demo live on the classroom Android: show the "Safe mode" watermark in the corner and that Instagram/games are greyed out. Stress non-destructive: no data is touched, so no backup needed for this step — which is exactly why it comes before resets in the flowchart.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>Android toolbox 2: forced restart &amp; recovery mode</h2>
+  <div class="cols">
+    <div>
+      <h3>Forced restart</h3>
+      <ul>
+        <li>Hold <b>power 10–30 s</b> (or power + volume-down)</li>
+        <li>Fixes frozen phones — no data touched</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Recovery mode</h3>
+      <ul>
+        <li>Power + volume combo from OFF (varies by brand)</li>
+        <li><b>Wipe cache partition</b> — clears junk, keeps data</li>
+        <li><b>Factory reset</b> — wipes everything. <span class="warn-t">Backup/consent first!</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="video">Android recovery mode &amp; factory reset walkthrough — Video 9.1 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Play Video 9.1, then demo recovery mode on the donor Android: navigate with volume keys, select with power. Order of escalation matters: forced restart → wipe cache → factory reset. Each step is more destructive than the last; you climb the ladder, never jump to the top rung.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>Android toolbox 3: full reflash (awareness level)</h2>
+  <ul>
+    <li>Beyond factory reset lies a <b>full OS reflash</b>: rewriting the firmware from a computer</li>
+    <li><b>Fastboot</b> and manufacturer flash tools (Samsung Odin, Xiaomi Mi Flash, etc.)</li>
+    <li>Fixes corrupted firmware that a factory reset can't touch</li>
+    <li>Risks: wrong firmware file or interrupted flash can <b>hard-brick</b> the phone</li>
+  </ul>
+  <div class="box"><p>Course level: know it exists, know when it's the answer, and either learn the exact procedure for that model carefully — or refer out. Never flash firmware casually.</p></div>
+  <div class="notes"><p>This is demo-level awareness, not a hands-on skill today. Show the fastboot screen on the donor phone and a flash tool UI on the projector if available. The learning point: "factory reset failed" is not the end of the software path — reflash exists. But wrong-region firmware or a cable pull mid-flash makes things worse, so respect it.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>iPhone toolbox 1: force restart</h2>
+  <ul>
+    <li><b>iPhone 8 and later:</b> press volume-up, press volume-down, then hold side button until the Apple logo</li>
+    <li><b>iPhone 7:</b> hold volume-down + side button together</li>
+    <li><b>iPhone 6s and earlier:</b> hold home + power together</li>
+    <li>Non-destructive — always the first move on a frozen iPhone</li>
+  </ul>
+  <div class="box ok"><p>Memorize the 8-and-later combo: up, down, hold. It covers almost every iPhone you'll see.</p></div>
+  <div class="notes"><p>Have everyone perform the combo on the classroom iPhones right now — the timing (quick press, quick press, long hold) takes two or three tries to get. Common customer confusion: they hold all buttons at once and get the SOS/power-off screen instead.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>iPhone toolbox 2: Recovery vs DFU restore</h2>
+  <table>
+    <tr><th></th><th>Recovery mode restore</th><th>DFU restore</th></tr>
+    <tr><td>How</td><td>Force-restart combo, keep holding while connected to a computer</td><td>Precise timed button sequence; screen stays <b>black</b></td></tr>
+    <tr><td>What runs</td><td>Loads the recovery OS</td><td>Device Firmware Update — lowest level, before the OS loads</td></tr>
+    <tr><td>Options</td><td><b>Update</b> (reinstall iOS, keep data) or <b>Restore</b> (wipe)</td><td>Full firmware rewrite — <b>always wipes</b></td></tr>
+    <tr><td>Use when</td><td>Boot problems, failed updates</td><td>Recovery mode itself fails</td></tr>
+  </table>
+  <div class="box warn"><p>Always try <b>Update</b> before Restore — Update keeps the customer's data.</p></div>
+  <div class="video">iPhone recovery &amp; DFU restore demo — Video 9.2 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Play Video 9.2, then demo recovery mode live with the classroom laptop. The Update-vs-Restore distinction is a guaranteed quiz question and a real data-saver: Update rescues most boot-looping iPhones without touching data. DFU's black screen confuses beginners — "nothing is happening" is what success looks like; the computer confirms detection.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>"My phone is slow" / "battery drains fast"</h2>
+  <div class="cols">
+    <div>
+      <h3>Storage full</h3>
+      <ul>
+        <li>Under <b>10% free</b> → the OS crawls</li>
+        <li>Check storage settings first — it's a 30-second look</li>
+        <li>Fix: offload videos/apps, clear caches</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Rogue apps</h3>
+      <ul>
+        <li>Open the <b>battery usage screen</b> — the top of the list is your suspect</li>
+        <li>Background-hungry or broken apps drain silently</li>
+        <li>Fix: update, restrict background use, or uninstall</li>
+      </ul>
+    </div>
+  </div>
+  <div class="notes"><p>These two checks solve most "slow phone" walk-ins in minutes — check them BEFORE quoting a new battery. Connect to Module 5: battery health tells you if the battery is genuinely worn; the battery usage screen tells you if software is wasting a healthy one. Charge for the diagnosis either way — knowledge is the product.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>Boot-loop triage</h2>
+  <ol>
+    <li>Phone loops: logo → restart → logo → restart…</li>
+    <li><b>Software restore first</b>: wipe cache (Android) / Recovery "Update" (iPhone)</li>
+    <li>Escalate: factory reset or reflash — <span class="warn-t">with consent, data is likely lost</span></li>
+    <li>Restore <b>fails with hardware error codes</b>, or loops continue after a clean flash → <span class="danger-t">board fault</span> — refer to board-level repair</li>
+  </ol>
+  <div class="box"><p>The restore attempt IS the diagnostic: software fixes it, or its failure proves hardware.</p></div>
+  <div class="notes"><p>Reframe restores as a diagnostic instrument, not just a fix — computer restore tools report error codes when they hit hardware faults (e.g. iTunes/Finder errors pointing at NAND or power ICs). Note the classic hardware-caused loop: a failing battery that sags under boot load. If a loop "fixes itself" while plugged in, suspect the battery, not the software.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Built-in diagnostics</h2>
+  <div class="cols">
+    <div>
+      <h3>Android</h3>
+      <ul>
+        <li>Dial codes open hidden test menus (e.g. <code>*#0*#</code> on many Samsungs)</li>
+        <li>Manufacturer test menus: screen, touch, sensors, speakers, cameras</li>
+        <li>Codes vary by brand — keep a cheat sheet per brand you service</li>
+      </ul>
+    </div>
+    <div>
+      <h3>iPhone</h3>
+      <ul>
+        <li>No public dial codes — Apple diagnostics run via Apple's own service tools</li>
+        <li>You still get: Battery Health, Analytics logs (crash/panic clues)</li>
+        <li>Panic logs full of hardware mentions hint at board faults</li>
+      </ul>
+    </div>
+  </div>
+  <div class="notes"><p>Demo the Samsung *#0*# menu live if you have one — the class loves the full-screen color and touch-grid tests. On iPhone, show Settings → Privacy → Analytics Data and point out "panic-full" files: a repeated panic log is a strong board-fault clue. These menus turn "I think the touch works" into "touch verified on a 100% grid".</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>Third-party test apps</h2>
+  <ul>
+    <li>Test apps drive every sensor and component from one checklist: touch grid, multitouch, cameras, mics, speakers, GPS, gyro, proximity</li>
+    <li>Perfect for <b>before/after proof</b>: run the test at intake, run it again after repair</li>
+    <li>Touch-testing the whole screen catches dead zones a quick swipe misses</li>
+    <li>Use them at customer <b>intake</b> to document what already didn't work</li>
+  </ul>
+  <div class="video">Diagnostic apps &amp; hidden test menus tour — Video 9.3 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Play Video 9.3, then have every student install the chosen test app on a bench phone and run the full sweep once — they'll use it in the practical and the final exam. Business angle: a saved intake test report is your proof that the microphone was already dead when the phone arrived for a screen job.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>Ethics &amp; the law — non-negotiable</h2>
+  <div class="box danger">
+    <h3 class="danger-t">Activation locks exist to make stolen phones worthless</h3>
+    <ul>
+      <li><b>FRP (Google lock)</b> and <b>iCloud Activation Lock</b> survive factory resets — by design</li>
+      <li><b>NEVER offer bypasses.</b> Not for money, not as a favor, not "just this once"</li>
+      <li>Reset or unlock <b>ONLY for the verified owner, with their own credentials</b></li>
+      <li>Refuse "found phones" and "my cousin's phone, I don't know the password"</li>
+    </ul>
+  </div>
+  <p style="margin-top:.8rem">Bypassing locks can be a crime — and it makes you the fence for every thief in town. <b>Your license and reputation die here.</b></p>
+  <div class="notes"><p>Slow down and make eye contact — this is the one slide where you play the hard line. Script for the class to memorize: "I can only unlock a device for its verified owner signed into their own account. If it's locked to someone else's account, I can't help — no exceptions." Someone WILL test them within their first month of trading. Refusing loses one sale; accepting can lose everything. This appears on the final written exam.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>Malware &amp; the fake-virus popup</h2>
+  <div class="cols">
+    <div class="box warn">
+      <h3>Usually: notification spam</h3>
+      <p>"YOUR PHONE HAS 7 VIRUSES!" popups are mostly <b>browser notification spam</b> — a website the user granted permission to. Fix: clear that site's notification permission &amp; browser data. Two minutes.</p>
+    </div>
+    <div class="box danger">
+      <h3>Sometimes: real malware</h3>
+      <p>Sideloaded APKs, fake "cleaner" apps, apps with device-admin rights. Fix: safe mode → revoke device-admin → uninstall → full scan; factory reset (with backup!) if entrenched.</p>
+    </div>
+  </div>
+  <div class="notes"><p>Demo the fix path on Android: browser settings → site settings → notifications → block the spam site. Teach customers the prevention line: "Never tap Allow on a website's notification prompt you didn't ask for." Real malware clue: an app you can't uninstall normally usually has device-administrator rights — revoke those first in security settings, then it uninstalls.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: walk the class through the <b>hardware-vs-software flowchart</b> from "won't turn on" to a verdict</li>
+    <li>Another volunteer: explain <b>Recovery vs DFU</b> on iPhone — and which to try first, and why</li>
+    <li>Class challenge: a stranger offers cash to "unlock a phone I found". Deliver your refusal, word for word</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>For #3, push back like a real customer would ("come on, it's just sitting in a drawer, nobody will know"). The student must hold the line politely and firmly. If #1 is shaky, walk the flowchart on the projector once more before the practical — the whole lab depends on it.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Practical: diagnosis stations, 3 hours</h2>
+  <table>
+    <tr><th>Station</th><th>Planted fault</th><th>Expected path</th></tr>
+    <tr><td>A</td><td>Rogue app causing crashes &amp; drain</td><td>Safe mode proves it → identify &amp; uninstall</td></tr>
+    <tr><td>B</td><td>Storage crammed above 95%</td><td>Storage check → clean up → verify speed</td></tr>
+    <tr><td>C</td><td>Corrupted phone that needs recovery-mode reset</td><td>Backup/consent → recovery mode → verify</td></tr>
+    <tr><td>D</td><td class="danger-t">Hardware red herring</td><td>Flowchart correctly says "NOT software" — refer to hardware repair</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Run the flowchart, document findings &amp; fix, and write a customer-style report. Worksheet: <code>practicals/practical-09-software-diagnostics.md</code></p>
+  <div class="notes"><p>Don't reveal which station has the red herring — recognizing "this is NOT software" is the highest-value skill being graded. Grade the paperwork as hard as the fix: findings, steps taken, and a customer-readable report. Rotate pairs roughly every 40 minutes. Watch station C for anyone resetting without the consent step — instant rubric deduction.</p></div>
+</section>
+
+<!-- ======================= SLIDE 21 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li>Memorize the <b>force-restart combos</b> (Android + all three iPhone generations)</li>
+    <li>Write your <b>refusal script</b> for locked/"found" phones — you'll recite it next session</li>
+    <li>Watch <b>Videos 9.1 and 9.2</b> once more before the final exam</li>
+    <li>Quiz now: Module 9, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 10 — turning your skills into a business.</p>
+  <div class="notes"><p>Hand out the Module 9 quiz from assessments/module-quizzes.md. While they take it, review the station reports. Preview Module 10: "You can now fix phones. Next session: how to get PAID to fix phones — and pass the final." Remind them the final exams are coming; nerves drop when the format is known early.</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 21</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>

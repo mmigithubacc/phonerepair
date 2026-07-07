@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4 — Screen &amp; Display Replacement</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 4 of 10</span>
+  <h1>Screen &amp; Display Replacement</h1>
+  <p class="sub">The money repair — done to a professional standard.</p>
+  <p class="sub" style="margin-top:2rem">1.5 h theory &nbsp;·&nbsp; 3 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Safety recital, collect the Module 3 mistake-prevention homework sentences. Hook: "Raise your hand if you've ever paid for a screen repair — or walked around with a cracked one." Almost every hand goes up. That's the market.</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>Why this is the money repair</h2>
+  <ul>
+    <li>Cracked screens are the <span class="accent">#1 repair job</span> worldwide — most shops' main revenue</li>
+    <li>High volume + predictable process = a repair you'll do <b>daily</b></li>
+    <li>Customers judge your whole shop by this one job: fit, feel, and honesty about parts</li>
+  </ul>
+  <div class="box ok"><p>Master this module and you can already earn. Everything else in the course multiplies it.</p></div>
+  <div class="notes"><p>Put local numbers on it: typical screen job price in your market, part cost, minutes of labor — work out the margin on the whiteboard. Then the flip side: a botched screen job (dust, lifted corner, dead proximity sensor) is also the #1 source of bad reviews. Standard matters more than speed.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Explain the <span class="accent">screen stack</span> and LCD vs OLED failures</li>
+    <li>Choose and explain <span class="warn-t">part quality tiers</span> honestly to a customer</li>
+    <li>Replace a <span class="accent">glued or frame-mounted</span> screen cleanly</li>
+    <li>Run the full <span class="ok-t">test-before-sealing protocol</span> — every time</li>
+  </ul>
+  <div class="notes"><p>Point out that Module 3 already taught 80% of the hands: opening, battery-first, connectors. Today adds the screen-specific 20%: the stack, part quality, adhesive, and the test protocol. The protocol is the graded core of the practical.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>Anatomy of a screen</h2>
+  <img class="diagram" src="../resources/images/screen-layers.svg" alt="Screen stack layers: cover glass, digitizer, display panel">
+  <ul style="margin-top:1rem">
+    <li><b>Cover glass</b> — protection, what cracks in a drop</li>
+    <li><b>Digitizer</b> — the touch-sensing layer</li>
+    <li><b>Display panel</b> — LCD or OLED, makes the image</li>
+  </ul>
+  <div class="notes"><p>Map faults to layers: cracked but everything works = glass only. Touch dead, image fine = digitizer. Image broken = panel. Ask the class to diagnose: "Spiderweb cracks, picture perfect, touch works — which layer?" This layer-thinking drives the fused-vs-glass-only discussion two slides from now.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>LCD vs OLED</h2>
+  <table>
+    <tr><th></th><th>LCD</th><th>OLED</th></tr>
+    <tr><td>How it lights up</td><td>Backlight shines through liquid crystals</td><td>Each pixel emits its own light</td></tr>
+    <tr><td>Found in</td><td>Budget &amp; older phones</td><td>Most flagships &amp; mid-range</td></tr>
+    <tr><td>Failure looks like</td><td class="warn-t">Lines, backlight bleed, dim/dark screen</td><td class="danger-t">Green/pink lines, spreading black blobs</td></tr>
+    <tr><td>Handling</td><td>Fairly tough</td><td>Fragile — pressure &amp; bends kill it</td></tr>
+  </table>
+  <div class="notes"><p>Show real failure photos (or dead donor screens): LCD backlight bleed vs OLED black blob that grows over days. Diagnostic tell: perfect blacks and screen visibly off = OLED; faint glow on black = LCD backlight. Handling consequence: OLED replacements need gentler prying and no pressure on the panel face.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>Fused assemblies vs glass-only repair</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Fused (nearly all modern phones)</h3>
+      <p>Glass + digitizer + panel <b>laminated into one part</b>. Cracked glass = replace the whole assembly. This is what we do.</p>
+    </div>
+    <div class="box warn">
+      <h3>Glass-only refurbishing</h3>
+      <p>Separating and re-laminating just the glass. Needs freezer/wire separators, OCA lamination, bubble-free machines. <b>Specialist work — not this course.</b></p>
+    </div>
+  </div>
+  <div class="notes"><p>Preempt the inevitable question "why replace a whole screen for one cracked layer?" — lamination removes air gaps for better image and thinner phones, but makes layers inseparable without factory-grade equipment. Refurb shops buy your cracked originals — that's why broken screens have resale value. Never throw a cracked original away; that's money.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>Part quality tiers — know what you're buying</h2>
+  <table>
+    <tr><th>Tier</th><th>What it is</th><th>Price</th><th>Quality</th></tr>
+    <tr><td>Original (OEM)</td><td>Same part the factory fits</td><td>$$$$</td><td>Perfect</td></tr>
+    <tr><td>Pulled original</td><td>OEM taken from a dead phone</td><td>$$$</td><td>Great, but used — inspect!</td></tr>
+    <tr><td>Refurbished</td><td>Original panel, new glass laminated</td><td>$$$</td><td>Very good if done well</td></tr>
+    <tr><td>Aftermarket</td><td>Third-party: incell LCD · hard OLED · soft OLED</td><td>$–$$</td><td>Ranges from rough to near-original</td></tr>
+  </table>
+  <div class="notes"><p>Explain the aftermarket sub-tiers: incell = LCD imitating an OLED phone's screen (cheapest, thicker, weaker colors, battery hit); hard OLED = real OLED on rigid glass (good, less drop-resistant); soft OLED = flexible like original (best aftermarket). Rule of thumb: price difference between tiers is real — a $15 screen looks like a $15 screen.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Quality tiers = an honesty conversation</h2>
+  <ul>
+    <li>Quote <b>2–3 tiers</b> with prices; let the customer choose</li>
+    <li>Cheaper tier = shorter <b>warranty</b> — say so up front</li>
+    <li><span class="danger-t">Never</span> fit aftermarket and charge original prices — it's fraud, and customers find out</li>
+  </ul>
+  <div class="video">Screen quality tiers compared — OLED vs LCD side by side — Video 4.3 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Role-play a 60-second customer quote: "I can do original at X with 6-month warranty, or good aftermarket at Y with 3-month." Ask why the honest shop wins long-term (referrals, no comeback disputes). After the video, ask which tier the class could personally spot in a blind test — usually incell brightness and color shift.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>Glued screen removal — step by step</h2>
+  <ol>
+    <li><b>Power off</b>; guide checked; know where cables run</li>
+    <li><b>Heat</b> the perimeter to 80–100 °C — re-heat as you go</li>
+    <li><b>Suction cup</b> near the bottom edge → first gap</li>
+    <li><b>Picks</b> around the perimeter — <span class="danger-t">shallow near cables</span></li>
+    <li><b>Slice adhesive, not components</b> — the pick cuts glue, nothing else</li>
+  </ol>
+  <div class="box warn"><p>Open slowly to ~45° like a book — the display flexes are short. Battery disconnect the moment you're in.</p></div>
+  <div class="notes"><p>This is Module 3's opening sequence applied to its hardest case — cracked glass grips picks and sheds shards. Tip: packing tape over spiderwebbed glass keeps the suction cup working and shards contained. Safety glasses mandatory today (Module 1 rule 3). Demo the 45° book-opening angle and show how short the display flexes really are.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>Watch: glued screen replacement</h2>
+  <div class="video">Glued screen replacement, start to finish — Video 4.1 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>Where the picks go <b>shallow</b> — and why there</li>
+    <li>When the battery is disconnected</li>
+    <li>How the old adhesive is cleaned before the new screen goes on</li>
+  </ul>
+  <div class="notes"><p>Pause at the shallow-pick corners and ask what lives under them on this model (usually display flex bottom-left, front camera top). Second pause at adhesive cleanup — beginners always underestimate this step; the video shows how long full cleanup actually takes.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>Variant: frame-mounted screens (many Androids)</h2>
+  <ul>
+    <li>Screen is glued into a <b>midframe</b>; you open the phone from the <b>back</b></li>
+    <li>Replacement part often comes <b>pre-mounted in a new frame</b> — you transplant the internals</li>
+    <li>"Screen only" on these models means separating from the frame — harder, riskier, hot-plate work</li>
+  </ul>
+  <div class="box ok"><p>Screen-with-frame costs a little more and takes a full teardown — but the result is factory-straight and beginner-safe. Quote it that way.</p></div>
+  <div class="notes"><p>Contrast the two philosophies: iPhone-style = screen off first, quick; frame-mounted Android = full teardown into a new frame, longer but very controlled — and it's exactly the Module 3 teardown they already did. Show both replacement parts side by side: bare screen vs screen-in-frame.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>Watch: frame-mounted replacement</h2>
+  <div class="video">Frame-mounted (midframe) screen replacement — Video 4.2 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>How much of this is just the <b>Module 3 teardown</b></li>
+    <li>Which small parts get <b>transferred</b> to the new frame</li>
+  </ul>
+  <div class="notes"><p>Have students count teardown steps they already performed last session — usually all but two. Confidence builder: "You already know 90% of this repair." Note the transfer list as it appears; the next slide formalizes it.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>Transferring parts to the new screen</h2>
+  <ul>
+    <li><b>Earpiece mesh / speaker</b> — often stuck to the old screen</li>
+    <li><b>Sensor brackets &amp; front camera holders</b> — tiny plastic guides the sensors sit in</li>
+    <li><b>Backplates / heat shields</b> — metal plates that screw over the display flexes</li>
+  </ul>
+  <div class="box danger"><p>Forget the sensor bracket and the proximity sensor misfires: the screen stays black during calls or dials with the customer's cheek. A 2&nbsp;mm part causes a "faulty screen" complaint.</p></div>
+  <div class="notes"><p>Lay old and new screens side by side and play spot-the-difference — everything on the old one that's missing from the new one transfers. Cheap aftermarket screens ship barest; originals often include more. Transfer with tweezers, seat parts in their exact recess — the proximity bracket especially has one correct position.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>Adhesive: how the new screen stays in</h2>
+  <ul>
+    <li><b>Pre-cut adhesive kits</b> — exact shape for the model. <span class="ok-t">Best choice, always first pick</span></li>
+    <li><b>Adhesive tape (rolls)</b> — cut to fit; fine for straight edges</li>
+    <li><b>B-7000 glue</b> — thin, continuous bead; keep it away from vents &amp; buttons; clamp while curing</li>
+  </ul>
+  <div class="box warn"><p>First: remove <b>all</b> old adhesive and clean the frame with IPA. New glue on old glue = a screen that lifts at the corner in a week.</p></div>
+  <div class="notes"><p>Demo adhesive cleanup on a frame: spudger to lift the bulk, IPA-soaked wipe until the finger-drag test feels squeaky clean. Show a pre-cut kit aligned on the frame — one shot, no repositioning. B-7000 demo: rice-grain-thin bead; too much oozes into the earpiece. Note: water resistance is never fully restored — tell customers that, it goes in the Module 10 intake script.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>TEST BEFORE SEALING — the protocol</h2>
+  <ol>
+    <li><b>Touch every zone</b> — drag an icon around all screen edges &amp; corners</li>
+    <li><b>Dead-pixel check</b> — full-screen red, green, blue, white, black</li>
+    <li><b>Brightness sweep</b> — min → max, look for flicker &amp; bleed</li>
+    <li><b>Proximity test</b> — place a call, cover the sensor, screen must blank</li>
+    <li><b>Camera window &amp; earpiece clean</b> — no dust, no fingerprints inside</li>
+  </ol>
+  <div class="box danger"><p>All five pass → seal. Any fail → fix now, while it's open. This protocol is graded line-by-line today.</p></div>
+  <div class="notes"><p>Demo the whole protocol in under 3 minutes on a working phone — speed sells the habit. Use a tester app or solid-color images for pixels. This is Module 3's "closing an untested phone means opening it twice," now as a formal checklist. In the practical, students literally tick each line on the worksheet with a trainer initial.</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>iPhone caveats — tell the customer first</h2>
+  <div class="box warn">
+    <ul>
+      <li><b>True Tone</b> is usually lost after a screen swap (unless data is copied with a programmer)</li>
+      <li><b>"Unable to verify this iPhone has a genuine Apple display"</b> — warning appears even with a genuine pulled screen</li>
+      <li><b>Parts serialization</b>: the phone knows the part changed; some features may degrade</li>
+    </ul>
+  </div>
+  <p style="margin-top:1rem">None of this means a bad repair — but the customer hears it from <b>you, up front</b>, never discovers it after.</p>
+  <div class="notes"><p>Show the settings warning banner on a repaired iPhone if you have one. Script for intake: "Your phone will show a non-genuine display notice and lose True Tone — the screen will work perfectly. OK to proceed?" Get agreement BEFORE the repair, ideally in writing on the job sheet. Mention screen programmers exist to transfer the data — an advanced-shop tool, not required here.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>Common screen-job failures</h2>
+  <table>
+    <tr><th>Symptom</th><th>Cause</th><th>Prevention</th></tr>
+    <tr><td>Dust specks under glass</td><td>Dirty bench / no camera-window wipe</td><td>Clean area, wipe just before seating</td></tr>
+    <tr><td>No backlight after repair</td><td>Torn backlight flex / battery connected during work</td><td>Battery first; gentle near flexes</td></tr>
+    <tr><td>Lines on display</td><td>Half-seated connector</td><td>Press till it clicks; re-check at test step</td></tr>
+  </table>
+  <div class="notes"><p>Every failure here is a protocol violation, not bad luck — walk each row back to its rule (clean bench, battery-first, click-check). Lines that appear then vanish when you press the connector area = classic half-seat; reseat, don't replace. Dust is the most common comeback; it's pure discipline.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: recite and demo the <b>test-before-sealing protocol</b> on a working phone</li>
+    <li>Another volunteer: play the shop owner — explain <b>part quality tiers</b> to a "customer" (the class) and quote two options</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>The protocol teach-back must hit all five checks in order — class counts on fingers. For the sales role-play, have the "customer" push back ("why so expensive?") and see if the volunteer holds the honest line without trash-talking cheap parts. Both skills are graded in the final practical.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Practical: real screen replacement, 3 hours</h2>
+  <table>
+    <tr><th>Stage</th><th>Task</th><th>Graded on</th></tr>
+    <tr><td>1</td><td>Guide lookup → remove broken screen from powered donor</td><td>Safe opening, battery first, no new damage</td></tr>
+    <tr><td>2</td><td>Transfer parts → fit new screen → connect</td><td>All transfers present &amp; seated</td></tr>
+    <tr><td>3</td><td>Run <b>full test protocol</b> before sealing</td><td>All 5 checks ticked, trainer initialed</td></tr>
+    <tr><td>4</td><td>Adhesive application → final seal → QC &amp; bench clean</td><td>Clean edges, no lift, no dust — rubric graded</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Worksheet: <code>practicals/practical-04-screen-replacement.md</code></p>
+  <div class="notes"><p>Use powered donors so the test protocol is real — a screen job on a dead phone teaches nothing about testing. Stage 3 requires your initials before any adhesive is opened. Rubric weighting suggestion: 30% safe removal, 20% transfers, 30% protocol, 20% final QC. Keep one deliberately dusty bench as a teachable moment if someone skips the wipe-down.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li>Price check: find your own phone's screen in <b>two quality tiers</b> online, note the price gap</li>
+    <li>Re-watch <b>Video 4.3</b> — be ready to explain incell vs hard vs soft OLED in one sentence each</li>
+    <li>Quiz now: Module 4, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 5 — batteries and power problems.</p>
+  <div class="notes"><p>Quiz from assessments/module-quizzes.md; bench inspections during. The price-check homework feeds directly into Module 10 (parts sourcing) — collect the numbers next session and build a class price sheet from them. One-line preview of Module 5: "The part most likely to be lied about by the phone itself."</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 20</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>
