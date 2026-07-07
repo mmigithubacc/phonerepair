@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="700" fill="#ffffff"/>
+  <text x="500" y="40" text-anchor="middle" font-size="26" font-weight="bold" fill="#0f172a">Water Damage — treatment flowchart</text>
+
+  <!-- ===== column 1 ===== -->
+  <rect x="60" y="90" width="310" height="64" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+  <text x="215" y="128" text-anchor="middle" font-size="17" font-weight="bold" fill="#0f172a">Wet phone arrives</text>
+  <path d="M215 154 L215 182" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <rect x="60" y="190" width="310" height="64" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="215" y="217" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Power OFF —</text>
+  <text x="215" y="239" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">do NOT charge, do NOT test</text>
+  <path d="M215 254 L215 282" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <rect x="60" y="290" width="310" height="64" rx="12" fill="#fef9c3" stroke="#ca8a04" stroke-width="2.5"/>
+  <text x="215" y="328" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Remove SIM &amp; open ASAP</text>
+  <path d="M215 354 L215 382" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <rect x="60" y="390" width="310" height="64" rx="12" fill="#fef9c3" stroke="#ca8a04" stroke-width="2.5"/>
+  <text x="215" y="428" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Disconnect &amp; quarantine battery</text>
+  <path d="M215 454 L215 482" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <rect x="60" y="490" width="310" height="64" rx="12" fill="#fef9c3" stroke="#ca8a04" stroke-width="2.5"/>
+  <text x="215" y="528" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Teardown + remove shields</text>
+
+  <!-- connector to column 2 -->
+  <path d="M370 522 L500 522 L500 60 L785 60 L785 76" stroke="#0f172a" stroke-width="3" fill="none" marker-end="url(#arr)"/>
+
+  <!-- NEVER box -->
+  <rect x="60" y="596" width="310" height="76" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/>
+  <text x="215" y="627" text-anchor="middle" font-size="17" font-weight="bold" fill="#dc2626">NEVER: rice, hair dryer,</text>
+  <text x="215" y="652" text-anchor="middle" font-size="17" font-weight="bold" fill="#dc2626">charging to test</text>
+
+  <!-- ===== column 2 ===== -->
+  <rect x="630" y="80" width="310" height="56" rx="12" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5"/>
+  <text x="785" y="114" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">IPA ≥99% brush clean</text>
+  <path d="M785 136 L785 152" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <rect x="630" y="160" width="310" height="56" rx="12" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5"/>
+  <text x="785" y="194" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Ultrasonic clean (board only)</text>
+  <path d="M785 216 L785 232" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <rect x="630" y="240" width="310" height="56" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+  <text x="785" y="266" text-anchor="middle" font-size="15" font-weight="bold" fill="#0f172a">Dry + inspect</text>
+  <text x="785" y="286" text-anchor="middle" font-size="15" font-weight="bold" fill="#0f172a">under magnification</text>
+  <path d="M785 296 L785 312" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <!-- decision diamond -->
+  <polygon points="785,318 930,360 785,402 640,360" fill="#fef9c3" stroke="#ca8a04" stroke-width="2.5"/>
+  <text x="785" y="366" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Corrosion gone?</text>
+
+  <!-- No: loop back to IPA clean -->
+  <path d="M640 360 L600 360 L600 108 L624 108" stroke="#dc2626" stroke-width="3" fill="none" marker-end="url(#arrRed)"/>
+  <text x="632" y="344" text-anchor="middle" font-size="15" font-weight="bold" fill="#dc2626">No</text>
+  <text x="592" y="230" text-anchor="end" font-size="14" fill="#dc2626">clean again</text>
+
+  <!-- Yes -->
+  <path d="M785 402 L785 420" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+  <text x="802" y="418" font-size="15" font-weight="bold" fill="#15803d">Yes</text>
+
+  <rect x="630" y="426" width="310" height="56" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+  <text x="785" y="460" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Reassemble with NEW battery</text>
+  <path d="M785 482 L785 498" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <rect x="630" y="506" width="310" height="56" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+  <text x="785" y="540" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f172a">Full test</text>
+  <path d="M785 562 L785 578" stroke="#0f172a" stroke-width="3" marker-end="url(#arr)"/>
+
+  <rect x="630" y="586" width="310" height="64" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="785" y="613" text-anchor="middle" font-size="16" font-weight="bold" fill="#14532d">Honest customer report —</text>
+  <text x="785" y="635" text-anchor="middle" font-size="16" font-weight="bold" fill="#14532d">no guarantees</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#0f172a"/>
+    </marker>
+    <marker id="arrRed" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#dc2626"/>
+    </marker>
+  </defs>
+</svg>

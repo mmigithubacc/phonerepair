@@ -49,8 +49,8 @@
   <!-- prevention bar -->
   <rect x="30" y="280" width="945" height="110" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
   <text x="55" y="312" font-size="18" font-weight="bold" fill="#14532d">PREVENT IT:</text>
-  <text x="55" y="342" font-size="16" fill="#14532d">• Never pry under or against a battery with metal &nbsp;&nbsp;• Keep heat gun moving, never aimed at the battery &nbsp;&nbsp;• Disconnect battery before all work</text>
-  <text x="55" y="370" font-size="16" fill="#14532d">• Swollen battery = stop, don't press or charge → battery bin &nbsp;&nbsp;• If it burns: sand / fire bin — water won't easily stop it</text>
+  <text x="55" y="342" font-size="16" fill="#14532d">• Never pry under or against a battery with metal &#160;&#160;• Keep heat gun moving, never aimed at the battery &#160;&#160;• Disconnect battery before all work</text>
+  <text x="55" y="370" font-size="16" fill="#14532d">• Swollen battery = stop, don't press or charge → battery bin &#160;&#160;• If it burns: sand / fire bin — water won't easily stop it</text>
 
   <defs>
     <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
