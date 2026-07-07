@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 7 — Soldering &amp; Micro-Soldering Fundamentals</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 7 of 10</span>
+  <h1>Soldering &amp; Micro-Soldering Fundamentals</h1>
+  <p class="sub">Today you stop swapping parts and start repairing connections.</p>
+  <p class="sub" style="margin-top:2rem">2 h theory &nbsp;·&nbsp; 4 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Safety recital, then set the tone: soldering is the skill that separates parts-swappers from technicians, and it is 90% muscle memory — today plants the seed, but they must practice for weeks after. Show a phone board fixed with a single solder joint: "this repair cost 2 cents of solder and 10 minutes."</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Run a soldering station <span class="ok-t">safely</span> — heat, fumes, and habits</li>
+    <li>Make a <span class="accent">shiny, strong joint</span> — and recognize a bad one on sight</li>
+    <li>Tin and splice wires, solder and desolder <span class="accent">through-hole</span> parts</li>
+    <li>Take your first steps in <span class="warn-t">SMD and hot-air</span> work</li>
+    <li>Know honestly <span class="danger-t">where this module ends</span> and specialist work begins</li>
+  </ul>
+  <div class="notes"><p>Manage expectations from minute one: nobody leaves today ready to re-solder a phone charging port on a customer's device. They leave with correct fundamentals and a practice plan. Bad habits learned now take months to unlearn — that's why we drill technique on practice kits, not phones.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>Safety first — new hazards today</h2>
+  <div class="box danger">
+    <ul>
+      <li><b>Fumes:</b> flux smoke is an irritant — <b>fume extraction or open ventilation is mandatory</b>, every time</li>
+      <li><b>Safety glasses on</b> — solder can spit, clipped leads fly</li>
+      <li><b>The iron lives in its holder</b> — never on the mat, never handed to anyone</li>
+      <li><b>Wash hands after handling leaded solder</b> — and never eat at the bench</li>
+    </ul>
+  </div>
+  <p style="margin-top:1rem">The iron tip is 300+ °C. It looks exactly the same hot or cold.</p>
+  <div class="notes"><p>Point at the fume extractor / open windows NOW and make it physical like the Module 1 battery bin. The "smoke" rising off a joint is vaporized flux, not lead — but you still don't breathe it. Lead doesn't evaporate at iron temperatures; the hand-washing rule is about residue transferring to food. These four rules are graded pass/fail in today's practical.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>The soldering station</h2>
+  <ul>
+    <li><b>Temperature-controlled iron</b> — a dial you set, not a fixed firestick</li>
+    <li><b>Tips</b> — chisel for wires/pads, fine conical for small work</li>
+    <li><b>Brass sponge</b> — cleans the tip without shocking it cold</li>
+    <li><b>Flux</b> — paste or pen; the secret ingredient (own slide coming)</li>
+    <li><b>Solder wire 0.5–0.8 mm</b> — thin enough for electronics work</li>
+    <li><b>Desoldering wick + pump</b> — for taking solder away</li>
+  </ul>
+  <div class="notes"><p>Tour a real station as you talk — pick up each item. Explain why the cheap fixed-temperature "firestick" irons frustrate beginners: no control means burnt flux and dead tips. A decent temperature-controlled station costs less than one phone screen and lasts years. Wet cellulose sponges work too but thermal-shock the tip; brass is kinder.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>Temperature: hotter is NOT better</h2>
+  <table>
+    <tr><th>Solder</th><th>Iron setting</th><th>Notes</th></tr>
+    <tr><td>Leaded Sn63 (training standard)</td><td class="accent">300–330 °C</td><td>Flows easily, forgiving — what we learn on</td></tr>
+    <tr><td>Lead-free</td><td class="accent">330–380 °C</td><td>Higher melt point, needs more flux</td></tr>
+  </table>
+  <div class="box warn"><p>Cranking the dial to 450 °C doesn't help — the <b>flux burns off instantly</b>, the joint oxidizes, the tip blackens, and pads lift. If a joint won't take, the answer is flux and contact, not heat.</p></div>
+  <div class="notes"><p>This is the #1 beginner error: "it's not melting, turn it up." Explain the real causes of "not melting": dirty tip, no flux, or the tip touching the wrong spot. Note the trade-off honestly: leaded solder is easier to learn and still common in repair; lead-free is the manufacturing standard (RoHS). We train on leaded, hence the hygiene rules.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>Tip care: a black tip is a dead tip</h2>
+  <ul>
+    <li><b>Tin it always</b> — a thin silver coat of solder protects the tip, before AND after work</li>
+    <li><b>Clean on brass</b> between joints — a quick stab and twist</li>
+    <li>Turn the iron <b>off or down</b> when idle — heat + air = oxidation</li>
+  </ul>
+  <div class="box danger"><p>A black, oxidized tip <b>transfers no heat</b>. You'll press harder and longer, damage the board, and still make bad joints. Tip condition is the first thing to check when soldering goes wrong.</p></div>
+  <div class="notes"><p>Demo the difference live: touch solder to a shiny tinned tip (instant melt and flow) vs an oxidized area (solder balls up and rolls off). Show tip rescue: flux + fresh solder scrubbed on brass, or tip tinner. End-of-session ritual from today: clean, tin fat, THEN switch off — the blob of solder protects the tip while it cools and between sessions.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>Flux: the actual magic</h2>
+  <ul>
+    <li>Metal surfaces grow an invisible <b>oxide layer</b> the moment they touch air</li>
+    <li>Solder <b>cannot bond</b> to oxide — it beads up and rolls off</li>
+    <li>Flux <b>dissolves the oxide</b> at soldering temperature so the solder can <b>wet</b> the metal</li>
+  </ul>
+  <p class="big" style="margin-top:1.2rem">"Solder flows toward <span class="accent">clean, hot, fluxed</span> metal."</p>
+  <div class="notes"><p>Make them memorize the quoted rule — it explains almost every soldering success and failure they'll ever have. Demo: two copper pads, one fluxed, one not, same iron, same solder — the fluxed one wets instantly and shines, the bare one beads. Note that solder wire has a flux core, but for repair work you almost always add extra paste flux. Clean residue off with IPA afterwards.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Anatomy of a joint: good vs bad</h2>
+  <img class="diagram" src="../resources/images/soldering-joints.svg" alt="Good solder joint versus cold, dry and bridged joints">
+  <div class="notes"><p>Walk the diagram: the GOOD joint is a shiny, smooth cone/fillet — concave sides, wetted onto both pad and lead, you can see the lead's outline. Then the three villains: COLD (dull, grainy blob — moved or under-heated while solidifying), DRY (solder sitting on top, no wetting — oxide or no flux), BRIDGE (solder connecting two pads that must not touch — a short circuit). They will grade their own joints against this diagram in the practical.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>Reading bad joints</h2>
+  <table>
+    <tr><th>Joint</th><th>Looks like</th><th>Cause</th><th>Fix</th></tr>
+    <tr><td class="warn-t">Cold</td><td>Dull, grainy, lumpy blob</td><td>Too little heat, or moved while cooling</td><td>Flux, reheat until it flows, hold still</td></tr>
+    <tr><td class="warn-t">Dry</td><td>Ball sitting on the pad, no wetting</td><td>Oxide — dirty surface, no flux</td><td>Clean, flux, redo</td></tr>
+    <tr><td class="danger-t">Bridge</td><td>Solder connecting neighbouring pads</td><td>Too much solder, sloppy iron path</td><td>Flux + drag away, or wick it off</td></tr>
+  </table>
+  <div class="box danger"><p>A bridge is a <b>short circuit</b>. On a phone board, powering up with a bridge can kill the very chip you were saving. Inspect before power — every time.</p></div>
+  <div class="notes"><p>Pass around example boards with each fault (make them in advance). The inspect-before-power habit ties back to diagnosis discipline: magnification + good light after every job. In the practical, students must NAME the fault on their own bad joints — diagnosis of your own work is the fastest way to improve.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>The 4-step joint</h2>
+  <ol>
+    <li><b>Clean + flux</b> both surfaces</li>
+    <li><b>Heat BOTH surfaces</b> — tip touches pad <i>and</i> lead together (~1 s)</li>
+    <li><b>Feed solder into the JOINT</b> — not onto the iron</li>
+    <li><b>Remove solder, then iron</b> — and hold still while it sets</li>
+  </ol>
+  <div class="box warn"><p>Step 3 is where beginners fail: melting solder on the tip and carrying it over makes cold, dry joints — the flux burned off in transit. The <b>work</b> must be hot enough to melt the solder.</p></div>
+  <div class="notes"><p>Demo this three times under the camera/visualizer: normal speed, then slow with narration, then normal again. Count aloud: "touch — one — feed — off — off — still." Total contact time about 2–3 seconds. Have the class chant the four steps back. Everything in today's practical is these four steps at different scales.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>See it in motion</h2>
+  <div class="video">Soldering basics — joints, flux, tip care — Video 7.1 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>Where the solder is fed — joint or iron?</li>
+    <li>How long the tip stays on the work</li>
+    <li>What the tech does between every joint</li>
+  </ul>
+  <div class="notes"><p>Most students watched this as homework — treat it as review. Pause on a close-up of a finished joint and have the class grade it against the anatomy diagram. Answer to bullet three: cleans the tip on brass — between EVERY joint, and it takes half a second.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>Through-hole technique</h2>
+  <ol>
+    <li>Insert the component, bend leads slightly to hold it</li>
+    <li>Tip touches <b>pad + lead</b> together on the solder side</li>
+    <li>Feed solder into the joint — a shiny cone climbing the lead, like a tiny volcano</li>
+    <li>Remove solder, remove iron, hold still — then clip the lead above the joint</li>
+  </ol>
+  <p style="margin-top:.8rem" class="sub">Through-hole is your training ground: big pads, forgiving, visible results.</p>
+  <div class="notes"><p>Through-hole barely exists inside phones, but it's where hands learn heat control — every micro-soldering specialist started here. The "volcano" shape is the visual pass mark. Warn about lead clipping: hold the clipped end or angle it downward — this is why glasses are on. Practice boards for this are at station B today.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>Wires: tinning &amp; splicing</h2>
+  <ul>
+    <li><b>Tinning:</b> strip, twist strands, flux, heat with the iron, feed solder until every strand is silvered</li>
+    <li>Tinned ends don't fray, solder to anything, and carry full current</li>
+    <li><b>Splice:</b> hook two tinned ends together (western-union style twist), flux, heat, minimal solder</li>
+    <li><b>Heatshrink on the wire FIRST</b> — slide it over the joint after, shrink gently with the heat gun</li>
+  </ul>
+  <div class="box warn"><p>Forgot the heatshrink before soldering? Everyone does it once. Tape is not the fix — desolder, add the sleeve, redo.</p></div>
+  <div class="notes"><p>Where this earns money: battery connector wires, speaker wires, aftermarket part leads, and countless non-phone side jobs (headphones, toys, chargers) that walk into every repair shop. Demo a full splice start to finish including the deliberate "forgot the heatshrink" gag — they'll remember the laugh, and the lesson.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>Wires &amp; through-hole on video</h2>
+  <div class="video">Through-hole &amp; wire technique — Video 7.2 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>The twist pattern in the splice before any solder appears</li>
+    <li>How little solder a good splice actually needs</li>
+    <li>The volcano shape on every through-hole joint</li>
+  </ul>
+  <div class="notes"><p>Point out that the mechanical connection comes FIRST — the western-union twist holds by itself before solder touches it. Solder secures and conducts; it is not glue and not filler. That principle scales all the way to board work.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Desoldering: taking it apart</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Wick (braid)</h3>
+      <p>Copper braid + <b>flux</b>, pressed onto the joint under the iron — capillary action drinks the solder up. Precise; the go-to for pads and bridges.</p>
+    </div>
+    <div class="box">
+      <h3>Pump (solder sucker)</h3>
+      <p>Melt the joint, spring-loaded vacuum slurps the bulk. Great for <b>through-hole</b> holes; crude near small parts.</p>
+    </div>
+  </div>
+  <div class="box warn"><p>Never lever or pull a component while pads are still soldered — that's how pads rip off the board. Heat until free, always.</p></div>
+  <div class="notes"><p>Demo both on a scrap board. Wick secret: add flux to the wick itself — dry wick barely works and students conclude wick is useless. Move to a fresh section of braid each press; used braid is a heat sink. Lifted pads are the classic desoldering injury — which previews the jumper-wire slide later.</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>SMD: welcome to the small world</h2>
+  <ul>
+    <li><b>Two-pad parts</b> (resistors, capacitors): tin one pad → hold part with <b>tweezers</b> → reflow that pad to place it → solder the other pad → touch up the first</li>
+    <li><b>Drag soldering a pin row:</b> flux the whole row generously → small bead of solder on the tip → drag slowly along the pins → flux + wick any bridges</li>
+    <li>Magnification is not optional — head visor or microscope</li>
+  </ul>
+  <div class="notes"><p>Live demo under the microscope camera if available. The tin-one-pad-first trick is the whole game for two-pad parts — trying to heat both pads at once with one iron is how parts tombstone (stand up on end). Drag soldering looks like cheating the first time they see it: flux does the separation work. Bridges after a drag are normal — wick fixes them, no shame.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>Hot air basics</h2>
+  <ul>
+    <li>Two dials: <b>temperature</b> AND <b>airflow</b> — gentle airflow for small parts or they blow away</li>
+    <li>Heat in <b>circles</b> around the target until solder flows, lift the part with tweezers — zero force</li>
+    <li>Shield neighbouring parts with <b>aluminium foil</b> or heat tape — hot air doesn't aim itself</li>
+  </ul>
+  <div class="box danger"><p>Practice boards only for now. On a real phone board, hot air near the battery connector, plastics, or shields you didn't mean to melt = expensive lessons.</p></div>
+  <div class="notes"><p>Demo removing a small SMD part from a scrap board: foil skirt around the target, circles, watch for the solder to go shiny/liquid, part slides at a touch. Common beginner errors: max airflow (part vanishes across the room) and pulling before full reflow (pads come with it). Connect to Module 1: hot air near a battery is a fire drill waiting to happen.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>Lifted pads &amp; jumper wires</h2>
+  <ul>
+    <li>A ripped-off pad ≠ dead board — the copper <b>trace</b> it connected to still exists</li>
+    <li>Fix: scrape the trace's solder mask, tin it, and bridge with fine <b>enamel wire</b> to the component leg</li>
+    <li>Secure the jumper with a dab of UV mask or glue</li>
+  </ul>
+  <div class="box ok"><p>This is aspirational today — watch the demo, understand the concept. It becomes achievable after weeks of SMD practice, and it's how the pros rescue "hopeless" boards.</p></div>
+  <div class="notes"><p>Demo (or show video close-up) of running one jumper — even a rough attempt makes the concept concrete. Explain enamel wire: insulation burns off at the tinned tip, so it can run across a crowded board without shorting. The takeaway isn't the skill — it's hope: a damaged pad, including one THEY damage in practice, is repairable with technique they can grow into.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Honest scope: what this module makes you</h2>
+  <div class="cols">
+    <div class="box ok">
+      <h3>You, after practice</h3>
+      <p>Wires, connectors, through-hole, simple two-pad SMD, desoldering, careful hot-air on practice boards.</p>
+    </div>
+    <div class="box warn">
+      <h3>Specialist path</h3>
+      <p>IC reballing, CPU/NAND work, board-level diagnosis under a microscope — months of dedicated practice + serious equipment. <b>Know a referral partner.</b></p>
+    </div>
+  </div>
+  <div class="box ok"><p>Realistic milestone: with hot-air practice, <b>port-on-board replacement</b> (the Module 6 job we deferred) becomes possible. That one skill pays for the practice time.</p></div>
+  <div class="notes"><p>Repeat the Module 5 message: referring out is professional, not defeat. Give the growth path concretely: 1) daily joints on practice kits for 2–4 weeks, 2) SMD parts on scrap boards, 3) port replacement on donor boards with hot air, 4) first paid port-on-board job. If they haven't found a local micro-soldering partner yet, that's this week's business homework.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Where this road leads</h2>
+  <div class="video">Phone board micro-soldering — aspirational — Video 7.3 in <code>resources/videos.md</code></div>
+  <h3>As you watch:</h3>
+  <ul>
+    <li>Spot every technique from today's slides — flux, tinning, hot air, wick, jumper wire</li>
+    <li>Notice what's NEW: the microscope, the preheater, the steadiness</li>
+  </ul>
+  <div class="notes"><p>Purpose of this video is motivation, not instruction: everything the specialist does is built from today's fundamentals, done smaller and steadier. Ask afterwards: "Which of today's four steps did you see under that microscope?" Answer: all of them — clean+flux, heat both, feed the joint, hold still. The scale changed; the physics didn't.</p></div>
+</section>
+
+<!-- ======================= SLIDE 21 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: recite and explain the <b>4-step joint</b> — and what goes wrong at each step if you skip it</li>
+    <li>Another volunteer: explain <b>what flux does</b> and why "turn the heat up" is the wrong fix</li>
+    <li>Third volunteer: name the <b>three bad joints</b> and how to repair each</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>Listen for "feed solder into the JOINT, not the iron" in the first, the oxide story in the second, and wick-for-bridges in the third. Weak answers here predict burnt boards at the stations — re-demo before releasing them. Confirm every student has glasses on before the practical starts.</p></div>
+</section>
+
+<!-- ======================= SLIDE 22 ======================= -->
+<section class="slide">
+  <h2>Practical: 4 hours at the bench</h2>
+  <table>
+    <tr><th>Station</th><th>Task</th></tr>
+    <tr><td>A</td><td>Tin wire ends &amp; make two splices (western-union + heatshrink) on the practice kit</td></tr>
+    <tr><td>B</td><td>Populate a through-hole practice board — every joint a shiny volcano</td></tr>
+    <tr><td>C</td><td>Desolder joints from a scrap board with <b>wick + flux</b> (pump on through-hole) — no lifted pads</td></tr>
+    <tr><td>D</td><td>Drag-solder a pin header; fix your own bridges with wick</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">All joints inspected under magnification and <b>graded</b> against the good/bad diagram. Worksheet: <code>practicals/practical-07-soldering.md</code></p>
+  <div class="notes"><p>Enforce the safety four (fumes, glasses, holder, hand-washing) as pass/fail. Grading: each student self-grades their joints first (cold/dry/bridge/good), THEN you grade — the self-diagnosis is worth as much as the joints. Expect station D to produce bridges; fixing them cleanly IS the exercise. Rotate roughly hourly; tip-cleaning ritual at every rotation.</p></div>
+</section>
+
+<!-- ======================= SLIDE 23 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li><b>Practice daily</b> if you can: 15 minutes of joints on the take-home practice kit beats 2 hours once a week</li>
+    <li>Identify a <b>micro-soldering referral partner</b> in your area — bring a name</li>
+    <li>Watch <b>Video 8.1</b> (water-damage teardown) — and remember the rice myth</li>
+    <li>Quiz now: Module 7, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 8 — water damage &amp; corrosion treatment.</p>
+  <div class="notes"><p>Hand out the quiz from assessments/module-quizzes.md; inspect benches — including tip condition on every iron (clean, tinned, off). Iron tips tell you who listened. Tease Module 8: "Next session you'll see what a week in rice really does to a board — bring a strong stomach." Send practice kits home with anyone willing to take one.</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 23</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>
