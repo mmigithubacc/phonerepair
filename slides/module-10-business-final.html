@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 10 — Repair Business Skills + Final Assessment</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 10 of 10</span>
+  <h1>Repair Business Skills + Final Assessment</h1>
+  <p class="sub">You can fix phones. Today: how to get paid for it — and earn your certificate.</p>
+  <p class="sub" style="margin-top:2rem">2 h theory &nbsp;·&nbsp; then final written + practical exams</p>
+  <div class="notes"><p>Set the tone: this is the last teaching session before the exams. Congratulate them on getting here, then be blunt: most of them plan to earn with this skill, and this module decides whether the skill turns into income. Outline today's shape: 2 h business theory, exam briefing, then the finals.</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>Skills don't pay. Businesses pay.</h2>
+  <ul>
+    <li>Most repair businesses that fail don't fail on <b>soldering</b> — they fail on <b>business</b></li>
+    <li>Underpricing, no records, angry customers, one bad legal decision</li>
+    <li>The fix is boring and learnable: <span class="accent">process, paperwork, honest pricing</span></li>
+  </ul>
+  <div class="video">Starting a phone repair business — Video 10.1 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Play Video 10.1 as the opener. Then ask: "Name a good tradesperson you know who is always broke." Everyone knows one. Skill gets the phone fixed; the intake form, the quote, and the warranty log get you paid and keep you out of trouble. That's today.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>The professional workflow</h2>
+  <img class="diagram" src="../resources/images/repair-workflow.svg" alt="Professional repair workflow: intake to warranty">
+  <div class="notes"><p>Walk the six stages: intake → diagnose → quote &amp; approve → repair → QC → return &amp; warranty. Key discipline: no stage is skipped, ever — especially "quote &amp; approve": no work starts before the customer says yes to a price. Every walk-in follows this same path, whether it's a two-minute fix or a board job.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>The intake form: your armor</h2>
+  <ul>
+    <li><b>Device + IMEI</b> — identifies exactly which phone you're responsible for</li>
+    <li><b>Fault in the customer's own words</b> — "it doesn't work" is not a fault description</li>
+    <li><b>Passcode policy</b> — needed for testing; recorded securely or tested together at pickup</li>
+    <li><b>PRE-EXISTING damage: photographed and signed</b> — every scratch, dent, and crack</li>
+  </ul>
+  <div class="box warn"><p>The scratch you didn't document becomes the scratch you made. Photos at intake cost 30 seconds; the argument later costs a customer — or a lawsuit.</p></div>
+  <div class="notes"><p>Show your sample intake form on the projector. Roleplay the awkward moment: customer at pickup says "that dent wasn't there before." With timestamped intake photos the conversation takes ten seconds. Without them, you lose either the argument or the customer — usually both. Also note the intake form carries the data-loss consent line from Module 9.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>Diagnosis fee policy</h2>
+  <div class="cols">
+    <div class="box danger">
+      <h3>Free diagnosis</h3>
+      <p>= free skilled work for price-shoppers who take your diagnosis to the cheaper shop next door.</p>
+    </div>
+    <div class="box ok">
+      <h3>Fee, credited</h3>
+      <p>Charge a diagnosis fee — and <b>credit it against the repair</b> if they proceed. Serious customers pay nothing extra; tire-kickers pay for your time.</p>
+    </div>
+  </div>
+  <p style="margin-top:1rem">Say it up front: <span class="accent">"Diagnosis is X. If you go ahead with the repair, it comes off the price."</span></p>
+  <div class="notes"><p>This policy filters customers fairly: nobody serious ever objects, because they pay nothing extra. Connect to Module 8's water-damage fee — same principle, and water damage is where free diagnosis hurts most (hours of treatment work). Let students debate it briefly; someone will argue free diagnosis attracts customers. Answer: it attracts the wrong ones.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>Pricing: the formula</h2>
+  <p class="big" style="margin:.5rem 0 1rem">Price = Part + Labor (rate × hours) + Margin</p>
+  <table>
+    <tr><th>Screen job example</th><th>Amount</th></tr>
+    <tr><td>Part: quality aftermarket screen (incl. shipping)</td><td>$25</td></tr>
+    <tr><td>Labor: 1 h at $20/h shop rate</td><td>$20</td></tr>
+    <tr><td>Margin: parts risk, warranty risk, consumables (~30%)</td><td>$15</td></tr>
+    <tr><td><b>Customer price</b></td><td><b>$60</b></td></tr>
+  </table>
+  <div class="box"><p>Set a <b>minimum charge</b> — even a "two-minute fix" carries your rent, tools, training, and risk. Never work for less than your minimum.</p></div>
+  <div class="notes"><p>Work the example live and let the class push back on the margin line — that's the one beginners cut first, and it's what pays for warranty returns and dead-on-arrival parts. Homework preview: they'll price three jobs with local part prices. Adjust the dollar figures to your local market on the whiteboard; the structure is what's graded.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>Parts sourcing</h2>
+  <ul>
+    <li>Quality tiers (Module 4 recap): <b>OEM / original-pulled → premium aftermarket → cheap aftermarket</b> — match tier to customer budget, and say which they're getting</li>
+    <li><b>Vet suppliers with small orders</b> first — test quality before you depend on them</li>
+    <li><b>Supplier warranty matters</b>: a supplier who replaces DOA parts protects your margin</li>
+    <li>Stock the boring stuff: <b>adhesive, screws, consumables</b> — the $1 part that stalls a $60 job</li>
+  </ul>
+  <div class="video">Parts sourcing &amp; quality tiers — Video 10.3 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Play Video 10.3. War story to tell: a batch of ultra-cheap screens with bad touch layers generates five warranty returns — the "savings" cost double in labor and reputation. Rule: never switch a whole product line to a new supplier on one good sample; buy five, sell five, then commit.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Inventory &amp; records: the simple log</h2>
+  <table>
+    <tr><th>Date</th><th>Device</th><th>IMEI</th><th>Fault</th><th>Work done</th><th>Parts</th><th>Price</th><th>Warranty end</th></tr>
+    <tr><td>07-07</td><td>Galaxy A54</td><td>35…901</td><td>Cracked screen</td><td>Screen replaced</td><td>SCR-A54-PA</td><td>$60</td><td>10-07</td></tr>
+  </table>
+  <ul style="margin-top:.8rem">
+    <li>One row per job — notebook or spreadsheet, doesn't matter, <b>doing it daily does</b></li>
+    <li>Keep a <b>warranty claims log</b> too: which parts and suppliers keep coming back</li>
+    <li>Your log answers: what breaks most? which parts fail? am I actually profitable?</li>
+  </ul>
+  <div class="notes"><p>Records feel optional until the first dispute ("you never fixed my phone!" — row 47 says otherwise, with the IMEI) or the first tax question. The warranty claims log is the hidden gem: three returns of the same screen SKU = drop that supplier, backed by data instead of a feeling.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>Customer service: expectations BEFORE, not after</h2>
+  <ul>
+    <li>Set expectations <b>before</b> the repair — especially <b>water damage</b> (no guarantee) and <b>aftermarket screens</b> (not identical to original)</li>
+    <li>Promise turnaround you can <b>keep</b> — "tomorrow, done" beats "tonight, maybe"</li>
+    <li>Under-promise, over-deliver: quote 2 days, deliver in 1</li>
+  </ul>
+  <div class="box ok"><p>The pre-repair conversation is where five-star reviews are made. Surprises — even small ones — are where one-star reviews are made.</p></div>
+  <div class="notes"><p>Callback to Module 8's script — same principle generalized: every hard truth costs less BEFORE the repair. Aftermarket screens example: tell them brightness/colors may differ slightly and offer the original-quality option at the higher price. Customers rarely pick it, but having been offered it, they can't feel deceived.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>Bad news, complaints &amp; warranty work</h2>
+  <div class="cols">
+    <div>
+      <h3>The bad-news script</h3>
+      <p class="sub" style="font-size:1.25rem">"I've opened it up and found [X]. That changes the price/outlook to [Y]. You approved [Z], so nothing happens until you decide. Here are your options…"</p>
+    </div>
+    <div>
+      <h3>Complaints &amp; warranty</h3>
+      <ul>
+        <li>Stay calm; never argue over a counter</li>
+        <li>Check the log, check intake photos, then decide</li>
+        <li><b>Warranty work done fast and cheerfully is marketing</b> — that customer tells everyone</li>
+      </ul>
+    </div>
+  </div>
+  <div class="video">Pricing &amp; customer service for repair shops — Video 10.2 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Play Video 10.2, then roleplay both columns: (1) mid-repair discovery — the screen job reveals a swollen battery, deliver the extra-cost call; (2) an angry customer whose replaced screen died in week two. Model the calm version: "You're covered — leave it with me, it's my priority." A defused complaint becomes your loudest promoter; a fought one becomes a one-star review with your name in it.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>Data privacy: the customer's whole life</h2>
+  <div class="box danger">
+    <h3 class="danger-t">You hold their photos, messages, banking, everything</h3>
+    <ul>
+      <li><b>Never browse customer files.</b> Not photos, not chats. Test with test content, not their content</li>
+      <li>No "passcode on a sticky note in a drawer" — store passcodes securely, destroy after the job</li>
+      <li><b>Wipe every device you resell or recycle</b> — properly, with verification</li>
+      <li>One privacy scandal ends a shop faster than any bad repair</li>
+    </ul>
+  </div>
+  <div class="notes"><p>Make it personal: "Would you hand YOUR unlocked phone to a stranger who might scroll your gallery?" That's what every customer does at the counter. Concrete policies: test cameras against the bench wall, not by opening their photo app history; passcodes on the work ticket only, shredded at pickup. Real shops have been destroyed by one screenshot of a tech browsing a customer's photos.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>Legal: stolen phones &amp; your obligations</h2>
+  <div class="cols">
+    <div>
+      <h3 class="danger-t">Stolen-phone red flags</h3>
+      <ul>
+        <li>Doesn't know the passcode</li>
+        <li>Phone is <b>activation-locked</b> to another account</li>
+        <li>Suspiciously eager on price ("just buy it, whatever")</li>
+        <li>No ID, vague story, "fixing it for a friend"</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Your response</h3>
+      <ul>
+        <li>Check the <b>IMEI against blacklists</b> before buying any used phone</li>
+        <li>Activation lock = <b>walk away</b> — no exceptions (Module 9)</li>
+        <li>ID + signature for device buy-ins</li>
+        <li>Follow local <b>e-waste rules</b> — batteries and boards never go in general trash</li>
+      </ul>
+    </div>
+  </div>
+  <div class="notes"><p>Demo an IMEI blacklist check live (dial *#06# for the IMEI, then a checker site). Handling stolen goods can be a crime even if you claim ignorance — the red flags on screen are what "should have known" looks like to a court. E-waste: point at the classroom battery bin one more time; find your local battery/board recycler before opening shop.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>Marketing on a budget</h2>
+  <ul>
+    <li><b>Google Business Profile</b> — free, and it IS your storefront; ask every happy customer for a review</li>
+    <li><b>Before/after photos</b> (with the customer's permission) — shattered → perfect is the ad that writes itself</li>
+    <li>Lead with <b>same-day turnaround</b> — speed is what customers actually shop for</li>
+    <li>Reviews compound: 50 honest five-stars beat any paid ad</li>
+  </ul>
+  <div class="box ok"><p>Your marketing budget for year one: $0 and the discipline to ask for a review at every pickup.</p></div>
+  <div class="notes"><p>Have everyone search "phone repair near me" on their own phones right now — the map results ARE the market. Note who's on top and their review counts: that's the game. Script the ask: "If you're happy with it, a Google review really helps a small shop — here's the QR code." Asking at the moment of the fixed phone in hand converts best.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>Final assessment: written exam</h2>
+  <ul>
+    <li>Paper: <code>assessments/final-written-exam.md</code> — counts for <b>20%</b> of your final grade</li>
+    <li>Covers all 10 modules — safety and ethics questions are heavily represented</li>
+    <li>Closed book, individual work</li>
+  </ul>
+  <div class="box"><p>Bankers for revision: the 8 safety rules, ESD discipline, screen/battery/port procedures, water-damage protocol and the rice myth, Recovery vs DFU, activation-lock ethics, the pricing formula.</p></div>
+  <div class="notes"><p>State the logistics precisely: duration, timing today, and that phones go in bags during the written paper. The revision list on this slide is genuinely the high-weight material — say so plainly; this is an exam briefing, not a trick. Safety or ethics answers that endorse dangerous/illegal practice can fail the paper regardless of other marks.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Final assessment: practical exam stations</h2>
+  <table>
+    <tr><th>Station</th><th>Task</th><th>Core skills</th></tr>
+    <tr><td>1</td><td>Full screen replacement on an assigned phone</td><td>Modules 1, 3, 4</td></tr>
+    <tr><td>2</td><td>Battery replacement + health verification</td><td>Modules 1, 5</td></tr>
+    <tr><td>3</td><td>Mystery-fault diagnosis (hardware or software)</td><td>Modules 6, 9</td></tr>
+    <tr><td>4</td><td>Water-damage triage &amp; treatment plan</td><td>Module 8</td></tr>
+    <tr><td>5</td><td>Customer roleplay: intake, quote &amp; expectation-setting</td><td>Module 10</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Details: <code>assessments/final-practical-exam.md</code> &nbsp;·&nbsp; worksheet: <code>practicals/practical-10-final-exam.md</code> &nbsp;·&nbsp; counts for <b>30%</b></p>
+  <div class="notes"><p>Explain the rotation and timing per station. Station 5 surprises people — a perfect solder joint won't save a tech who can't take an intake or quote a price, so the customer roleplay is graded with the same weight. Emphasize: examiners watch the PROCESS, not just the result (next slide).</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>What graders look for</h2>
+  <div class="cols">
+    <div class="box ok">
+      <h3>Process (most of the marks)</h3>
+      <ul>
+        <li>Strap on, battery disconnected first, screws mapped</li>
+        <li>Systematic diagnosis — flowchart, not guessing</li>
+        <li>Correct tool, correct force, no shortcuts</li>
+      </ul>
+    </div>
+    <div class="box warn">
+      <h3>Outcome &amp; conduct</h3>
+      <ul>
+        <li>Device works; no new damage introduced</li>
+        <li>Honest communication in the roleplay</li>
+        <li><span class="danger-t">Safety violations can fail a station outright</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="notes"><p>Demystify grading completely — nervous students perform worse than they are. Key reassurances: narrating your work is welcomed ("I'm disconnecting the battery first because…") and asking for a permitted reference (screw map, flowchart poster) is process, not weakness. A stuck screw handled correctly scores BETTER than a lucky rush job.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>Certification requirements — recap</h2>
+  <table>
+    <tr><th>Component</th><th>Weight</th></tr>
+    <tr><td>Module quizzes (10 × 10 questions)</td><td>20%</td></tr>
+    <tr><td>Practical lab rubrics</td><td>30%</td></tr>
+    <tr><td>Final written exam</td><td>20%</td></tr>
+    <tr><td>Final practical exam</td><td>30%</td></tr>
+  </table>
+  <p style="margin-top:1rem">Certificate = <span class="accent"><b>70% overall</b></span> + <span class="accent"><b>pass the final practical</b></span> + <span class="accent"><b>≥ 80% attendance</b></span></p>
+  <div class="notes"><p>Answer the inevitable questions now: quiz and lab marks are already banked — students can estimate where they stand before the finals. Explain the retake policy for anyone who narrowly misses (per certification-checklist.md). Certificates issue via assessments/certification-checklist.md once all three conditions are verified.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>Teach-back: the graduation round</h2>
+  <ol>
+    <li>One volunteer: walk the class through the <b>professional workflow</b>, intake to warranty</li>
+    <li>Another volunteer: price a <b>battery job</b> out loud using the formula — defend your margin</li>
+    <li>Class challenge: a customer offers to sell you a locked phone, cheap. What do you check, what do you say?</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers. Last one — make it count.</p>
+  <div class="notes"><p>This is the final teach-back of the course — let it run a little longer and let the class do the correcting; they know enough now. #3 should produce: IMEI blacklist check, activation lock = walk away, ID requirement. If it does, your ethics teaching stuck. Then move straight into exam logistics.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Exam session: how today runs</h2>
+  <table>
+    <tr><th>Block</th><th>Activity</th></tr>
+    <tr><td>1</td><td>Written exam — <code>assessments/final-written-exam.md</code>, closed book</td></tr>
+    <tr><td>2</td><td>Practical stations 1–5 in rotation — <code>practicals/practical-10-final-exam.md</code></td></tr>
+    <tr><td>3</td><td>Bench inspection &amp; paperwork check (intake forms, logs from your stations)</td></tr>
+    <tr><td>4</td><td>Results review, retake scheduling if needed, certificates</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Grading: <code>assessments/final-practical-exam.md</code> rubrics + <code>assessments/certification-checklist.md</code></p>
+  <div class="notes"><p>This is the practical-stations slide for exam day — post it on the wall during the rotation. Assign starting stations now to avoid bottlenecks (5 stations, pairs stagger). Remind them the bench inspection in block 3 is graded exactly like every module: mapped screws, clean mat, strap hung up. Nothing on exam day is new — that's the point.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Before the final exam</h2>
+  <ul>
+    <li>Re-read your <b>weakest module's</b> lesson plan tonight — you know which one it is</li>
+    <li>Rehearse the <b>8 safety rules</b> and the <b>ESD ritual</b> — free marks, no excuses</li>
+    <li>Re-watch <b>Videos 4.1, 8.1 and 9.2</b> (screen, water protocol, DFU) — the three most-fumbled stations</li>
+    <li>Sleep. A rested tech beats a crammed tech at every bench</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Then: show us what you can do.</p>
+  <div class="notes"><p>If the exams run on a later day, this is their homework; if the finals are this afternoon, compress it into a 15-minute guided revision break — safety rules recital in pairs, one workflow walk-through, then stations. Either way, end the briefing on confidence: "Everything on the exam, you have already done with your own hands."</p></div>
+</section>
+
+<!-- ======================= SLIDE 21 ======================= -->
+<section class="slide">
+  <h2>Congratulations, technician.</h2>
+  <p class="big" style="margin:.5rem 0 1.5rem">Six weeks ago this was a sealed black box. Now it's your trade.</p>
+  <h3>Where to go next</h3>
+  <ul>
+    <li><b>Micro-soldering specialization</b> — board-level repair is the high-value frontier (Module 7 was your first step)</li>
+    <li><b>Tablets &amp; laptops</b> — same skills, bigger screws, new market</li>
+    <li><b>Keep a fault journal</b> — every repair you log makes the next one faster. Your journal becomes your expertise</li>
+  </ul>
+  <p class="sub" style="margin-top:1.5rem">Fix well. Charge fairly. Document everything.</p>
+  <div class="notes"><p>Show this slide AFTER results are in — it's the send-off. Hand out certificates individually, name each student's strongest moment from the course (keep brief notes during the finals so this is specific, not generic). Photo with permission for the class — and point out that's their first "with permission" marketing photo. Final words: the fault journal habit separates techs who plateau from techs who compound.</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 21</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>
