@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="420" fill="#ffffff"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#0f172a">Screen Stack — cross-section (thickness exaggerated)</text>
+
+  <!-- ===== the stack ===== -->
+  <!-- cover glass -->
+  <rect x="200" y="90" width="360" height="42" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+  <line x1="197" y1="111" x2="188" y2="111" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="182" y="116" text-anchor="end" font-size="15" font-weight="bold" fill="#0f172a">cover glass</text>
+
+  <!-- OCA -->
+  <rect x="200" y="132" width="360" height="18" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+  <line x1="197" y1="141" x2="188" y2="141" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="182" y="146" text-anchor="end" font-size="15" font-weight="bold" fill="#0f172a">optically-clear adhesive</text>
+
+  <!-- digitizer -->
+  <rect x="200" y="150" width="360" height="30" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <line x1="197" y1="165" x2="188" y2="165" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="182" y="170" text-anchor="end" font-size="15" font-weight="bold" fill="#0f172a">digitizer (touch)</text>
+
+  <!-- display panel -->
+  <rect x="200" y="180" width="360" height="48" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5"/>
+  <line x1="197" y1="204" x2="188" y2="204" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="182" y="209" text-anchor="end" font-size="15" font-weight="bold" fill="#0f172a">display panel (LCD or OLED)</text>
+
+  <!-- backlight (LCD only) -->
+  <rect x="200" y="228" width="360" height="30" fill="#f1f5f9" stroke="#64748b" stroke-width="2.5" stroke-dasharray="8 6"/>
+  <line x1="197" y1="243" x2="188" y2="243" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="182" y="248" text-anchor="end" font-size="15" font-weight="bold" fill="#475569">backlight — LCD only</text>
+
+  <!-- frame / bezel -->
+  <rect x="178" y="258" width="404" height="26" rx="6" fill="#e2e8f0" stroke="#475569" stroke-width="2.5"/>
+  <line x1="175" y1="271" x2="166" y2="271" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="160" y="276" text-anchor="end" font-size="15" font-weight="bold" fill="#0f172a">frame / bezel</text>
+
+  <!-- note under stack -->
+  <rect x="178" y="312" width="404" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="380" y="341" text-anchor="middle" font-size="16" font-weight="bold" fill="#14532d">Fused assembly = replace as one unit</text>
+
+  <!-- ===== comparison boxes ===== -->
+  <!-- LCD cracked -->
+  <rect x="630" y="90" width="340" height="128" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="800" y="116" text-anchor="middle" font-size="15" font-weight="bold" fill="#0f172a">LCD cracked = lines + backlight bleed</text>
+  <rect x="740" y="130" width="120" height="72" rx="4" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <line x1="762" y1="130" x2="762" y2="202" stroke="#60a5fa" stroke-width="3"/>
+  <line x1="778" y1="130" x2="778" y2="202" stroke="#f472b6" stroke-width="3"/>
+  <line x1="792" y1="130" x2="792" y2="202" stroke="#facc15" stroke-width="3"/>
+  <ellipse cx="836" cy="184" rx="22" ry="14" fill="#f8fafc" opacity="0.85"/>
+  <path d="M744 134 l22 18 l-10 12 l26 20" stroke="#e2e8f0" stroke-width="2" fill="none"/>
+
+  <!-- OLED cracked -->
+  <rect x="630" y="238" width="340" height="128" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="800" y="264" text-anchor="middle" font-size="15" font-weight="bold" fill="#0f172a">OLED cracked = green lines / black blobs</text>
+  <rect x="740" y="278" width="120" height="72" rx="4" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <line x1="764" y1="278" x2="764" y2="350" stroke="#22c55e" stroke-width="3"/>
+  <line x1="784" y1="278" x2="784" y2="350" stroke="#22c55e" stroke-width="3"/>
+  <ellipse cx="830" cy="316" rx="24" ry="18" fill="#000000"/>
+  <ellipse cx="806" cy="336" rx="14" ry="10" fill="#000000"/>
+  <path d="M746 282 l24 16 l-8 14 l22 18" stroke="#e2e8f0" stroke-width="2" fill="none"/>
+</svg>

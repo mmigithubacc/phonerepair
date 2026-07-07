@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1000" height="580" fill="#ffffff"/>
+  <text x="500" y="42" text-anchor="middle" font-size="26" font-weight="bold" fill="#0f172a">Smartphone Anatomy — exploded view</text>
+
+  <!-- dashed leader lines through the stack -->
+  <line x1="295" y1="80" x2="295" y2="530" stroke="#94a3b8" stroke-width="2" stroke-dasharray="7 7"/>
+  <line x1="635" y1="80" x2="635" y2="530" stroke="#94a3b8" stroke-width="2" stroke-dasharray="7 7"/>
+
+  <!-- 1. Screen assembly -->
+  <rect x="250" y="88" width="430" height="46" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+  <rect x="268" y="98" width="394" height="26" rx="4" fill="#bae6fd" stroke="#0284c7" stroke-width="1.5"/>
+  <circle cx="225" cy="111" r="14" fill="#0f172a"/>
+  <text x="225" y="117" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">1</text>
+  <line x1="680" y1="111" x2="715" y2="111" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="722" y="116" font-size="15" font-weight="bold" fill="#0f172a">Screen assembly (glass + display)</text>
+
+  <!-- 2. Midframe with cameras -->
+  <rect x="250" y="168" width="430" height="46" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="288" cy="191" r="11" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+  <circle cx="288" cy="191" r="4" fill="#60a5fa"/>
+  <circle cx="318" cy="191" r="11" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+  <circle cx="318" cy="191" r="4" fill="#60a5fa"/>
+  <circle cx="225" cy="191" r="14" fill="#0f172a"/>
+  <text x="225" y="197" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">2</text>
+  <line x1="277" y1="191" x2="180" y2="160" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="175" y="155" text-anchor="end" font-size="15" font-weight="bold" fill="#0f172a">cameras (top)</text>
+  <line x1="680" y1="191" x2="715" y2="191" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="722" y="196" font-size="15" font-weight="bold" fill="#0f172a">Midframe (metal chassis)</text>
+
+  <!-- flex cable screen -> motherboard -->
+  <path d="M600 134 C 618 178, 618 200, 600 248" stroke="#f97316" stroke-width="8" fill="none"/>
+  <text x="175" y="255" text-anchor="end" font-size="15" font-weight="bold" fill="#c2410c">flex cables</text>
+  <line x1="180" y1="250" x2="248" y2="270" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- 3. Battery -->
+  <rect x="250" y="248" width="185" height="90" rx="10" fill="#fef9c3" stroke="#ca8a04" stroke-width="2.5"/>
+  <rect x="435" y="278" width="10" height="30" fill="#ca8a04"/>
+  <text x="342" y="283" text-anchor="middle" font-size="17" font-weight="bold" fill="#854d0e">BATTERY</text>
+  <text x="342" y="306" text-anchor="middle" font-size="13" fill="#854d0e">li-ion — handle with care</text>
+  <circle cx="225" cy="293" r="14" fill="#0f172a"/>
+  <text x="225" y="299" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">3</text>
+
+  <!-- 4. Motherboard with labeled blocks -->
+  <rect x="470" y="248" width="210" height="90" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+  <rect x="482" y="260" width="56" height="28" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="510" y="279" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">SoC</text>
+  <rect x="546" y="260" width="56" height="28" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="574" y="279" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">PMIC</text>
+  <rect x="610" y="260" width="58" height="28" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="639" y="279" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">storage</text>
+  <rect x="482" y="296" width="90" height="28" rx="4" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="527" y="315" text-anchor="middle" font-size="12" font-weight="bold" fill="#14532d">baseband</text>
+  <circle cx="456" cy="262" r="13" fill="#0f172a"/>
+  <text x="456" y="268" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">4</text>
+  <line x1="680" y1="293" x2="715" y2="293" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="722" y="288" font-size="15" font-weight="bold" fill="#0f172a">Motherboard</text>
+  <text x="722" y="307" font-size="13" fill="#334155">(logic board)</text>
+
+  <!-- flex cable motherboard -> charging board -->
+  <path d="M380 338 C 366 358, 366 372, 380 392" stroke="#f97316" stroke-width="8" fill="none"/>
+
+  <!-- 5. Charging sub-board -->
+  <rect x="250" y="392" width="210" height="44" rx="10" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5"/>
+  <rect x="340" y="426" width="30" height="10" rx="3" fill="#475569"/>
+  <text x="355" y="420" text-anchor="middle" font-size="14" font-weight="bold" fill="#7c2d12">charging sub-board</text>
+  <circle cx="225" cy="414" r="14" fill="#0f172a"/>
+  <text x="225" y="420" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">5</text>
+  <line x1="352" y1="438" x2="180" y2="452" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="175" y="457" text-anchor="end" font-size="15" font-weight="bold" fill="#0f172a">USB port</text>
+
+  <!-- 6. Loudspeaker -->
+  <rect x="500" y="392" width="150" height="44" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="528" cy="408" r="3" fill="#64748b"/><circle cx="544" cy="408" r="3" fill="#64748b"/><circle cx="560" cy="408" r="3" fill="#64748b"/><circle cx="576" cy="408" r="3" fill="#64748b"/><circle cx="592" cy="408" r="3" fill="#64748b"/><circle cx="608" cy="408" r="3" fill="#64748b"/><circle cx="624" cy="408" r="3" fill="#64748b"/>
+  <circle cx="536" cy="422" r="3" fill="#64748b"/><circle cx="552" cy="422" r="3" fill="#64748b"/><circle cx="568" cy="422" r="3" fill="#64748b"/><circle cx="584" cy="422" r="3" fill="#64748b"/><circle cx="600" cy="422" r="3" fill="#64748b"/><circle cx="616" cy="422" r="3" fill="#64748b"/>
+  <circle cx="480" cy="404" r="13" fill="#0f172a"/>
+  <text x="480" y="410" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">6</text>
+  <line x1="650" y1="414" x2="715" y2="414" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="722" y="419" font-size="15" font-weight="bold" fill="#0f172a">Loudspeaker</text>
+
+  <!-- 7. Back cover -->
+  <rect x="250" y="490" width="430" height="48" rx="16" fill="#e2e8f0" stroke="#475569" stroke-width="2.5"/>
+  <circle cx="300" cy="514" r="13" fill="none" stroke="#475569" stroke-width="3"/>
+  <circle cx="225" cy="514" r="14" fill="#0f172a"/>
+  <text x="225" y="520" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff">7</text>
+  <line x1="680" y1="514" x2="715" y2="514" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="722" y="519" font-size="15" font-weight="bold" fill="#0f172a">Back cover (camera window)</text>
+</svg>
