@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 8 — Water Damage &amp; Corrosion Treatment</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 8 of 10</span>
+  <h1>Water Damage &amp; Corrosion Treatment</h1>
+  <p class="sub">The clock starts the moment the phone gets wet. Learn to beat it.</p>
+  <p class="sub" style="margin-top:2rem">1.5 h theory &nbsp;·&nbsp; 3 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Open with a question: "Who has dropped a phone in water — and what did you do next?" Almost everyone will say rice. Don't correct them yet — write "RICE" on the whiteboard and promise to come back to it. That tension carries the whole module.</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Explain the <span class="danger-t">two ways liquid kills a phone</span> — and why time matters more than water</li>
+    <li>Give a customer the <span class="accent">correct first-response instructions</span> over the phone</li>
+    <li>Run the full <span class="accent">treatment protocol</span>: teardown → clean → ultrasonic → dry → inspect → rebuild</li>
+    <li>Recognize corrosion under magnification and know what's treatable</li>
+    <li>Set <span class="warn-t">honest expectations and pricing</span> for a repair that has no guarantee</li>
+  </ul>
+  <div class="notes"><p>Emphasize the last bullet: water damage is where techs most often over-promise and get burned. Today they learn the technical protocol AND the words to say to the customer. Both are graded.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>What liquid really does: two attacks</h2>
+  <div class="cols">
+    <div class="box danger">
+      <h3 class="danger-t">Attack 1 — Instant shorts</h3>
+      <p>Water conducts. While the phone is powered, liquid bridges connections and current flows where it never should. This is the damage that happens in seconds.</p>
+    </div>
+    <div class="box warn">
+      <h3 class="warn-t">Attack 2 — Electrolytic corrosion</h3>
+      <p>Water + board voltage + dissolved minerals = electrolysis. The board literally eats itself — pads dissolve, traces rot. This continues for <b>days to weeks</b>, even after the phone "dries out".</p>
+    </div>
+  </div>
+  <p style="margin-top:1.2rem">A phone that "still works" after a dunk is <b>not fine</b> — attack 2 has already started.</p>
+  <div class="notes"><p>Key concept of the module: the dunk is not the event, it's the START of the event. Analogy: water damage is a wound that keeps bleeding until it's cleaned. Ask: "If corrosion keeps going for weeks, what does that tell you about waiting a few days before bringing the phone in?" — every day of delay lowers the odds.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>Not all liquids are equal</h2>
+  <table>
+    <tr><th>Liquid</th><th>Corrosiveness</th><th>Why</th></tr>
+    <tr><td>Fresh / tap water</td><td>Moderate</td><td>Some dissolved minerals conduct and corrode</td></tr>
+    <tr><td>Salt / sea water</td><td class="danger-t"><b>Extreme</b></td><td>Salt is an aggressive electrolyte — corrosion in hours, not days</td></tr>
+    <tr><td>Juice, soda, coffee</td><td class="danger-t"><b>High</b></td><td>Sugars + acids corrode and leave conductive sticky residue</td></tr>
+    <tr><td>Toilet water</td><td class="danger-t"><b>High</b></td><td>Salts and contaminants; also a hygiene hazard — glove up</td></tr>
+    <tr><td>Distilled water</td><td>Low</td><td>Barely conducts — but picks up contaminants on contact</td></tr>
+  </table>
+  <div class="notes"><p>Always ask the customer WHAT liquid and WHEN. A beach phone from yesterday and a sink phone from an hour ago are completely different jobs with different odds. Mention: this is why "it fell in the sea on holiday last week" cases so often end as data-recovery-only jobs.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>The rice myth</h2>
+  <div class="box danger">
+    <h3 class="danger-t">Rice does NOTHING about corrosion</h3>
+    <p>Rice may slowly absorb some ambient moisture — but the water is <b>inside the phone, under shields, under chips</b>, already corroding the board with its mineral load. Rice can't reach it, can't remove the minerals, and can't stop electrolysis.</p>
+    <p style="margin-top:.6rem"><b>Worse:</b> the phone sits in a jar wasting the critical first 24–48 hours — exactly when professional treatment has the best odds.</p>
+  </div>
+  <p class="big" style="margin-top:1rem">Rice is for dinner.</p>
+  <div class="video">Why rice doesn't work — corrosion explained under the microscope — Video 8.3 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Now pay off the whiteboard "RICE" from slide 1 — cross it out theatrically. Explain the myth survives because phones sometimes recover IN SPITE of rice (light exposure, got lucky), and rice gets the credit. Play Video 8.3 and afterwards ask: "What was still on the board after it looked dry?" — mineral residue, which keeps conducting and corroding.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>First response: what you tell the customer</h2>
+  <ol>
+    <li><b>Power OFF, now.</b> If it's already off, leave it off.</li>
+    <li><b>Do NOT charge it.</b> Charging a wet phone pushes current through the water — attack 1, on demand.</li>
+    <li><b>Do NOT keep pressing power "to check".</b> Every power-on attempt is another chance to short something.</li>
+    <li><b>Remove the SIM tray</b> — it opens a vent path and gets their SIM safe.</li>
+    <li><b>Bring it in today.</b> Not after the weekend. Today.</li>
+  </ol>
+  <div class="notes"><p>Roleplay this: you're the panicking customer on the phone ("it fell in the sink, the screen is flickering, should I plug it in to see if it still charges?!"). Pick a student to talk you through the five steps. The instinct to "check if it still works" is the one to train out of customers — every check is a gamble.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>First response: what YOU do</h2>
+  <ul>
+    <li>The board is corroding <b>right now</b> — water-damage jobs jump the queue</li>
+    <li>Confirm power off; do not test-boot it "to see how bad it is"</li>
+    <li>Ask: <b>what liquid, when, was it on, was it charged after?</b> Write the answers down</li>
+    <li>Get it <b>opened and the battery disconnected</b> as fast as possible</li>
+  </ul>
+  <div class="box warn"><p>The first 24–48 hours decide the outcome. A wet phone that waits on your shelf until tomorrow is a repair you already half-lost.</p></div>
+  <div class="notes"><p>Set the shop policy explicitly: water damage is triaged like an emergency room. Even if you can't do the full treatment immediately, teardown + battery disconnect + first IPA rinse takes 20 minutes and freezes the damage clock. Everything else can wait; that can't.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Liquid Contact Indicators (LCIs)</h2>
+  <div class="cols">
+    <div>
+      <ul>
+        <li>Small white stickers that turn <span class="danger-t"><b>red/pink</b></span> on liquid contact</li>
+        <li>Live in the <b>SIM tray slot</b> (check with a flashlight), on the board, under the battery</li>
+        <li>Manufacturers check them first — a red LCI usually <b>voids the warranty</b></li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Why you check them</h3>
+      <p>They confirm liquid exposure when the customer's story is vague ("it just stopped working…"), and you must document their state at intake — before you open anything.</p>
+    </div>
+  </div>
+  <div class="notes"><p>Demo live: flashlight into a SIM slot of a donor phone, show the class the LCI. Ethics point: customers sometimes hide the dunk hoping for a cheaper "normal" repair. The LCI tells you the truth — and photographing it at intake protects YOU when the phone later behaves like a water-damage phone. Never tamper with or "reset" an LCI for a customer's warranty claim — that's fraud.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>The treatment protocol</h2>
+  <img class="diagram" src="../resources/images/water-damage-flowchart.svg" alt="Water damage treatment protocol flowchart">
+  <div class="notes"><p>Walk the flowchart start to finish once at high level: teardown → disconnect battery → remove EMI shields → IPA brush-clean → ultrasonic → dry → inspect under magnification → reassemble with NEW battery → full test. Tell them the next five slides zoom into each stage, and this exact flowchart is on the wall at every practical station.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>Stage 1: Teardown &amp; disconnect</h2>
+  <ol>
+    <li><b>Full teardown</b> — the water went everywhere; you must too</li>
+    <li><b>Disconnect the battery first</b> — this stops electrolysis. No voltage, no electrolytic corrosion</li>
+    <li>Remove the board from the frame; remove cameras, speakers, connectors as far as the model allows</li>
+    <li><b>Remove EMI shields where possible</b> — water loves hiding under them; a shield you can't unclip may need low-heat removal or careful flushing under the edges</li>
+  </ol>
+  <div class="notes"><p>Connect back to Module 3 skills — this is a normal teardown, done urgently. The battery-disconnect point is THE most important line in the protocol: it's the step that stops the board from actively eating itself. Shields: show a real board with clip-on vs soldered shields; explain we only remove what we can without board-level rework at this course level.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>Stage 2: Brush-clean with IPA</h2>
+  <ul>
+    <li>Use <b>isopropyl alcohol ≥ 99%</b> — it displaces water, dissolves residue, evaporates clean</li>
+    <li><span class="warn-t">Never 70% household IPA</span> — that's one-third water; you'd be washing with the problem</li>
+    <li>Soft brush (ESD-safe), work over every connector, chip edge, and visible residue</li>
+    <li>Scrub corroded areas until pins show clean metal; flush and repeat</li>
+  </ul>
+  <div class="video">Full water-damage treatment walkthrough — Video 8.1 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Play Video 8.1 here — it shows stages 2–5 end to end, so the class sees the whole flow before you dive deeper into the ultrasonic. Live demo after: brush IPA over a corroded donor board under the camera/microscope so they see green fuzz lift off. Reinforce the 99% vs 70% point from Module 1 — quiz question guaranteed.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>Stage 3: Ultrasonic cleaning</h2>
+  <ul>
+    <li>Ultrasonic waves make microscopic bubbles that scrub <b>under chips and shields</b> — where no brush reaches</li>
+    <li>Use a <b>proper ultrasonic cleaning solution</b> — not plain water, not neat IPA in an open tank</li>
+    <li>Typical cycle: a few minutes, board fully submerged, then IPA rinse to displace the solution</li>
+  </ul>
+  <div class="box danger"><p><b>Board only.</b> Never put the battery in an ultrasonic cleaner (puncture/fire risk), and never sealed components like speakers or vibration motors — the bath destroys them.</p></div>
+  <div class="video">Ultrasonic cleaning demonstration — Video 8.2 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Play Video 8.2, then run the classroom ultrasonic with a donor board so they hear and see it. Ask before the danger box reveal: "What in the phone must NEVER go in this tank?" Let them reason it out — battery (lithium + agitation = fire risk) and sealed acoustic parts. No ultrasonic in a future shop? A careful manual IPA clean is the fallback — lower success rate, still valid.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>Stage 4: Dry thoroughly, inspect closely</h2>
+  <div class="cols">
+    <div>
+      <h3>Dry</h3>
+      <ul>
+        <li>Low heat: heating pad or warm air well below solder temps</li>
+        <li>Give it time — trapped solvent under a chip = a short on power-up</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Inspect under magnification</h3>
+      <ul>
+        <li>Every connector, every visible pad, chip edges</li>
+        <li>Any remaining fuzz or residue → back to Stage 2</li>
+        <li>Look for <b>missing pads</b> and eaten traces — that's referral territory</li>
+      </ul>
+    </div>
+  </div>
+  <div class="notes"><p>Impatience kills phones here. Rule of thumb: if you can smell solvent, it's not dry. Inspection is a loop, not a checkbox — boards routinely go back for a second clean. Missing pads / burned components mean board-level repair: at our course level that's "refer to a micro-soldering specialist", tying into Module 7.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>Reading corrosion: what you're looking for</h2>
+  <table>
+    <tr><th>What you see</th><th>What it means</th></tr>
+    <tr><td><span class="ok-t">Green/white fuzz</span> on connector pins</td><td>Active corrosion — usually cleans up well</td></tr>
+    <tr><td>Blackened / darkened pads</td><td>Burnt or heavily corroded — may still work after cleaning, test carefully</td></tr>
+    <tr><td>Fuzzy, furry IC legs</td><td>Corrosion creeping under the chip — ultrasonic is your only reach</td></tr>
+    <tr><td>Pads or traces <b>missing</b></td><td>Eaten through — board-level repair or donor board; refer out</td></tr>
+  </table>
+  <div class="notes"><p>Show macro photos or real boards for each row — students must SEE these before the practical, where identifying corrosion types is graded. Memory hook: "fuzz cleans, missing means machine-shop" — surface corrosion is your job, dissolved copper is a specialist's.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Reassembly: always a NEW battery</h2>
+  <ul>
+    <li>Water reaches the battery's terminals and can breach the pouch seal</li>
+    <li>A water-exposed lithium battery is <b>compromised</b> — internal corrosion, swelling risk, fire risk</li>
+    <li>It may hold charge today and swell next month — inside your repaired phone, under your warranty</li>
+  </ul>
+  <div class="box warn"><p>Build the new battery into the quote from the start. "Treatment + new battery" is the package — a water treatment that reuses the old battery isn't a professional repair.</p></div>
+  <div class="notes"><p>Connect to Module 5: they know swollen-battery risks already. The business logic sells it — a $15 battery protects a $60 repair and your reputation. The old battery goes in the battery bin per Module 1 rules, never back in a phone, never in the trash.</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>Final stage: full test — every function</h2>
+  <ul>
+    <li>Boot, touch across the whole screen, cameras (both), flashlight</li>
+    <li>Speakers, earpiece, microphones (voice memo test), vibration</li>
+    <li>Charging (watch the USB ammeter), Wi-Fi, cellular, Bluetooth, GPS</li>
+    <li>All buttons, sensors (rotate, proximity during a call)</li>
+  </ul>
+  <div class="box ok"><p>Log results on the checklist. Anything that fails goes in the customer report — found now, not by the customer at home.</p></div>
+  <div class="notes"><p>Water damage is the fault that hides: one dead microphone in a phone that otherwise works perfectly. That's why the test is a full-device sweep, not "it boots, ship it". This same checklist reappears in the final practical exam — learn it now.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>Honest odds: what success really looks like</h2>
+  <div class="box warn">
+    <p><b>Fresh water, treated fast:</b> roughly 60–70% success.<br>
+    <b>Salt water, sugary drinks, or days of delay:</b> far lower.<br>
+    And a treated phone can <b>work today and die next month</b> — corrosion you couldn't reach keeps creeping.</p>
+  </div>
+  <p style="margin-top:1rem">Say all of this <b>BEFORE</b> the repair — never after.</p>
+  <p class="sub">A customer told the odds up front hears honesty. A customer told afterwards hears excuses.</p>
+  <div class="notes"><p>This is the module's most important customer-skill slide. Have the class say the key sentence out loud together: "I can treat it, but water damage has no guarantee — it may work now and still fail later." Techs who skip this conversation fund the customer's next phone out of their own pocket.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>Data first: what the customer actually wants</h2>
+  <ul>
+    <li>For many customers the phone is replaceable — <b>the photos are not</b></li>
+    <li>Ask at intake: <span class="accent">"If I can only save one thing — the phone or the data — which matters more?"</span></li>
+    <li>A phone revived <b>once</b>, even briefly, is a backup opportunity: back up FIRST, then worry about longevity</li>
+    <li>Offer <b>data recovery as the goal</b>, with a working phone as the bonus</li>
+  </ul>
+  <div class="notes"><p>Reframe the job: "dead phone" is often really "trapped wedding album". If treatment gets the phone booting, the FIRST action is a full backup — before extended testing, before returning it — because it may be the only boot you get. Data-first framing also softens the no-guarantee talk: even if the phone dies later, you saved what mattered.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Pricing &amp; the customer script</h2>
+  <div class="cols">
+    <div>
+      <h3>Pricing structure</h3>
+      <ul>
+        <li><b>Diagnosis/treatment fee</b> — charged regardless of outcome (the work happens either way)</li>
+        <li>Parts (always the new battery) quoted after inspection</li>
+        <li><b>No-guarantee policy in writing</b>, signed before you start</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>The script</h3>
+      <p>"I'll open it today and treat the corrosion. The treatment fee is X whatever happens. Success for this kind of exposure is realistically 60–70%, and even a success can fail later — so there's no warranty on water damage, and you'll sign that before I start. If data matters most, tell me now and I'll make backup the first priority."</p>
+    </div>
+  </div>
+  <div class="notes"><p>Pairs practice the script on each other — one plays a customer who pushes back ("Why pay if you can't promise it works?"). Answer: the fee buys hours of skilled treatment, not a guaranteed outcome — like a doctor's consult. Written no-guarantee policy is non-negotiable shop practice; Module 10 formalizes it in the intake form.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: a customer calls — their phone just fell in the sink. Deliver the <b>first-response instructions</b></li>
+    <li>Another volunteer: walk the class through the <b>treatment protocol</b>, teardown to full test, from memory</li>
+    <li>Class challenge: why is rice worse than useless? Convince a skeptic in 30 seconds</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>For #3, play the stubborn uncle: "Rice worked for my phone in 2019!" The student must explain survivorship — the phone survived DESPITE rice, and the wasted 48 hours is the real cost. If protocol recall is shaky, run the flowchart once more before releasing them to stations.</p></div>
+</section>
+
+<!-- ======================= SLIDE 21 ======================= -->
+<section class="slide">
+  <h2>Practical: the full protocol, 3 hours</h2>
+  <table>
+    <tr><th>Station</th><th>Task</th></tr>
+    <tr><td>A</td><td>Teardown &amp; triage a pre-dunked donor board — disconnect, document, photograph <b>before</b> state</td></tr>
+    <tr><td>B</td><td>IPA brush-clean under magnification — identify each corrosion type found</td></tr>
+    <tr><td>C</td><td>Ultrasonic cycle + rinse + thorough dry (board only!)</td></tr>
+    <tr><td>D</td><td>Final inspection, <b>after</b> photos, and a written customer-facing outcome report</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Worksheet: <code>practicals/practical-08-water-damage.md</code></p>
+  <div class="notes"><p>Boards were dunked in salted water 48 h ago, so real corrosion is present. Before/after photos are graded evidence — enforce them. The outcome report must be in customer language: what was found, what was done, realistic prognosis, no-guarantee statement. Watch station C like a hawk: nothing but bare boards enters the tank.</p></div>
+</section>
+
+<!-- ======================= SLIDE 22 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li>Write your shop's <b>water-damage phone script</b> — the 5 first-response steps in your own words</li>
+    <li>Watch <b>Video 8.3</b> again and note the three reasons rice fails</li>
+    <li>Quiz now: Module 8, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 9 — when the fault isn't hardware at all.</p>
+  <div class="notes"><p>Hand out the Module 8 quiz from assessments/module-quizzes.md. While they work, review the outcome reports from station D — pick one good and one weak example (anonymized) to open the next session with. Tease Module 9: "Half the 'broken' phones that walk in have nothing physically wrong with them."</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 22</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>

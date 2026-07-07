@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 5 — Battery &amp; Power Issues</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 5 of 10</span>
+  <h1>Battery &amp; Power Issues</h1>
+  <p class="sub">The most-requested repair after screens — and the most dangerous part in the phone.</p>
+  <p class="sub" style="margin-top:2rem">1.5 h theory &nbsp;·&nbsp; 3 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Open with the random safety-rule recital (two students). Then ask: "Whose phone battery lasts less than a day?" — several hands will go up. Tell them by the end of today they can fix that, safely, and diagnose a phone that won't turn on at all.</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Explain how a <span class="accent">lithium-ion battery</span> works, ages, and fails</li>
+    <li>Read <span class="accent">battery health</span> on iOS and Android</li>
+    <li>Remove and replace a glued-in battery <span class="ok-t">without bending or prying it</span></li>
+    <li>Diagnose a <span class="warn-t">"won't charge" / "won't turn on"</span> phone step by step</li>
+    <li>Know exactly when a power fault is a <span class="danger-t">board-level job to refer out</span></li>
+  </ul>
+  <div class="notes"><p>Emphasize the diagnosis half: battery swaps pay the bills, but the tech who can tell a customer WHY their phone is dead — in five minutes, with a meter — is the one who earns trust and referrals.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>Li-ion basics: the numbers that matter</h2>
+  <table>
+    <tr><th>State</th><th>Voltage</th><th>Meaning</th></tr>
+    <tr><td>Fully charged</td><td>~4.4 V (older cells ~4.2 V)</td><td>Top of the safe range</td></tr>
+    <tr><td>Nominal (label)</td><td>3.7–3.85 V</td><td>The "average" voltage printed on the cell</td></tr>
+    <tr><td>Empty (phone shuts off)</td><td>~3.0–3.4 V</td><td>Software cutoff protects the cell</td></tr>
+    <tr><td class="danger-t">Dead-flat</td><td class="danger-t">&lt; 3.0 V</td><td class="danger-t">Deep discharge — may never recover</td></tr>
+  </table>
+  <p><b>Capacity</b> is measured in <span class="accent">mAh</span> (milliamp-hours) — how much charge the cell holds. More mAh = longer runtime, same voltage.</p>
+  <div class="notes"><p>Hold up a real battery and read the label aloud: nominal voltage and mAh. Analogy: voltage is water pressure, mAh is the size of the tank. The dead-flat row matters for the shop: a phone left in a drawer for a year often has a battery below 3.0 V that no charger will revive — that's a battery sale, not a board fault.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>Wear = cycles</h2>
+  <ul>
+    <li>One <b>cycle</b> = using 100% of capacity (two half-discharges count as one)</li>
+    <li>Typical cell: <span class="accent">~500 full cycles</span> before it drops to ~80% of original capacity</li>
+    <li>Heavy user ≈ 1 cycle/day → noticeable wear in <b>18–24 months</b></li>
+    <li>Heat and staying at 0% or 100% for long periods accelerate aging</li>
+  </ul>
+  <div class="box ok"><p>This is why battery replacement is a routine, recurring repair — every phone needs one eventually. It's the closest thing this trade has to guaranteed demand.</p></div>
+  <div class="notes"><p>Ask the class to estimate their own phone's age and cycles. Key concept: wear is chemistry, not a defect — capacity fades even with perfect care. Frame the 80%-at-500-cycles number as a rule of thumb, not a law; some cells do better, hot climates do worse.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>Symptoms of a worn battery</h2>
+  <ul>
+    <li><b>Fast drain</b> — full to empty in half the time it used to take</li>
+    <li><b>Sudden shutdowns</b> — dies at 20–40%, especially <span class="warn-t">under load</span> (camera, games) or <span class="warn-t">in the cold</span></li>
+    <li><b>Percentage jumping</b> — 60% → 15% → dead, or stuck at one number</li>
+    <li><b>Slow charging / getting hot</b> while charging</li>
+    <li><b>Swelling</b> — screen or back cover lifting <span class="danger-t">(next slide)</span></li>
+  </ul>
+  <div class="notes"><p>Explain WHY shutdowns happen under load and cold: a worn cell's internal resistance rises, so voltage sags under heavy current draw — the phone sees the voltage dip below cutoff and kills itself even though "charge" remains. Percentage jumping is the fuel gauge losing track of a shrunken tank.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>Swelling: stop everything</h2>
+  <img class="diagram" src="../resources/images/battery-safety.svg" alt="Battery thermal runaway diagram">
+  <div class="box danger"><p>A swollen battery is one puncture away from fire. <b>Module 1 rules apply in full:</b> glasses on, never pry/bend/puncture, no heat near it, and it goes in the <b>battery bin</b> — never the normal trash.</p></div>
+  <div class="notes"><p>Revisit the Module 1 diagram: swelling is gas from decomposing electrolyte — the cell is already failing internally. A pushed-up screen is often the customer's first clue. Shop rule: a swollen battery jumps the queue — deal with it the day it arrives, don't leave it in a drawer. Show the sealed demo battery again if you have it.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>Checking battery health</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>iOS</h3>
+      <p>Settings → Battery → <b>Battery Health</b>. "Maximum Capacity" below <span class="warn-t">~80%</span> = replacement territory. Check for the "service" warning.</p>
+    </div>
+    <div class="box">
+      <h3>Android</h3>
+      <p>No universal built-in screen. Use dial codes (e.g. <code>*#*#4636#*#*</code> on some models), manufacturer service menus, or apps like AccuBattery that measure over a few days.</p>
+    </div>
+  </div>
+  <div class="video">Battery health explained — how to read it on both platforms — Video 5.3 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Demo live on both a training iPhone and Android. Warn them: Android third-party apps ESTIMATE by watching charge sessions, so a fresh install shows garbage for the first days. Also note: after a non-genuine battery swap, some iPhones show "Unknown Part" and hide the health % — set that expectation with customers BEFORE the repair.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Safe removal — rule zero</h2>
+  <p class="big" style="margin:1rem 0 2rem">Disconnect first. Always.</p>
+  <ol>
+    <li>Power the phone off, open it (Module 3 skills)</li>
+    <li><b>Disconnect the battery connector</b> before touching anything else</li>
+    <li>Remove any brackets, flexes, or boards lying over the battery</li>
+    <li>Only then start on the adhesive</li>
+  </ol>
+  <div class="box danger"><p>A connected battery turns every slip into a possible short circuit — and a shorted battery makes its own heat.</p></div>
+  <div class="notes"><p>Connect back to Module 1 rule 2. Ask: "Why disconnect even though the phone is off?" — 'off' phones still have live power rails; a dropped screw or tweezer tip across the wrong pads can short them. Demonstrate a clean spudger lift of the connector: pry under the connector, never against the socket.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>Adhesive pull-tabs: low and slow</h2>
+  <ul>
+    <li>Most batteries sit on <b>stretch-release adhesive strips</b> with pull-tabs</li>
+    <li>Free the tab end with tweezers, grip it flat against the frame</li>
+    <li>Pull <span class="accent">LOW</span> — almost parallel to the phone body, not upward</li>
+    <li>Pull <span class="accent">SLOW</span> — steady stretch, pausing lets the glue keep releasing</li>
+    <li>The strip stretches to several times its length before it lets go — be patient</li>
+  </ul>
+  <div class="notes"><p>Demo with a real pull-tab or a strip of stretch-release adhesive stuck to the bench. Pulling upward or fast is what snaps tabs — the strip needs to stretch, not tear. Have students chant it back: "low and slow." A snapped tab costs ten minutes; a patient pull costs thirty seconds.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>When the tab snaps</h2>
+  <ol>
+    <li>Drip a little <b>IPA (≥99%)</b> along the battery edge; give it a minute to creep under</li>
+    <li>Slide a <b>thin plastic card</b> behind the battery from the freed corner</li>
+    <li>Work it across gently — more IPA, more patience</li>
+  </ol>
+  <div class="cols" style="margin-top:1rem">
+    <div class="box danger"><p><b>NEVER metal</b> behind or under a battery — one scratch through the pouch = fire.</p></div>
+    <div class="box danger"><p><b>NEVER bend</b> the battery. If it flexes, stop and free more adhesive first.</p></div>
+  </div>
+  <div class="notes"><p>This is the highest-risk moment of the whole repair — say so explicitly. Gentle heat on the BACK of the phone (heating pad) can also soften glue, but never aim heat at the battery itself. If a battery is damaged during removal it goes straight to the battery bin and the customer gets a new one regardless — that's the cost of the trade, not a corner to cut.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>Watch the full job</h2>
+  <div class="video">Battery replacement walkthrough, start to finish — Video 5.1 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>The exact moment the battery is disconnected — what came before it?</li>
+    <li>The angle and speed of every pull-tab stretch</li>
+    <li>What the tech does when a tab snaps mid-pull</li>
+  </ul>
+  <div class="notes"><p>Pause the video at the disconnect and at the first pull-tab. Ask the class to call out mistakes if the tech does anything differently from what we just taught — small technique variations are fine, safety violations are not. This primes them for the practical.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>Fitting the new battery</h2>
+  <ol>
+    <li>Clean old adhesive residue off the well with IPA; let it dry fully</li>
+    <li>Compare old vs new: <b>connector type, size, capacity</b> must match</li>
+    <li>Apply new stretch-release strips or pre-cut adhesive to the well (not the battery), peel, and seat the battery <b>once</b> — no repositioning</li>
+    <li>Route the flex naturally; <b>connect the battery last</b>, after all other flexes</li>
+  </ol>
+  <div class="box warn"><p>Never force a battery into its well, and never press hard on its face to seat it. Firm, even, gentle.</p></div>
+  <div class="notes"><p>"Connect last" mirrors "disconnect first" — the battery is always the last thing live. Show why repositioning matters: stretch adhesive grabs instantly and repositioning means bending the battery to get it back out. Also mention checking the new cell's voltage with a multimeter before fitting — a new battery reading near 0 V is DOA, send it back.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>Post-repair testing: prove it</h2>
+  <ul>
+    <li><b>Charge test</b> — plug in through the <span class="accent">USB ammeter</span>: current should be normal for the model (roughly 1–2 A fast-charging)</li>
+    <li><b>Health reading</b> — new battery should report at or near 100% (where the OS shows it)</li>
+    <li><b>Load test</b> — run <span class="accent">camera + flashlight</span> for a few minutes: no random shutdown, no rapid % drop, no unusual heat</li>
+    <li>Charge to full once before return; note the ammeter reading on the job sheet</li>
+  </ul>
+  <div class="notes"><p>The camera+flashlight combo is the poor man's load tester — it pulls high current and exposes a bad cell or a bad connection immediately. Drill the habit: readings get WRITTEN DOWN on the job sheet. "Tested OK" with numbers behind it wins every warranty argument.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>The charging chain</h2>
+  <img class="diagram" src="../resources/images/charging-circuit.svg" alt="Charging chain from wall charger to battery">
+  <p style="margin-top:.8rem">Wall charger → cable → port → charging IC → PMIC → battery</p>
+  <div class="notes"><p>Walk the diagram link by link and explain each part's job in one sentence: charger converts mains to USB power, cable carries it, port connects it, charging IC manages safe charge current, PMIC (power management IC) distributes power to the whole board, battery stores it. Every student should be able to redraw this chain from memory — it IS the diagnosis map for the next slides.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Why "won't charge" tells you almost nothing</h2>
+  <p style="margin-bottom:1rem">A fault at <b>any link</b> of the chain produces the same customer complaint:</p>
+  <table>
+    <tr><th>Faulty link</th><th>Typical cause</th><th>Fix level</th></tr>
+    <tr><td>Wall charger</td><td>Dead adapter</td><td>Swap — trivial</td></tr>
+    <tr><td>Cable</td><td>Broken cores near the plug</td><td>Swap — trivial</td></tr>
+    <tr><td>Port</td><td>Lint, corrosion, worn pins</td><td>Clean / replace — Module 6</td></tr>
+    <tr><td>Charging IC / PMIC</td><td>Board-level failure</td><td class="danger-t">Refer out</td></tr>
+    <tr><td>Battery</td><td>Dead-flat or worn cell</td><td>Replace — today</td></tr>
+  </table>
+  <div class="notes"><p>This is the core mental model of the module. The amateur replaces the port because "it won't charge"; the professional tests the chain from cheapest link to most expensive and only touches what's proven faulty. Ask: "Which two links can the customer have already ruled out for you at home?" — charger and cable, IF they tested with known-good ones (they usually haven't).</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>No-power diagnosis flow</h2>
+  <ol>
+    <li><b>Visual inspection</b> — liquid indicators, corrosion, bent port pins, swelling, drop damage</li>
+    <li><b>Battery voltage with the multimeter</b> — at the connector: &lt;3.0 V = deep-discharged; ~0 V = dead cell or board short</li>
+    <li><b>Known-good battery</b> — swap one in: phone boots = battery fault confirmed; still dead = look at board/port</li>
+    <li><b>USB ammeter</b> on a known-good charger and cable — read the current (next slide)</li>
+  </ol>
+  <div class="notes"><p>Order matters: each step is cheaper and faster than the one after it. Steps 2 and 3 are why the shop keeps a small library of known-good batteries for common models — a 30-second swap answers what an hour of guessing can't. Demo measuring voltage on a battery's connector pins: outermost pins are usually + and −, mind the probe tips don't bridge pins.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>Reading the USB ammeter</h2>
+  <table>
+    <tr><th>Reading</th><th>Most likely meaning</th><th>Next step</th></tr>
+    <tr><td><b>0 mA</b></td><td>No connection — port fault or board fault</td><td>Inspect/clean port; then suspect board</td></tr>
+    <tr><td><b>Low &amp; steady</b> (e.g. 50–200 mA)</td><td>Charging, but slowly — dirty port, weak contact, or trickle-charging a dead-flat cell</td><td>Clean port; give a dead-flat cell 15–30 min, then re-read</td></tr>
+    <tr><td><b>Normal</b> (~1–2 A)</td><td>Chain is fine — problem is battery or software</td><td>Battery health check; software checks (Module 9)</td></tr>
+  </table>
+  <div class="box ok"><p>One plug, one number, and half the chain is ruled in or out. The ammeter is the best €10 in your kit.</p></div>
+  <div class="notes"><p>Insist on known-good charger + cable for every reading — otherwise the meter is measuring THEIR fault, not the phone's. Mention erratic/jumping readings as a fourth pattern: usually a loose or worn port. Numbers vary by model and charge level; teach patterns, not exact figures.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>"Dead" phones come in three flavours</h2>
+  <table>
+    <tr><th>Flavour</th><th>Clues</th><th>Suspect</th></tr>
+    <tr><td><b>No power</b></td><td>No vibration, no ring when called, no sounds, 0 response</td><td>Battery, port, board</td></tr>
+    <tr><td><b>No display</b></td><td><span class="accent">It vibrates or rings</span>, makes sounds, gets warm — but screen stays black</td><td>Screen or screen connector (Module 4)</td></tr>
+    <tr><td><b>Boot-loop</b></td><td>Logo appears, restarts endlessly</td><td>Software (Module 9) or failing power under load</td></tr>
+  </table>
+  <p style="margin-top:.8rem" class="big">First question at intake: <span class="accent">"Does it vibrate or ring?"</span></p>
+  <div class="notes"><p>This one question, asked at the counter, saves opening the wrong phone. Have someone call the "dead" phone; plug it in and listen for the charge sound; feel for vibration. A "dead" phone that rings needs a screen, not a battery — completely different quote. Boot-loops that only happen off-charger point back at a worn battery sagging under boot load.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Watch a real diagnosis</h2>
+  <div class="video">Diagnosing a phone that won't power on — Video 5.2 in <code>resources/videos.md</code></div>
+  <h3>As you watch, track:</h3>
+  <ul>
+    <li>Which step of our flow is the tech on at each moment?</li>
+    <li>What did each measurement <b>rule out</b>?</li>
+    <li>Where would YOU have stopped and quoted the customer?</li>
+  </ul>
+  <div class="notes"><p>Pause after each measurement in the video and make the class name the step from slide 16 and say what's been eliminated. The goal is that they see diagnosis as a checklist that converges, not guesswork. Afterwards, map the video's finding onto the charging-chain diagram.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>When to refer out</h2>
+  <ul>
+    <li>Known-good battery + clean port + known-good charger and cable, and still <b>0 mA / no boot</b></li>
+    <li>Signs of board damage: burnt smell, hot spot on the board, liquid damage history</li>
+    <li>Suspected <span class="warn-t">charging IC or PMIC</span> failure — these are micro-soldering jobs</li>
+  </ul>
+  <div class="box ok"><p>Referring out is not failure — it's a correct diagnosis. Charge for the diagnosis, partner with a board-level specialist, and the customer still leaves happy.</p></div>
+  <div class="notes"><p>Preview Module 7: they'll learn soldering fundamentals, but IC-level work needs equipment and months of practice beyond this course. A tech who says "this is board-level, here's who can do it, here's what it'll roughly cost" sounds MORE professional than one who tinkers for a week. Encourage them to find their local board-repair partner early.</p></div>
+</section>
+
+<!-- ======================= SLIDE 21 ======================= -->
+<section class="slide">
+  <h2>Battery myths — bust them for your customers</h2>
+  <table>
+    <tr><th>Myth</th><th>Truth</th></tr>
+    <tr><td>"Overnight charging ruins the battery"</td><td>Modern phones stop at full and manage it — <span class="ok-t">fine</span>. Heat is the real enemy.</td></tr>
+    <tr><td>"You must calibrate by full drain/charge"</td><td>Mostly obsolete; occasionally helps a confused % gauge, never restores capacity.</td></tr>
+    <tr><td>"Put a wet phone in rice"</td><td><span class="danger-t">Never.</span> Rice does nothing; corrosion keeps eating. Proper treatment: Module 8.</td></tr>
+  </table>
+  <div class="notes"><p>Customers repeat these myths daily; a tech who corrects them kindly, with reasons, builds authority. The rice myth is the important one — every day in rice is a day of corrosion. Tease Module 8: "You'll see what rice-treated boards look like inside. Bring your appetite for horror."</p></div>
+</section>
+
+<!-- ======================= SLIDE 22 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: talk us through <b>safe battery removal</b>, from opening the phone to the battery leaving the well</li>
+    <li>Another volunteer: a phone "won't charge" — walk the class through your <b>diagnosis flow</b> and what each ammeter reading means</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>Listen specifically for "disconnect first" and "low and slow" in the first teach-back, and for cheapest-link-first ordering in the second. If either is missing, don't supply it yourself — ask the class "what's missing?" first. Re-demo weak areas before releasing them to stations.</p></div>
+</section>
+
+<!-- ======================= SLIDE 23 ======================= -->
+<section class="slide">
+  <h2>Practical: 3 hours at the bench</h2>
+  <table>
+    <tr><th>Station</th><th>Task</th></tr>
+    <tr><td>A</td><td>Full battery replacement on a donor phone — disconnect first, pull-tabs low &amp; slow, fit, adhesive, retest</td></tr>
+    <tr><td>B</td><td>No-power diagnosis: planted-fault phones (dead battery / bad cable / dirty port) — find the fault, prove it with measurements</td></tr>
+    <tr><td>C</td><td>Document USB ammeter readings <b>before and after</b> every fix on the job sheet</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Worksheet: <code>practicals/practical-05-battery-power.md</code></p>
+  <div class="notes"><p>Plant the faults before class and keep a key of which phone has what — don't tell students. Rubric: safety handling of the battery is pass/fail (metal near a battery = automatic station fail, restart). At station B, require the written measurement that PROVES their diagnosis before they may fix it.</p></div>
+</section>
+
+<!-- ======================= SLIDE 24 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li>Redraw the <b>charging chain</b> from memory and label what each link's failure looks like</li>
+    <li>Check <b>battery health</b> on your own phone and one family member's — bring the numbers</li>
+    <li>Watch <b>Video 6.1</b> (charging port diagnosis &amp; cleaning) before next session</li>
+    <li>Quiz now: Module 5, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 6 — ports, buttons &amp; the small parts that pay.</p>
+  <div class="notes"><p>Hand out the quiz from assessments/module-quizzes.md; do bench inspections while they write. The homework health readings become the opening discussion of Module 6. Tease next session: "Most 'broken' charging ports aren't broken at all — bring your curiosity."</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 24</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>

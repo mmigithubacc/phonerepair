@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 — Disassembly &amp; Reassembly</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 3 of 10</span>
+  <h1>Disassembly &amp; Reassembly</h1>
+  <p class="sub">Open any phone. Close it again. Have it still work.</p>
+  <p class="sub" style="margin-top:2rem">1.5 h theory &nbsp;·&nbsp; 3 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Safety recital first (2 random students). Then set the stakes: "Today you take a complete working teardown from closed phone to bare frame and back. Every repair in this course lives inside today's skill. Damage-free is the grade."</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Open a glued or clipped phone <span class="accent">without damage</span></li>
+    <li>Disconnect <span class="accent">every connector type</span> the right way</li>
+    <li>Keep a <span class="warn-t">screw map</span> and photo record that lets anyone reassemble</li>
+    <li>Reassemble, <span class="ok-t">test, and seal</span> — in that order</li>
+  </ul>
+  <div class="notes"><p>Point out the ratio: 1.5 h theory, 3 h hands-on. "The slides are short because the bench is long." Everything today is technique — the theory is just naming the traps before they walk into them.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>The golden habit</h2>
+  <p class="big" style="margin:1rem 0 2rem">Look up the model-specific guide <span class="accent">BEFORE</span> you open anything.</p>
+  <ul>
+    <li>Where the cables live · where the battery sits · which screws differ</li>
+    <li>Every model hides its own traps — the guide already found them</li>
+    <li>Module 2 taught you to ID the model; now it becomes a <b>graded reflex</b></li>
+  </ul>
+  <div class="notes"><p>Show two phones that look identical from outside but open in opposite directions (e.g. screen-first vs back-first). "Guess wrong and you pry the wrong panel, crack it, and now you owe the customer a part." From today, opening a device without consulting the guide loses rubric points automatically.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>The universal opening sequence</h2>
+  <ol>
+    <li><b>Power off</b> — completely, not sleep</li>
+    <li><b>Heat</b> the seam to <b>80–100 °C</b> to soften adhesive</li>
+    <li><b>Suction cup</b> lifts a first gap</li>
+    <li><b>Pick rides the gap</b> around the perimeter — <span class="danger-t">shallow!</span></li>
+  </ol>
+  <div class="box warn"><p>Before the pick goes in: know from the guide <b>where the cables live</b>. A deep pick in the wrong corner slices a flex you can't see.</p></div>
+  <div class="notes"><p>Demo the full sequence on the doc camera. Show pick depth with tape as a depth stop: 2–3 mm max on most phones. Ask: "Why power off first?" — live boards short when tools bridge contacts, and a booted phone can fire the backlight circuit mid-pry. Heat check from Module 1: hot to touch, not scorching.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>Adhesive phones vs clip phones</h2>
+  <div class="cols">
+    <div class="box warn">
+      <h3>Adhesive (most modern)</h3>
+      <p>Glued seams — need heat, suction, picks, patience. Water-resistant models glue hardest. Re-sealing needs new adhesive.</p>
+    </div>
+    <div class="box ok">
+      <h3>Clips (older / budget)</h3>
+      <p>Plastic clips snap apart with a pick — no heat. But clips <b>break if you rush</b>; work the pick along, don't lever one point.</p>
+    </div>
+  </div>
+  <p style="margin-top:1.2rem">The guide tells you which you're facing — and which panel opens first.</p>
+  <div class="notes"><p>Let students hear the difference: run a pick around a clip phone (clack-clack-clack) vs the silent drag of adhesive. Common beginner error on clip phones: skipping a hidden screw and snapping the clips around it. Rule: if a panel resists after clips release, hunt for the hidden screw — often under a label or foot.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>Screw mapping on the magnetic mat</h2>
+  <ul>
+    <li>Draw the phone's zones on the mat; every screw lands in <b>its own zone</b></li>
+    <li>Label lengths where they differ (e.g. "4.2 mm — shield")</li>
+    <li>Mapped mat = anyone can reassemble; mystery pile = nobody can</li>
+  </ul>
+  <div class="box danger"><p><b>Long-screw damage kills boards.</b> A screw 0.5&nbsp;mm too long drills through copper layers under the hole. The phone dies instantly or weeks later — and it's unrepairable. The map is the only protection.</p></div>
+  <div class="notes"><p>Show a real screw-map layout on the doc camera. Tell the iPhone 6 story: thousands of boards killed by techs swapping two near-identical screws near the display connector — it became famous enough to have a name. From now on, an unmapped bench is an automatic rubric deduction, exactly as promised in Module 1.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>THE rule of internal work</h2>
+  <p class="big" style="margin:1rem 0 2rem">Battery connector <span class="danger-t">FIRST</span>. Always. Every time.</p>
+  <div class="box danger">
+    <p>The moment the phone is open, disconnect the battery <b>before touching anything else</b>. A live board + a metal tool = shorted backlight, fried charging IC, or worse. Reconnect it <b>last</b>.</p>
+  </div>
+  <div class="notes"><p>This is the single most important slide today — slow down. Repeat the Module 1 story: screen swap with battery connected, backlight circuit dead on reconnect. Have the whole class say it aloud once: "Battery first." Corny, but it sticks. In the practical, any tool touching the board before battery disconnect = checkpoint failed, restart the stage.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Press-fit connectors: straight up, never sideways</h2>
+  <ul>
+    <li>Plastic spudger tip <b>under the connector's edge</b> — the correct side per the guide</li>
+    <li>Pry <b>straight up</b> — it pops like a tiny LEGO</li>
+    <li><span class="danger-t">Never wiggle sideways</span> — that bends the pins and ruins socket and cable</li>
+    <li>Reconnect: align, then press until you feel the <b>click</b></li>
+  </ul>
+  <div class="notes"><p>Doc-camera demo, several times, slow. Show a sacrificial connector with bent pins from sideways wiggling — under magnification the damage is obvious. Reconnection warning for later: if it doesn't click with light pressure, it's misaligned; pressing harder crushes pins. Lift, realign, retry.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>ZIF connectors: latch first, then slide</h2>
+  <ol>
+    <li>Find the <b>hinged latch</b> (usually a dark bar on the socket)</li>
+    <li><b>Flip it up</b> gently with a spudger tip or fingernail</li>
+    <li>The cable now <b>slides out freely</b> — zero force</li>
+  </ol>
+  <div class="box danger"><p>Never pull the cable against a closed latch — the flex tears before the latch gives. If a cable won't slide, the latch isn't open.</p></div>
+  <div class="notes"><p>Demo open and close. The reinsertion detail everyone misses: slide the flex fully and squarely in BEFORE closing the latch — a crooked or half-inserted flex makes the part flaky or dead. "Zero force" is the self-check: if any step needs strength, you're doing it wrong.</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>Coax antenna cables: tiny, springy, airborne</h2>
+  <ul>
+    <li>Thin round black/white cables with a <b>snap-on button end</b></li>
+    <li>Disconnect: spudger tip under the button, <b>pop straight up</b></li>
+    <li>They're tiny and <span class="warn-t">they love to fly</span> — pop them low and slow, over the mat</li>
+    <li>Reconnect: position the button on the socket, press till it <b>snaps</b></li>
+  </ul>
+  <div class="notes"><p>Pop one on camera — and warn that at real speed they ping across the room. Habit to teach: cup your other hand over the cable as it releases. Connect back to Module 2: an unclipped coax = "no signal" fault. On reassembly, a coax that looks seated but didn't snap will fall off at first bump.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>Flex cable handling</h2>
+  <ul>
+    <li><b>No pulling</b> — flexes are unplugged at connectors, never dragged out</li>
+    <li><b>No creasing</b> — never fold sharper than the factory fold</li>
+    <li>Peel glued-down flexes slowly with a plastic tool, heat if stubborn</li>
+  </ul>
+  <div class="box danger"><p>Tears are invisible until nothing works. A flex can look perfect and be dead inside. If you creased one, tell the trainer — in a shop, you'd tell the customer and replace it.</p></div>
+  <div class="notes"><p>Callback to the Module 2 crease demo. Add the professional-ethics angle: hiding a damaged flex means the phone comes back "faulty" and the customer blames your parts. Owning mistakes at the bench is a graded behavior in this course — a reported mistake costs a point; a hidden one fails the checkpoint.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>EMI shields: clipped vs soldered</h2>
+  <div class="cols">
+    <div class="box ok">
+      <h3>Clipped</h3>
+      <p>Snaps onto a frame of clips. Pops off with a spudger at the corners. Snaps back on.</p>
+    </div>
+    <div class="box danger">
+      <h3>Soldered</h3>
+      <p>A solid soldered wall. <b>Does not come off with pry tools — ever.</b> Stays put until Module 7 (hot air).</p>
+    </div>
+  </div>
+  <p style="margin-top:1.2rem">Not sure which? Look at the edge: clips show tiny teeth, solder shows a smooth silver seam.</p>
+  <div class="notes"><p>Show both edges under magnification. Beginners who pry a soldered shield rip pads off the board — an instant board-killer that looks like it should have worked. Rule for the practical: any shield that resists a gentle corner pry gets left alone and flagged to the trainer.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>Teardown order — and why order matters</h2>
+  <ol>
+    <li>Power off → open → <b>battery disconnect</b></li>
+    <li>Shields &amp; brackets off (clipped only)</li>
+    <li>Connectors off the board — screen, cameras, coax, port flexes</li>
+    <li>Motherboard out → cameras, speakers, vibration motor</li>
+    <li>Battery out last (adhesive pull-tabs, no prying) → bare frame</li>
+  </ol>
+  <div class="box warn"><p>Order = safety: battery-first cuts power; brackets before connectors so nothing is pried against; board out before parts that hide under it. Wrong order = forced parts.</p></div>
+  <div class="notes"><p>Walk the order on the projected ifixit guide for today's donor model. Emphasize the reason column, not memorization — orders differ per model, but the logic (de-energize → unblock → disconnect → extract) is universal. Battery pull-tabs: pull slow and low, parallel to the battery; if a tab snaps, IPA under the edge and patience — never metal.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>Photograph every stage</h2>
+  <ul>
+    <li>One photo <b>before each layer comes off</b> — cables, screws, bracket positions</li>
+    <li>Your photos are your <b>reassembly manual</b> — better than memory, better than the guide (it shows <i>your</i> phone)</li>
+    <li>In a shop: photos are also your <b>evidence</b> of pre-existing damage</li>
+  </ul>
+  <div class="box ok"><p>Costs 10 seconds a stage. Saves the "where did this bracket go?" hour.</p></div>
+  <div class="notes"><p>Show a real stage-photo series from one of your own teardowns. The evidence point matters commercially: photograph corrosion, bend, or prior bodge-work BEFORE you touch it, or the customer will swear you caused it. Stage photos are a graded deliverable in today's practical.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Watch it done — twice</h2>
+  <div class="video">Full Android disassembly, start to bare frame — Video 3.1 in <code>resources/videos.md</code></div>
+  <div class="video">iPhone disassembly — same logic, different order — Video 3.2 in <code>resources/videos.md</code></div>
+  <h3>Watch for:</h3>
+  <ul>
+    <li>The moment the battery is disconnected — how early?</li>
+    <li>Android opens <b>back-first</b>, iPhone opens <b>screen-first</b> — spot the difference</li>
+  </ul>
+  <div class="notes"><p>Play 3.1 in full, then skim 3.2 at the key moments (opening direction, battery disconnect, display connectors under one bracket). Discussion: "Same logic, different order — what stayed constant?" (power off, battery first, straight-up connectors, mapping). That's the transferable skill.</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>Reassembly = reverse + test</h2>
+  <ol>
+    <li>Rebuild in <b>reverse order</b>, photos as your checklist</li>
+    <li>Every connector <b>clicks</b>; every screw back to its <b>mapped hole</b></li>
+    <li>Battery reconnected <b>last</b></li>
+    <li><b>TEST before final sealing:</b> boot, touch, cameras, speakers, mic, signal, charge</li>
+  </ol>
+  <div class="box warn"><p>Closing an untested phone means opening it twice. Adhesive is single-use — test first, seal once.</p></div>
+  <div class="notes"><p>Teach the loose-assembly test: everything connected, screen resting in place unsealed, power on, run the checks. Only after all-pass do adhesive and final closure happen. Ask: "What does it cost to skip the test?" — a new adhesive kit, 30 minutes, and on a customer phone, your credibility.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>The classic beginner mistakes</h2>
+  <ul>
+    <li><span class="danger-t">Torn flex</span> — pulled instead of unlatched, or a deep pick</li>
+    <li><span class="danger-t">Flying coax</span> — popped fast, lost forever under a bench</li>
+    <li><span class="warn-t">Forgotten screw</span> — rattles, or presses into the battery</li>
+    <li><span class="danger-t">Forced connector at an angle</span> — bent pins, dead part</li>
+    <li><span class="danger-t">Pry too deep</span> — sliced cable or nicked battery</li>
+  </ul>
+  <div class="video">Common beginner mistakes — watch them happen — Video 3.3 in <code>resources/videos.md</code></div>
+  <div class="notes"><p>Before playing the video, have the class predict which mistake they think they'll make — writing it down primes them to avoid it. After the video, map each mistake back to its prevention slide (latch-first, cup your hand, screw map, click-check, shallow picks). Every one of these is preventable by technique, not talent.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: talk the class through the <b>universal opening sequence</b> — including where picks must not go</li>
+    <li>Another volunteer: demo <b>all three connector types</b> on the donor board — press-fit, ZIF, coax</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>The connector demo is the one that matters — put it under the doc camera and let the volunteer narrate. If they wiggle a press-fit sideways or pull a flex, freeze the moment and let the class name the error. Fix gaps yourself before releasing anyone to the benches.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>Practical: full teardown, 3 hours</h2>
+  <table>
+    <tr><th>Stage</th><th>Task</th><th>Trainer checkpoint</th></tr>
+    <tr><td>1</td><td>Guide lookup → open donor Android → battery disconnect</td><td>✅ Battery disconnected</td></tr>
+    <tr><td>2</td><td>Full teardown to bare frame — screw map + photo every stage</td><td>✅ Bare frame + map + photos</td></tr>
+    <tr><td>3</td><td>Reassemble → loose-assembly test → seal → bench clean</td><td>✅ Reassembled, working &amp; cleaned</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Worksheet: <code>practicals/practical-03-disassembly-reassembly.md</code></p>
+  <div class="notes"><p>Pairs alternate: one drives, one spots and photographs; swap at stage 2. You must physically sign each checkpoint before they proceed — no checkpoint, no next stage. Inspect the screw map at checkpoint 2 against the phone's actual holes. Budget: ~45 min open+disconnect, ~75 min to bare frame, ~60 min rebuild+test.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li>Re-watch <b>Video 3.3</b> and write one sentence on how to prevent each mistake</li>
+    <li>Read the <b>screen replacement guide</b> for your own phone model on ifixit</li>
+    <li>Quiz now: Module 3, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 4 — screen replacement, the money repair.</p>
+  <div class="notes"><p>Quiz from assessments/module-quizzes.md; bench inspections during. Preview Module 4 with one line: "Everything you did today, plus a new screen and a paying customer's expectations." Collect the mistake-prevention sentences at the start of next session — they double as the Module 3 recap.</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 20</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>

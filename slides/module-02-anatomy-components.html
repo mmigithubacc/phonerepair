@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 — Mobile Phone Anatomy &amp; Components</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8;
+    --accent:#38bdf8; --warn:#f59e0b; --danger:#ef4444; --ok:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+  .slide{display:none;height:100vh;padding:5vh 7vw;flex-direction:column;justify-content:center}
+  .slide.active{display:flex}
+  .slide h1{font-size:3.2rem;line-height:1.15;margin-bottom:1.5rem;color:var(--accent)}
+  .slide h2{font-size:2.4rem;margin-bottom:1.2rem;color:var(--accent)}
+  .slide h3{font-size:1.5rem;margin:.8rem 0 .4rem;color:var(--warn)}
+  .slide p,.slide li{font-size:1.5rem;line-height:1.55;color:var(--text)}
+  .slide ul,.slide ol{margin:.5rem 0 .5rem 2.2rem}
+  .slide li{margin:.45rem 0}
+  .sub{color:var(--muted);font-size:1.3rem}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--accent);
+    color:var(--accent);border-radius:999px;padding:.2rem 1rem;font-size:1rem;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.2rem;align-self:flex-start}
+  .cols{display:flex;gap:3rem}.cols>div{flex:1}
+  .box{background:var(--panel);border-left:6px solid var(--accent);border-radius:8px;
+    padding:1rem 1.4rem;margin:.8rem 0}
+  .box.warn{border-color:var(--warn)} .box.danger{border-color:var(--danger)} .box.ok{border-color:var(--ok)}
+  .box p,.box li{font-size:1.3rem}
+  .video{background:var(--panel);border:2px dashed var(--warn);border-radius:10px;
+    padding:1rem 1.4rem;margin:1rem 0;font-size:1.3rem}
+  .video::before{content:"▶ PLAY VIDEO — ";color:var(--warn);font-weight:bold}
+  .big{font-size:2.2rem;font-weight:700}
+  .accent{color:var(--accent)} .warn-t{color:var(--warn)} .danger-t{color:var(--danger)} .ok-t{color:var(--ok)}
+  table{border-collapse:collapse;margin:.8rem 0;width:100%}
+  th,td{border:1px solid #334155;padding:.5rem .9rem;font-size:1.25rem;text-align:left}
+  th{background:var(--panel);color:var(--accent)}
+  .notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;
+    background:#020617;border-top:3px solid var(--warn);padding:1rem 2rem;z-index:10}
+  .notes p{font-size:1.05rem;color:#fbbf24;line-height:1.5}
+  .notes p::before{content:"TRAINER: ";font-weight:bold;color:var(--warn)}
+  body.show-notes .slide.active .notes{display:block}
+  .hud{position:fixed;bottom:12px;right:18px;color:var(--muted);font-size:.95rem;z-index:20}
+  .helpbar{position:fixed;bottom:12px;left:18px;color:#475569;font-size:.85rem;z-index:20}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--accent);z-index:20;transition:width .2s}
+  img.diagram{max-width:100%;max-height:52vh;background:#fff;border-radius:10px;padding:.6rem}
+  @media print{
+    .slide{display:flex !important;height:auto;min-height:90vh;page-break-after:always}
+    .hud,.helpbar,.progress{display:none}
+    .notes{display:block;position:static;max-height:none;border:1px solid #999}
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= SLIDE 1 ======================= -->
+<section class="slide">
+  <span class="tag">Cellphone Repair Course · Module 2 of 10</span>
+  <h1>Mobile Phone Anatomy &amp; Components</h1>
+  <p class="sub">What's actually inside — and what every piece does.</p>
+  <p class="sub" style="margin-top:2rem">2 h theory &nbsp;·&nbsp; 2 h practical &nbsp;·&nbsp; quiz</p>
+  <div class="notes"><p>Start with 2–3 random students reciting safety rules from Module 1 (you promised this). Then hold up a closed phone: "By the end of today, you'll be able to name everything inside this and say what it does. A tech who can't name a part can't diagnose it."</p></div>
+</section>
+
+<!-- ======================= SLIDE 2 ======================= -->
+<section class="slide">
+  <h2>What you'll be able to do after today</h2>
+  <ul>
+    <li>Name every <span class="accent">major component</span> in a smartphone and its job</li>
+    <li>Point to the <span class="accent">key chips</span> on a motherboard — SoC, PMIC, modem, charging IC</li>
+    <li>Recognize <span class="warn-t">connector types</span> and know how each one opens</li>
+    <li>Identify the <span class="ok-t">exact phone model</span> and find its repair guide</li>
+  </ul>
+  <div class="notes"><p>Set expectations: today is a vocabulary and geography lesson — no repairs yet. Analogy: a doctor learns anatomy before surgery. Modules 3–8 are the surgery; today is the anatomy class.</p></div>
+</section>
+
+<!-- ======================= SLIDE 3 ======================= -->
+<section class="slide">
+  <h2>The exploded view</h2>
+  <img class="diagram" src="../resources/images/phone-anatomy-exploded.svg" alt="Exploded view of a smartphone showing layers from screen to back cover">
+  <div class="notes"><p>Walk the layers top to bottom: screen assembly → frame/midframe → motherboard (top) + battery (middle) + charging board (bottom) → back cover. Key idea: a phone is a sandwich of layers, not a jumble. Every repair is "remove layers until you reach the broken one." Keep this diagram up while students orient their donor phones later.</p></div>
+</section>
+
+<!-- ======================= SLIDE 4 ======================= -->
+<section class="slide">
+  <h2>See inside a real one</h2>
+  <div class="video">Inside a smartphone — full components tour — Video 2.1 in <code>resources/videos.md</code></div>
+  <h3>While watching, count:</h3>
+  <ul>
+    <li>How many <b>separate cables</b> connect to the motherboard?</li>
+    <li>How many parts are <b>screwed</b> vs <b>glued</b> vs <b>just clipped</b>?</li>
+  </ul>
+  <div class="notes"><p>Pause the video at the fully-open shot and ask the counting questions. Point: far more connectors than beginners expect (often 8–12), and most parts aren't soldered at all — that's why module-level repair works without a soldering iron.</p></div>
+</section>
+
+<!-- ======================= SLIDE 5 ======================= -->
+<section class="slide">
+  <h2>The display assembly</h2>
+  <ul>
+    <li><b>Cover glass</b> — what you touch; protects everything below</li>
+    <li><b>Digitizer</b> — the touch-sensing layer</li>
+    <li><b>Display panel</b> — LCD or OLED, makes the picture</li>
+    <li>Usually <b>glued into one unit</b> — cracked glass often means replacing the whole assembly</li>
+  </ul>
+  <div class="box ok"><p>Screens are the #1 repair job. Module 4 is entirely about them — today, just learn the layers.</p></div>
+  <div class="notes"><p>Hold up a cracked donor screen. Ask: "The glass is cracked but touch still works — what does that tell you?" (Digitizer and panel below are fine; only the top layer broke.) Tease Module 4: LCD vs OLED, quality tiers, the full replacement job.</p></div>
+</section>
+
+<!-- ======================= SLIDE 6 ======================= -->
+<section class="slide">
+  <h2>The battery</h2>
+  <ul>
+    <li>Lithium-ion or lithium-polymer <b>pouch cell</b> — soft, flexible, vulnerable</li>
+    <li>Typical: <b>3.7–3.85 V</b> nominal, 3,000–5,000 mAh</li>
+    <li>Small <b>protection circuit</b> on the flex guards against over-charge/discharge</li>
+    <li>Connects to the board by a small <b>press-fit connector</b></li>
+  </ul>
+  <div class="box danger"><p>Module 1 rule still rules: never pry, bend, or puncture. The battery is the one part that fights back.</p></div>
+  <div class="notes"><p>Pass around a healthy (discharged) donor battery in a tray. Have students feel how soft the pouch is — a fingernail can dent it. Point out the little PCB at the flex end: "That's the battery's own bodyguard chip." Battery deep-dive comes in Module 5.</p></div>
+</section>
+
+<!-- ======================= SLIDE 7 ======================= -->
+<section class="slide">
+  <h2>Motherboard tour: the SoC — "the brain"</h2>
+  <ul>
+    <li><b>SoC = System on a Chip</b> — the biggest chip on the board</li>
+    <li>Contains the <b>CPU</b> (thinking), <b>GPU</b> (graphics), and much more in one package</li>
+    <li>Usually hidden under an <b>EMI shield</b> and often has RAM stacked on top</li>
+  </ul>
+  <div class="box warn"><p>If the SoC dies, the phone is usually beyond economic repair. Everything we do protects it.</p></div>
+  <div class="notes"><p>Project a bare donor board with a document camera if you have one, or pass boards around. "SoC" will be new vocabulary — drill it: System on a Chip, the brain. Ask why one big chip instead of many small ones (space, power, cost). Mention names they'll see in guides: Snapdragon, Exynos, Apple A-series.</p></div>
+</section>
+
+<!-- ======================= SLIDE 8 ======================= -->
+<section class="slide">
+  <h2>Motherboard tour: memory</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>RAM — the workbench</h3>
+      <p>Holds what the phone is doing <b>right now</b>. Empties when power is lost. Often stacked directly on the SoC.</p>
+    </div>
+    <div class="box">
+      <h3>Storage — the filing cabinet</h3>
+      <p>Flash chip holding the OS, apps, photos. Keeps data without power. This is where customer photos live.</p>
+    </div>
+  </div>
+  <p style="margin-top:1.2rem">Customers care about <b>storage</b> — "can you save my photos?" is a storage question.</p>
+  <div class="notes"><p>Use the workbench vs filing cabinet analogy and check understanding: "Phone reboots and the game restarts but photos survive — which chip is which?" Note for later modules: data recovery from a dead board means the storage chip survived; that's specialist work we refer out.</p></div>
+</section>
+
+<!-- ======================= SLIDE 9 ======================= -->
+<section class="slide">
+  <h2>Motherboard tour: power &amp; sound chips</h2>
+  <ul>
+    <li><b>PMIC</b> — Power Management IC: takes battery voltage and feeds every part exactly the voltage it needs. The board's "power distribution office".</li>
+    <li><b>Charging IC</b> — controls charging current and safety; a very common failure point on phones that "won't charge"</li>
+    <li><b>Audio codec</b> — converts digital sound ↔ analog for speakers and mics</li>
+  </ul>
+  <div class="box ok"><p>Diagnosis preview: "no power" often = PMIC area; "won't charge" often = charging IC or port. Naming the chip narrows the fault.</p></div>
+  <div class="notes"><p>Keep it functional, not electronic — students don't need to know how a buck converter works, just what each chip is responsible for. Ask: "Phone plays music through headphones but the loudspeaker is silent — is the audio codec dead?" (Probably not — the codec serves both; suspect the speaker itself. This is diagnostic thinking already.)</p></div>
+</section>
+
+<!-- ======================= SLIDE 10 ======================= -->
+<section class="slide">
+  <h2>Motherboard tour: the radios</h2>
+  <ul>
+    <li><b>Baseband / modem</b> — handles all cellular communication: calls, SMS, mobile data</li>
+    <li>Separate circuits for <b>Wi-Fi / Bluetooth</b> and <b>GPS</b></li>
+    <li>Each radio needs an <b>antenna</b> — connected by tiny coax cables or spring contacts</li>
+  </ul>
+  <div class="box warn"><p>"No signal" faults can be the modem, the antenna, or just an unplugged coax cable from a previous repair. Always suspect the cheap cause first.</p></div>
+  <div class="notes"><p>Story: a phone comes in with "no network after screen replacement" — nine times out of ten the previous repairer left an antenna coax cable unplugged. That's a 2-minute fix billed as a diagnosis win. It teaches: know the radio chain, check connections before blaming chips.</p></div>
+</section>
+
+<!-- ======================= SLIDE 11 ======================= -->
+<section class="slide">
+  <h2>Motherboard close-up</h2>
+  <div class="video">Motherboard guided tour — chip by chip — Video 2.2 in <code>resources/videos.md</code></div>
+  <h3>Spot these as they appear:</h3>
+  <ul>
+    <li>SoC · PMIC · charging IC · baseband/modem · audio codec</li>
+    <li>The <b>EMI shields</b> covering them</li>
+  </ul>
+  <div class="notes"><p>Pause on each chip and have the class call out its name and job before the narrator says it. Turn it into a rapid-fire game — the repetition is the point. After the video, hand out bare boards and have pairs point to the SoC and PMIC areas.</p></div>
+</section>
+
+<!-- ======================= SLIDE 12 ======================= -->
+<section class="slide">
+  <h2>Cameras: modules that just unplug</h2>
+  <ul>
+    <li>Each camera is a <b>self-contained module</b>: lens + sensor + focus motor in one block</li>
+    <li>Connects by a single <b>press-fit connector</b> — no soldering, no adjustment</li>
+    <li>Replacement = unplug old, plug in new. One of the easiest repairs there is.</li>
+  </ul>
+  <div class="box ok"><p>Module design is your friend: manufacturers build phones from plug-in blocks so <i>their</i> assembly lines are fast — which makes <i>your</i> repairs easy.</p></div>
+  <div class="notes"><p>Pass around a camera module — students are always surprised how small it is. Big idea of the whole course: phones are modular. Most "repairs" are really module swaps. Caveat to mention: some newer phones pair cameras to the board in software (calibration/serialization) — always check the model's guide.</p></div>
+</section>
+
+<!-- ======================= SLIDE 13 ======================= -->
+<section class="slide">
+  <h2>Sound: three different parts, three different faults</h2>
+  <table>
+    <tr><th>Part</th><th>Where</th><th>Job</th><th>Fault sounds like</th></tr>
+    <tr><td>Earpiece</td><td>Top, above screen</td><td>Call audio to your ear</td><td>"I can't hear callers"</td></tr>
+    <tr><td>Loudspeaker</td><td>Bottom edge</td><td>Music, ringtones, speakerphone</td><td>"No ringtone / silent videos"</td></tr>
+    <tr><td>Microphones (2–3)</td><td>Bottom, top, rear</td><td>Your voice; noise cancelling</td><td>"Callers can't hear me"</td></tr>
+  </table>
+  <div class="notes"><p>Role-play intake: read each customer complaint from the right column and have the class name the suspect part. Point out mic holes on a real phone — students often think the speaker grille is the mic. Bonus: the top and rear mics do noise cancelling, so "callers hear me but I sound far away" can be a secondary mic fault.</p></div>
+</section>
+
+<!-- ======================= SLIDE 14 ======================= -->
+<section class="slide">
+  <h2>Vibration motor &amp; antennas</h2>
+  <div class="cols">
+    <div>
+      <h3>Vibration motor</h3>
+      <ul>
+        <li>Small rotary motor or a <b>linear "taptic" actuator</b></li>
+        <li>Plug-in or spring-contact — easy swap</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Antennas</h3>
+      <ul>
+        <li>Printed traces, flexes, or <b>the metal frame itself</b></li>
+        <li>Those <b>plastic lines</b> on metal frames? Radio windows — metal blocks signal, so the frame is split by plastic</li>
+      </ul>
+    </div>
+  </div>
+  <div class="notes"><p>Show the plastic antenna lines on a metal-framed phone and let students find them on their own phones — instant "I never noticed that!" moment. Explain: a solid metal box is a Faraday cage; the plastic breaks divide the frame into antenna segments. This is why bending a frame in a drop can cause signal problems.</p></div>
+</section>
+
+<!-- ======================= SLIDE 15 ======================= -->
+<section class="slide">
+  <h2>Flex cables: the nervous system</h2>
+  <ul>
+    <li>Thin, flat <b>ribbons of copper traces</b> in flexible plastic — they carry every signal</li>
+    <li>Connect screen, buttons, cameras, ports, sensors to the motherboard</li>
+    <li><span class="danger-t">Extremely fragile:</span> pulling, creasing, or nicking one kills the part it serves</li>
+  </ul>
+  <div class="box danger"><p>A torn trace inside a flex is invisible. The cable looks fine — the part just doesn't work. Handle every flex like it's already half-broken.</p></div>
+  <div class="notes"><p>Demo with a sacrificial flex from a dead donor: crease it sharply, show it still looks OK. "The copper inside is thinner than hair — it cracked when I folded it." Rule to preach: never pull a flex, never fold one sharper than it was folded at the factory. This is tomorrow's #1 beginner mistake in Module 3.</p></div>
+</section>
+
+<!-- ======================= SLIDE 16 ======================= -->
+<section class="slide">
+  <h2>Connectors: how everything plugs in</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Board-to-board press-fit</h3>
+      <p>Like a <b>tiny LEGO</b> — press to click, pry to pop. Used for screens, batteries, cameras. Opens with a plastic spudger, straight up.</p>
+    </div>
+    <div class="box warn">
+      <h3>ZIF with latch</h3>
+      <p><b>Zero Insertion Force</b>: a flip-up latch clamps a bare flex end. Flip the latch first, then slide the cable out. Never pull against a closed latch.</p>
+    </div>
+  </div>
+  <div class="notes"><p>Demo both on a donor under the document camera: click a press-fit connector in and out (let students hear the click), then flip a ZIF latch with a spudger tip. Warning for Module 3: forcing a press-fit at an angle bends its pins, and pulling a flex from a closed ZIF tears the cable. Recognition today prevents damage tomorrow.</p></div>
+</section>
+
+<!-- ======================= SLIDE 17 ======================= -->
+<section class="slide">
+  <h2>Look closely</h2>
+  <div class="video">Flex cables &amp; connectors — macro close-up — Video 2.3 in <code>resources/videos.md</code></div>
+  <h3>After the video:</h3>
+  <ul>
+    <li>Which connector type was the <b>battery</b> using?</li>
+    <li>What did the narrator use to release the <b>ZIF latch</b>?</li>
+  </ul>
+  <div class="notes"><p>Answers: battery = board-to-board press-fit (on nearly every modern phone); ZIF latch = fingernail or spudger tip, gently. Replay the press-fit "pop" in slow motion if the video allows — the straight-up motion is the skill they'll be graded on in Module 3.</p></div>
+</section>
+
+<!-- ======================= SLIDE 18 ======================= -->
+<section class="slide">
+  <h2>SIM tray, sensors &amp; the skeleton</h2>
+  <ul>
+    <li><b>SIM tray</b> — pin in the hole pushes a <b>spring lever</b> that ejects the tray. No pin? A paperclip works; a needle in the mic hole destroys the mic.</li>
+    <li><b>Sensors:</b> proximity (screen off at your ear), ambient light (auto-brightness), accelerometer/gyro (rotation), fingerprint (under glass, in button, or on back)</li>
+    <li><b>Frame &amp; midframe</b> — the chassis everything mounts to; <b>EMI shields</b> — metal cans over chips blocking interference</li>
+  </ul>
+  <div class="notes"><p>Demo the SIM eject on a donor — let students feel the spring. Horror story: customers jam pins into the mic hole next to the SIM hole and kill the mic; teach them to identify the right hole. For sensors, cover the proximity sensor during a call to show the screen blank. EMI shields matter in Module 3: some pop off, some are soldered — never force one.</p></div>
+</section>
+
+<!-- ======================= SLIDE 19 ======================= -->
+<section class="slide">
+  <h2>How power &amp; signals flow</h2>
+  <table>
+    <tr>
+      <td style="background:var(--panel);text-align:center"><b>Charger / USB port</b><br><span class="sub">5–20 V in</span></td>
+      <td style="text-align:center">→</td>
+      <td style="background:var(--panel);text-align:center"><b class="warn-t">Charging IC → Battery → PMIC</b><br><span class="sub">safe charge · store · distribute</span></td>
+      <td style="text-align:center">→</td>
+      <td style="background:var(--panel);text-align:center"><b class="accent">SoC</b><br><span class="sub">the brain</span></td>
+      <td style="text-align:center">→</td>
+      <td style="background:var(--panel);text-align:center"><b class="ok-t">Display · Radios · Cameras · Audio</b><br><span class="sub">everything you see &amp; hear</span></td>
+    </tr>
+  </table>
+  <div class="box ok"><p>Diagnosis follows this chain: no charge? Look left. No boot? Look middle. Boots but a part is dead? Look right.</p></div>
+  <div class="notes"><p>Draw this chain big on the whiteboard and keep it there for the rest of the course — it's the skeleton for every diagnosis module. Quiz the class: "Phone charges fine but never turns on — which zone?" (middle: PMIC/SoC). "Turns on but no signal?" (right: radio branch). This one diagram makes them think in systems.</p></div>
+</section>
+
+<!-- ======================= SLIDE 20 ======================= -->
+<section class="slide">
+  <h2>Which phone is it, exactly?</h2>
+  <ul>
+    <li><b>Settings</b> → About phone → model number</li>
+    <li><b>SIM tray or back cover</b> — tiny printed model code (e.g. SM-G991B, A2633)</li>
+    <li>Same phone name can hide <b>different internals</b> by region — the code is the truth</li>
+  </ul>
+  <div class="box ok"><p>Then find the guide: search the model code + "teardown" or on <b>ifixit.com</b>. Professionals look it up <i>every time</i> — memory is for concepts, guides are for screws.</p></div>
+  <div class="notes"><p>Live demo: pick a student's phone, find the model code two ways, then pull up its ifixit guide on the projector. Emphasize the culture point: checking the guide is professionalism, not weakness. This becomes the "golden habit" rule in Module 3 — plant it today.</p></div>
+</section>
+
+<!-- ======================= SLIDE 21 ======================= -->
+<section class="slide">
+  <h2>Teach-back time</h2>
+  <ol>
+    <li>One volunteer: give the class a <b>motherboard tour</b> — point out SoC, PMIC, charging IC, modem on the bare board</li>
+    <li>Another volunteer: explain the <b>two connector types</b> and how each opens safely</li>
+  </ol>
+  <p class="sub" style="margin-top:1.5rem">Class: listen for anything missed — you're the reviewers.</p>
+  <div class="notes"><p>Give the first volunteer a real bare board and a pointer. If they blank on a chip, open it to the class before helping. The connector teach-back should include the LEGO analogy and the ZIF latch-first rule — if those two ideas stick, Module 3 goes smoothly.</p></div>
+</section>
+
+<!-- ======================= SLIDE 22 ======================= -->
+<section class="slide">
+  <h2>Practical: 4 stations, 2 hours</h2>
+  <table>
+    <tr><th>Station</th><th>Task</th></tr>
+    <tr><td>A</td><td>Identify &amp; label <b>15 components</b> in an open donor phone</td></tr>
+    <tr><td>B</td><td>Connector mapping: on a bare board, mark every connector &amp; its type</td></tr>
+    <tr><td>C</td><td>Component scavenger hunt — find named parts across mixed donors</td></tr>
+    <tr><td>D</td><td>Model-ID exercise: identify exact models &amp; pull up their repair guides</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1rem">Worksheet: <code>practicals/practical-02-anatomy-components.md</code></p>
+  <div class="notes"><p>Phones at Station A are pre-opened by you — students identify, they don't disassemble (that's Module 3). Keep wrist straps on anyway: build the habit even for look-only work. Rotate every ~25 minutes; grade the labelled diagrams at Station A against the answer key as you circulate.</p></div>
+</section>
+
+<!-- ======================= SLIDE 23 ======================= -->
+<section class="slide">
+  <h2>Before next session</h2>
+  <ul>
+    <li>Find the <b>model number</b> of your own phone two ways and locate its ifixit guide</li>
+    <li>Re-watch <b>Video 2.2</b> and name each chip from memory as it appears</li>
+    <li>Quiz now: Module 2, 10 questions</li>
+  </ul>
+  <p class="big accent" style="margin-top:2rem">Next: Module 3 — taking one apart (and getting it back together).</p>
+  <div class="notes"><p>Hand out the quiz from assessments/module-quizzes.md; do bench inspections while they write. Tell them to bring nothing special next session — donors are provided — but warn them: Module 3 is where the graded teardowns begin, and screw maps count.</p></div>
+</section>
+
+<div class="progress" id="progress"></div>
+<div class="hud"><span id="counter">1 / 23</span></div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='n'||e.key==='N')document.body.classList.toggle('show-notes');
+    else if(e.key==='f'||e.key==='F'){
+      document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener('click',e=>{if(e.target.closest('a,code,.notes'))return;show(i+1);});
+  show(parseInt(location.hash.slice(1))-1||0);
+})();
+</script>
+</body>
+</html>
