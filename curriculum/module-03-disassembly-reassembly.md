@@ -1,10 +1,10 @@
 # Module 3 — Disassembly & Reassembly
 
-**Duration:** 1.5 h theory + 3 h practical
-**Slides:** `slides/module-03-disassembly-reassembly.html`
-**Practical:** `practicals/practical-03-disassembly-reassembly.md`
-**Videos:** see Module 3 section of `resources/videos.md`
-**Images:** `resources/images/phone-anatomy-exploded.svg`
+**Duration:** Day 2 · morning — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-03-disassembly-reassembly.html](slides/module-03-disassembly-reassembly.html)
+**Practical:** [practicals/practical-03-disassembly-reassembly.md](practicals/practical-03-disassembly-reassembly.md)
+**Videos:** see Module 3 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/phone-anatomy-exploded.svg](resources/images/phone-anatomy-exploded.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -84,7 +84,7 @@ By the end of this module, students can:
   checkpoint without trainer sign-off.
 
 ### 8. PRACTICAL (3 h)
-Run `practicals/practical-03-disassembly-reassembly.md`:
+Run [practicals/practical-03-disassembly-reassembly.md](practicals/practical-03-disassembly-reassembly.md):
 - Trainer demo first: strip the demo phone to bare frame, narrating (20 min).
 - Each student performs a **full teardown of a donor Android to the bare frame** with
   a drawn screw map and a photo of every stage, then a **full reassembly**.
@@ -97,7 +97,7 @@ Run `practicals/practical-03-disassembly-reassembly.md`:
 - Grade with the rubric; bench cleanup inspection ends the session.
 
 ### 9. Quiz (10 min)
-Module 3 quiz from `assessments/module-quizzes.md`.
+Module 3 quiz from [assessments/module-quizzes.md → Quiz 3](assessments/module-quizzes.md#quiz-3-disassembly-reassembly).
 
 ## Homework
 - Write your personal "order of operations" checklist from memory; bring it next session.

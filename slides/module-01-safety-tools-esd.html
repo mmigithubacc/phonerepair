@@ -60,7 +60,7 @@
   <span class="tag">Cellphone Repair Course · Module 1 of 10</span>
   <h1>Workshop Safety, Tools &amp; ESD</h1>
   <p class="sub">Before you ever open a phone: protect yourself, protect the device.</p>
-  <p class="sub" style="margin-top:2rem">2 h theory &nbsp;·&nbsp; 2 h practical &nbsp;·&nbsp; quiz</p>
+  <p class="sub" style="margin-top:2rem">Day 1 of 5 &nbsp;·&nbsp; morning block &nbsp;·&nbsp; ~1 h theory &nbsp;·&nbsp; bench practical &nbsp;·&nbsp; quiz</p>
   <div class="notes"><p>Welcome everyone. Do a round of introductions: name, why they joined, one phone fault they've personally had. Write recurring faults on the whiteboard — you'll refer back to them ("we cover that in Module 5").</p></div>
 </section>
 
@@ -78,17 +78,16 @@
 
 <!-- ======================= SLIDE 3 ======================= -->
 <section class="slide">
-  <h2>Your 6-week journey</h2>
+  <h2>Your 5-day journey</h2>
   <table>
-    <tr><th>Week</th><th>Modules</th></tr>
+    <tr><th>Day</th><th>Modules (5 h/day)</th></tr>
     <tr><td>1</td><td>Safety, Tools &amp; ESD · Phone Anatomy</td></tr>
     <tr><td>2</td><td>Disassembly &amp; Reassembly · Screen Replacement</td></tr>
     <tr><td>3</td><td>Battery &amp; Power · Ports &amp; Small Parts</td></tr>
     <tr><td>4</td><td>Soldering Fundamentals · Water Damage</td></tr>
-    <tr><td>5</td><td>Software &amp; Diagnostics · Business Skills</td></tr>
-    <tr><td>6</td><td>Final written + practical exams → Certification</td></tr>
+    <tr><td>5</td><td>Software &amp; Diagnostics · Business Skills → Final exams → Certification</td></tr>
   </table>
-  <div class="notes"><p>Explain grading: 20% quizzes, 30% lab rubrics, 20% written final, 30% practical final. Pass = 70% overall AND passing the practical exam. Attendance ≥ 80% required.</p></div>
+  <div class="notes"><p>Explain grading: 20% quizzes, 30% lab rubrics, 20% written final, 30% practical final. Pass = 70% overall AND passing the practical exam. Attendance: at least 4 of the 5 days.</p></div>
 </section>
 
 <!-- ======================= SLIDE 4 ======================= -->
@@ -334,7 +333,7 @@
 
 <div class="progress" id="progress"></div>
 <div class="hud"><span id="counter">1 / 23</span></div>
-<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · H course home</div>
 
 <script>
 (function(){
@@ -361,5 +360,19 @@
   show(parseInt(location.hash.slice(1))-1||0);
 })();
 </script>
+<style>
+  .homelink{position:fixed;top:12px;left:18px;z-index:30;color:#94a3b8;text-decoration:none;font-size:.95rem;border:1px solid #334155;border-radius:999px;padding:.25rem .95rem;background:rgba(15,23,42,.85)}
+  .homelink:hover{color:#38bdf8;border-color:#38bdf8}
+  .videobar{margin-top:.8rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+  .vbtn{background:#f59e0b;color:#0f172a;border:none;border-radius:8px;padding:.4rem 1.1rem;font-size:1.05rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-family:inherit}
+  .vbtn.ghost{background:transparent;border:1px solid #f59e0b;color:#f59e0b;font-weight:600}
+  .vbtn:hover{filter:brightness(1.15)}
+  .vtitle{color:#94a3b8;font-size:1rem}
+  .videoframe{margin:.9rem 0}
+  .videoframe iframe{width:100%;max-width:850px;height:min(45vh,480px);border:0;border-radius:10px;background:#000}
+  @media print{.homelink,.videobar,.videoframe{display:none}}
+</style>
+<script src="../resources/videos.js"></script>
+<script src="../resources/deck-extras.js"></script>
 </body>
 </html>

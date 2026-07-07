@@ -1,10 +1,10 @@
 # Module 5 — Battery & Power Issues
 
-**Duration:** 1.5 h theory + 3 h practical
-**Slides:** `slides/module-05-battery-power.html`
-**Practical:** `practicals/practical-05-battery-power.md`
-**Videos:** see Module 5 section of `resources/videos.md`
-**Images:** `resources/images/battery-safety.svg`, `resources/images/charging-circuit.svg`
+**Duration:** Day 3 · morning — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-05-battery-power.html](slides/module-05-battery-power.html)
+**Practical:** [practicals/practical-05-battery-power.md](practicals/practical-05-battery-power.md)
+**Videos:** see Module 5 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/battery-safety.svg](resources/images/battery-safety.svg), [resources/images/charging-circuit.svg](resources/images/charging-circuit.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -90,7 +90,7 @@ By the end of this module, students can:
 - Demo a battery pull with tabs + IPA on the overhead camera; walk the flowchart once.
 
 ### 8. PRACTICAL (3 h)
-Run `practicals/practical-05-battery-power.md`:
+Run [practicals/practical-05-battery-power.md](practicals/practical-05-battery-power.md):
 - Part 1 — **battery replacement** on the donor phone per pair: mapped screws, battery
   disconnect sign-off, tab/IPA removal, new adhesive, post-repair charge test.
 - Part 2 — **no-power diagnosis stations** with planted faults: (A) dead battery,
@@ -101,7 +101,7 @@ Run `practicals/practical-05-battery-power.md`:
   inspection before disposal decisions.
 
 ### 9. Quiz (10 min)
-Module 5 quiz from `assessments/module-quizzes.md`.
+Module 5 quiz from [assessments/module-quizzes.md → Quiz 5](assessments/module-quizzes.md#quiz-5-battery-power-issues).
 
 ## Homework
 - Check the battery health of your own phone and one family member's; note capacity,

@@ -1,10 +1,10 @@
 # Module 7 — Soldering & Micro-Soldering Fundamentals
 
-**Duration:** 2 h theory + 4 h practical
-**Slides:** `slides/module-07-soldering.html`
-**Practical:** `practicals/practical-07-soldering.md`
-**Videos:** see Module 7 section of `resources/videos.md`
-**Images:** `resources/images/soldering-joints.svg`
+**Duration:** Day 4 · morning — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-07-soldering.html](slides/module-07-soldering.html)
+**Practical:** [practicals/practical-07-soldering.md](practicals/practical-07-soldering.md)
+**Videos:** see Module 7 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/soldering-joints.svg](resources/images/soldering-joints.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -96,7 +96,7 @@ By the end of this module, students can:
 - Assign stations; glasses on before irons come out of holders.
 
 ### 8. PRACTICAL (4 h)
-Run `practicals/practical-07-soldering.md` with the solder practice kits:
+Run [practicals/practical-07-soldering.md](practicals/practical-07-soldering.md) with the solder practice kits:
 - Station A: tin the iron, then tin 5 wire ends; splice two wires with heat-shrink.
 - Station B: populate a through-hole practice board (10+ joints per student).
 - Station C: desolder 5 of your own through-hole joints cleanly with wick, then
@@ -109,7 +109,7 @@ Run `practicals/practical-07-soldering.md` with the solder practice kits:
   clippings binned.
 
 ### 9. Quiz (10 min)
-Module 7 quiz from `assessments/module-quizzes.md`.
+Module 7 quiz from [assessments/module-quizzes.md → Quiz 7](assessments/module-quizzes.md#quiz-7-soldering-micro-soldering-fundamentals).
 
 ## Homework
 - Re-watch Video 7.3 and write down two tools/skills the micro-solderer used that we

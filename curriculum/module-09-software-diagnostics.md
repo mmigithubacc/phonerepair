@@ -1,10 +1,10 @@
 # Module 9 — Software Troubleshooting & Diagnostics
 
-**Duration:** 2 h theory + 3 h practical
-**Slides:** `slides/module-09-software-diagnostics.html`
-**Practical:** `practicals/practical-09-software-diagnostics.md`
-**Videos:** see Module 9 section of `resources/videos.md`
-**Images:** `resources/images/diagnostic-flowchart.svg`
+**Duration:** Day 5 · morning — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-09-software-diagnostics.html](slides/module-09-software-diagnostics.html)
+**Practical:** [practicals/practical-09-software-diagnostics.md](practicals/practical-09-software-diagnostics.md)
+**Videos:** see Module 9 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/diagnostic-flowchart.svg](resources/images/diagnostic-flowchart.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -99,7 +99,7 @@ Deliver this block standing still, no jokes. It is non-negotiable and exam mater
   states the activation-lock policy in one sentence.
 
 ### 8. PRACTICAL (3 h)
-Run `practicals/practical-09-software-diagnostics.md` — diagnosis stations with
+Run [practicals/practical-09-software-diagnostics.md](practicals/practical-09-software-diagnostics.md) — diagnosis stations with
 planted faults; students do NOT know which station has which fault:
 - Station A: phone with a rogue third-party app (solvable via safe mode + uninstall).
 - Station B: phone with storage stuffed full (slow, failing updates).
@@ -113,7 +113,7 @@ planted faults; students do NOT know which station has which fault:
   red herring caught. Bench cleanup inspection ends the session.
 
 ### 9. Quiz (10 min)
-Module 9 quiz from `assessments/module-quizzes.md`.
+Module 9 quiz from [assessments/module-quizzes.md → Quiz 9](assessments/module-quizzes.md#quiz-9-software-troubleshooting-diagnostics).
 
 ## Homework
 - Find and run your own phone's built-in test menu or a diagnostic app; bring the

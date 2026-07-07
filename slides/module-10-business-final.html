@@ -60,7 +60,7 @@
   <span class="tag">Cellphone Repair Course · Module 10 of 10</span>
   <h1>Repair Business Skills + Final Assessment</h1>
   <p class="sub">You can fix phones. Today: how to get paid for it — and earn your certificate.</p>
-  <p class="sub" style="margin-top:2rem">2 h theory &nbsp;·&nbsp; then final written + practical exams</p>
+  <p class="sub" style="margin-top:2rem">Day 5 of 5 &nbsp;·&nbsp; afternoon block &nbsp;·&nbsp; theory + final exams</p>
   <div class="notes"><p>Set the tone: this is the last teaching session before the exams. Congratulate them on getting here, then be blunt: most of them plan to earn with this skill, and this module decides whether the skill turns into income. Outline today's shape: 2 h business theory, exam briefing, then the finals.</p></div>
 </section>
 
@@ -350,7 +350,7 @@
 <!-- ======================= SLIDE 21 ======================= -->
 <section class="slide">
   <h2>Congratulations, technician.</h2>
-  <p class="big" style="margin:.5rem 0 1.5rem">Six weeks ago this was a sealed black box. Now it's your trade.</p>
+  <p class="big" style="margin:.5rem 0 1.5rem">Five days ago this was a sealed black box. Now it's your trade.</p>
   <h3>Where to go next</h3>
   <ul>
     <li><b>Micro-soldering specialization</b> — board-level repair is the high-value frontier (Module 7 was your first step)</li>
@@ -363,7 +363,7 @@
 
 <div class="progress" id="progress"></div>
 <div class="hud"><span id="counter">1 / 21</span></div>
-<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · H course home</div>
 
 <script>
 (function(){
@@ -390,5 +390,19 @@
   show(parseInt(location.hash.slice(1))-1||0);
 })();
 </script>
+<style>
+  .homelink{position:fixed;top:12px;left:18px;z-index:30;color:#94a3b8;text-decoration:none;font-size:.95rem;border:1px solid #334155;border-radius:999px;padding:.25rem .95rem;background:rgba(15,23,42,.85)}
+  .homelink:hover{color:#38bdf8;border-color:#38bdf8}
+  .videobar{margin-top:.8rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+  .vbtn{background:#f59e0b;color:#0f172a;border:none;border-radius:8px;padding:.4rem 1.1rem;font-size:1.05rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-family:inherit}
+  .vbtn.ghost{background:transparent;border:1px solid #f59e0b;color:#f59e0b;font-weight:600}
+  .vbtn:hover{filter:brightness(1.15)}
+  .vtitle{color:#94a3b8;font-size:1rem}
+  .videoframe{margin:.9rem 0}
+  .videoframe iframe{width:100%;max-width:850px;height:min(45vh,480px);border:0;border-radius:10px;background:#000}
+  @media print{.homelink,.videobar,.videoframe{display:none}}
+</style>
+<script src="../resources/videos.js"></script>
+<script src="../resources/deck-extras.js"></script>
 </body>
 </html>

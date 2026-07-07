@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+
 <title>Cellphone Repair Training Course</title>
 <style>
   :root{
@@ -47,15 +49,15 @@
 <div class="wrap">
   <header>
     <h1>Cellphone Repair Training Course</h1>
-    <p>A complete 60-hour, 10-module classroom package: slides, lesson plans, hands-on practicals,
-       diagrams, curated videos, and assessments — everything a trainer needs.</p>
+    <p>A complete 5-day intensive course (5 hours per day, 10 modules): slides, lesson plans,
+       hands-on practicals, diagrams, curated videos, and assessments — everything a trainer needs.</p>
     <div class="toplinks">
       <a href="viewer.html?file=trainer-guide.md">Trainer Guide</a>
       <a href="viewer.html?file=curriculum/00-course-overview.md">Course Overview</a>
       <a href="viewer.html?file=resources/videos.md">Video Library</a>
       <a href="viewer.html?file=README.md">About this package</a>
     </div>
-    <div class="hint"><b>Slide controls:</b> → / ← navigate · <b>N</b> toggles trainer notes · <b>F</b> fullscreen · Home/End jump.</div>
+    <div class="hint"><b>Slide controls:</b> → / ← navigate · <b>N</b> toggles trainer notes · <b>F</b> fullscreen · <b>H</b> back to this page.</div>
   </header>
 
   <h2>Modules</h2>
@@ -77,16 +79,16 @@
 
 <script>
 const modules=[
-  ["safety-tools-esd","Workshop Safety, Tools & ESD","2 h theory · 2 h practical"],
-  ["anatomy-components","Mobile Phone Anatomy & Components","2 h theory · 2 h practical"],
-  ["disassembly-reassembly","Disassembly & Reassembly","1.5 h theory · 3 h practical"],
-  ["screen-replacement","Screen & Display Replacement","1.5 h theory · 3 h practical"],
-  ["battery-power","Battery & Power Issues","1.5 h theory · 3 h practical"],
-  ["ports-small-parts","Charging Ports, Buttons & Small Parts","1.5 h theory · 3 h practical"],
-  ["soldering","Soldering & Micro-Soldering Fundamentals","2 h theory · 4 h practical"],
-  ["water-damage","Water Damage & Corrosion Treatment","1.5 h theory · 3 h practical"],
-  ["software-diagnostics","Software Troubleshooting & Diagnostics","2 h theory · 3 h practical"],
-  ["business-final","Repair Business Skills + Final Assessment","2 h theory · 4 h exam"],
+  ["safety-tools-esd","Workshop Safety, Tools & ESD","Day 1 · morning","quiz-1-workshop-safety-tools-esd"],
+  ["anatomy-components","Mobile Phone Anatomy & Components","Day 1 · afternoon","quiz-2-mobile-phone-anatomy-components"],
+  ["disassembly-reassembly","Disassembly & Reassembly","Day 2 · morning","quiz-3-disassembly-reassembly"],
+  ["screen-replacement","Screen & Display Replacement","Day 2 · afternoon","quiz-4-screen-display-replacement"],
+  ["battery-power","Battery & Power Issues","Day 3 · morning","quiz-5-battery-power-issues"],
+  ["ports-small-parts","Charging Ports, Buttons & Small Parts","Day 3 · afternoon","quiz-6-charging-ports-buttons-small-part-repairs"],
+  ["soldering","Soldering & Micro-Soldering Fundamentals","Day 4 · morning","quiz-7-soldering-micro-soldering-fundamentals"],
+  ["water-damage","Water Damage & Corrosion Treatment","Day 4 · afternoon","quiz-8-water-damage-corrosion-treatment"],
+  ["software-diagnostics","Software Troubleshooting & Diagnostics","Day 5 · morning","quiz-9-software-troubleshooting-diagnostics"],
+  ["business-final","Repair Business Skills + Final Assessment","Day 5 · afternoon + final exams","quiz-10-repair-business-skills"],
 ];
 document.getElementById('modules').innerHTML=modules.map((m,i)=>{
   const n=String(i+1).padStart(2,'0');
@@ -99,6 +101,7 @@ document.getElementById('modules').innerHTML=modules.map((m,i)=>{
       <a class="slides" href="slides/module-${n}-${m[0]}.html">▶ Slides</a>
       <a href="viewer.html?file=curriculum/module-${n}-${m[0]}.md">Lesson plan</a>
       <a href="viewer.html?file=${practical}">Practical</a>
+      <a href="viewer.html?file=assessments/module-quizzes.md#${m[3]}">Quiz</a>
     </div>
   </div>`;
 }).join('');

@@ -1,10 +1,10 @@
 # Module 2 — Mobile Phone Anatomy & Components
 
-**Duration:** 2 h theory + 2 h practical
-**Slides:** `slides/module-02-anatomy-components.html`
-**Practical:** `practicals/practical-02-anatomy-components.md`
-**Videos:** see Module 2 section of `resources/videos.md`
-**Images:** `resources/images/phone-anatomy-exploded.svg`
+**Duration:** Day 1 · afternoon — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-02-anatomy-components.html](slides/module-02-anatomy-components.html)
+**Practical:** [practicals/practical-02-anatomy-components.md](practicals/practical-02-anatomy-components.md)
+**Videos:** see Module 2 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/phone-anatomy-exploded.svg](resources/images/phone-anatomy-exploded.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -86,7 +86,7 @@ By the end of this module, students can:
 - Assign benches and hand out worksheets.
 
 ### 8. PRACTICAL (2 h)
-Run `practicals/practical-02-anatomy-components.md`:
+Run [practicals/practical-02-anatomy-components.md](practicals/practical-02-anatomy-components.md):
 - Station A: open the pre-opened donor phones and identify + label 15 components
   using the sticky labels; trainer verifies against the answer sheet.
 - Station B: map a motherboard — sketch the board and mark every connector, naming
@@ -96,7 +96,7 @@ Run `practicals/practical-02-anatomy-components.md`:
 - Grade with the rubric; bench cleanup inspection ends the session.
 
 ### 9. Quiz (10 min)
-Module 2 quiz from `assessments/module-quizzes.md`.
+Module 2 quiz from [assessments/module-quizzes.md → Quiz 2](assessments/module-quizzes.md#quiz-2-mobile-phone-anatomy-components).
 
 ## Homework
 - Look up your own phone's model on ifixit and read its teardown; bring one surprising

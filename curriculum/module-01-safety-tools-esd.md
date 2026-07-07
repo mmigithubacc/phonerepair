@@ -1,10 +1,10 @@
 # Module 1 — Workshop Safety, Tools & ESD
 
-**Duration:** 2 h theory + 2 h practical
-**Slides:** `slides/module-01-safety-tools-esd.html`
-**Practical:** `practicals/practical-01-safety-tools-esd.md`
-**Videos:** see Module 1 section of `resources/videos.md`
-**Images:** `resources/images/esd-workstation.svg`, `resources/images/toolkit.svg`, `resources/images/battery-safety.svg`
+**Duration:** Day 1 · morning — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-01-safety-tools-esd.html](slides/module-01-safety-tools-esd.html)
+**Practical:** [practicals/practical-01-safety-tools-esd.md](practicals/practical-01-safety-tools-esd.md)
+**Videos:** see Module 1 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/esd-workstation.svg](resources/images/esd-workstation.svg), [resources/images/toolkit.svg](resources/images/toolkit.svg), [resources/images/battery-safety.svg](resources/images/battery-safety.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -64,7 +64,7 @@ By the end of this module, students can:
 - Announce practical; assign benches (pair beginners with any experienced students).
 
 ### 6. PRACTICAL (2 h)
-Run `practicals/practical-01-safety-tools-esd.md`:
+Run [practicals/practical-01-safety-tools-esd.md](practicals/practical-01-safety-tools-esd.md):
 - Station A: set up and verify an ESD workstation from scratch.
 - Station B: tool identification race (20 tools, name + use).
 - Station C: driver-matching exercise on donor phones (find the right bit without stripping).
@@ -72,7 +72,7 @@ Run `practicals/practical-01-safety-tools-esd.md`:
 - Grade with the rubric; bench cleanup inspection ends the session.
 
 ### 7. Quiz (10 min)
-Module 1 quiz from `assessments/module-quizzes.md`.
+Module 1 quiz from [assessments/module-quizzes.md → Quiz 1](assessments/module-quizzes.md#quiz-1-workshop-safety-tools-esd).
 
 ## Homework
 - Memorize the 8 safety rules (recited at random next session).

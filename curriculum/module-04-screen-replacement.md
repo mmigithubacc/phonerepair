@@ -1,10 +1,10 @@
 # Module 4 — Screen & Display Replacement
 
-**Duration:** 1.5 h theory + 3 h practical
-**Slides:** `slides/module-04-screen-replacement.html`
-**Practical:** `practicals/practical-04-screen-replacement.md`
-**Videos:** see Module 4 section of `resources/videos.md`
-**Images:** `resources/images/screen-layers.svg`
+**Duration:** Day 2 · afternoon — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-04-screen-replacement.html](slides/module-04-screen-replacement.html)
+**Practical:** [practicals/practical-04-screen-replacement.md](practicals/practical-04-screen-replacement.md)
+**Videos:** see Module 4 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/screen-layers.svg](resources/images/screen-layers.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -84,7 +84,7 @@ By the end of this module, students can:
 - Demo one full replacement on the overhead camera, narrating the test protocol.
 
 ### 8. PRACTICAL (3 h)
-Run `practicals/practical-04-screen-replacement.md`:
+Run [practicals/practical-04-screen-replacement.md](practicals/practical-04-screen-replacement.md):
 - **Each pair replaces the screen on a powered donor phone**, both students performing
   at least removal or refit end-to-end.
 - Mandatory: screw map, battery disconnect (trainer sign-off), small-parts transfer,
@@ -94,7 +94,7 @@ Run `practicals/practical-04-screen-replacement.md`:
 - Bench cleanup inspection ends the session.
 
 ### 9. Quiz (10 min)
-Module 4 quiz from `assessments/module-quizzes.md`.
+Module 4 quiz from [assessments/module-quizzes.md → Quiz 4](assessments/module-quizzes.md#quiz-4-screen-display-replacement).
 
 ## Homework
 - Price a screen replacement for one popular local model in two quality tiers (part

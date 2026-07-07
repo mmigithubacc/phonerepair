@@ -1,7 +1,7 @@
 # Trainer Guide — Running the Cellphone Repair Course
 
 This guide tells you how to prepare the workshop, run each session, and keep the
-class safe and effective. Read it fully before Week 1.
+class safe and effective. Read it fully before Day 1.
 
 ## 1. Workshop setup
 
@@ -49,15 +49,15 @@ For Modules 4–6 you need at least some phones that power on.
 
 ## 2. How each session runs
 
-Every module follows the same rhythm — the lesson plans in `curriculum/` script this
+Each training day covers two modules (morning and afternoon block, ~2.5 h each). Every module follows the same rhythm — the lesson plans in `curriculum/` script this
 out per module:
 
 1. **Recap & quiz review** (10 min) — 3 quick questions from last module.
-2. **Theory with slides** (45–90 min) — open the module's deck from `slides/` in a
+2. **Theory with slides** (≈45–60 min) — open the module's deck from `slides/` in a
    browser. Keys: **→/←** navigate, **N** toggles trainer notes, **F** fullscreen,
    **Home/End** jump. Speaker notes on each slide tell you what to say, what to ask,
    and when to play a video.
-3. **Video segments** — links and timestamps are in `resources/videos.md` and marked
+3. **Video segments** — links and timestamps are in [resources/videos.md](resources/videos.md) and marked
    in each lesson plan. Preview every video before class; download offline copies if
    your internet is unreliable.
 4. **Trainer demonstration** (15–30 min) — do the repair once on the demo bench,
@@ -66,7 +66,7 @@ out per module:
    touch students' phones unless safety requires it — guide with words first.
 6. **Grading & cleanup** (15 min) — grade with the rubric while students clean benches.
    Bench inspection is part of the grade from Module 1 onward.
-7. **Quiz** (10 min) — from `assessments/module-quizzes.md`.
+7. **Quiz** (10 min) — from [assessments/module-quizzes.md](assessments/module-quizzes.md).
 
 ## 3. Non-negotiable safety rules (enforce from Day 1)
 
@@ -104,5 +104,5 @@ be certified regardless of skill.
 
 - Take attendance every session; require ≥ 80% attendance for certification.
 - Keep each student's graded rubrics — they feed the 30% practical grade.
-- Week 6 is the final written + practical exam (`assessments/`), then certificates
-  using `assessments/certification-checklist.md`.
+- Day 5 afternoon ends with the final exams — compressed variant per the course overview, or the full-length exams in `assessments/` if you add a 6th day — then certificates
+  using [assessments/certification-checklist.md](assessments/certification-checklist.md).

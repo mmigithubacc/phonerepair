@@ -1,0 +1,35 @@
+// Video manifest for the slide decks. Keep in sync with resources/videos.md.
+// url: confirmed link ("" = none confirmed — use the search phrase instead).
+// Replace entries with your own recorded demos as you build your library.
+window.COURSE_VIDEOS = {
+  "1.1": {title:"Ignoring All Lithium Battery Safety Warnings.. For Science!", channel:"", url:"https://www.youtube.com/watch?v=Mkgo_CLVbzg", search:"lithium battery puncture thermal runaway demonstration"},
+  "1.2": {title:"", channel:"", url:"", search:"ESD explained electronics repair workstation wrist strap setup"},
+  "1.3": {title:"Teardown playlist (assign any one)", channel:"JerryRigEverything", url:"https://www.youtube.com/playlist?list=PL0vZL9uwyfOFvOGERASL6qWTvAOYnyj8b", search:"JerryRigEverything teardown"},
+  "2.1": {title:"What's Inside a Smartphone?", channel:"Branch Education", url:"https://www.youtube.com/watch?v=fCS8jGc3log", search:"Branch Education what's inside a smartphone"},
+  "2.2": {title:"", channel:"", url:"", search:"iPhone logic board chips explained tour"},
+  "2.3": {title:"Recognizing & Disconnecting Cable Connectors (written guide)", channel:"iFixit", url:"https://www.ifixit.com/Guide/Recognizing+&+Disconnecting+Cable+Connectors/25629", search:"how to disconnect phone flex cable press connector spudger"},
+  "3.1": {title:"Samsung Galaxy S4 Restoration", channel:"Hugh Jeffreys", url:"https://www.youtube.com/watch?v=9IvtvNFhRds", search:"Hugh Jeffreys Samsung Galaxy restoration"},
+  "3.2": {title:"iPhone 16 Pro and Pro Max Teardowns", channel:"iFixit", url:"https://www.youtube.com/watch?v=PHQD4FcsOvs", search:"iFixit iPhone teardown"},
+  "3.3": {title:"10 Mistakes Every Beginner Makes in Cell Phone Repair", channel:"Phone Repair Guru", url:"https://www.youtube.com/watch?v=Z8PnciIDXLA", search:"Phone Repair Guru 10 mistakes every beginner makes"},
+  "4.1": {title:"", channel:"", url:"", search:"iPhone screen replacement full walkthrough"},
+  "4.2": {title:"$130USD Galaxy S21 Ultra Restoration", channel:"Hugh Jeffreys", url:"https://www.youtube.com/watch?v=5ThLhHoT7J0", search:"Hugh Jeffreys Galaxy S21 Ultra restoration"},
+  "4.3": {title:"Original Apple Screen vs Aftermarket Replacement Screen", channel:"", url:"https://www.youtube.com/watch?v=ZnhFA_65kts", search:"original vs aftermarket iPhone screen comparison OLED LCD"},
+  "5.1": {title:"", channel:"", url:"", search:"phone battery replacement walkthrough adhesive strips"},
+  "5.2": {title:"Steps to diagnose a dead phone", channel:"Sorin Electronics", url:"https://www.youtube.com/watch?v=3wjzGgjNhvc", search:"steps to diagnose a dead phone power supply"},
+  "5.3": {title:"This Is What Actually Destroys Your Battery", channel:"", url:"https://www.youtube.com/watch?v=jZ4FWoUZAk8", search:"why phone battery health degrades lithium ion explained"},
+  "6.1": {title:"How to Safely Clean Phone Charging Port", channel:"", url:"https://www.youtube.com/shorts/PU0TAoUsvw8", search:"clean phone charging port lint safely"},
+  "6.2": {title:"", channel:"", url:"", search:"charging port sub board replacement phone"},
+  "6.3": {title:"", channel:"", url:"", search:"phone loudspeaker replacement walkthrough"},
+  "7.1": {title:"iFixit's Soldering 101: Beginners Guide", channel:"iFixit", url:"https://www.youtube.com/watch?v=rK38rpUy568", search:"iFixit Soldering 101 beginners guide"},
+  "7.2": {title:"Basic Soldering Technique", channel:"", url:"https://www.youtube.com/watch?v=AqvHogekDI4", search:"through hole soldering technique PCB tutorial"},
+  "7.3": {title:"Learn Micro-Soldering | Repairing Broken PCB and IC Pads", channel:"", url:"https://www.youtube.com/watch?v=gocWNdXHd2w", search:"microsoldering introduction phone board repair"},
+  "8.1": {title:"", channel:"", url:"", search:"water damaged phone repair walkthrough teardown clean"},
+  "8.2": {title:"How To Properly Clean A Liquid Damaged Logic Board (Ultrasonic)", channel:"FixitPlanet", url:"https://www.youtube.com/watch?v=beqtesIS09c", search:"clean liquid damaged logic board ultrasonic cleaner"},
+  "8.3": {title:"Rice as a treatment for water damaged phones is a myth", channel:"", url:"https://www.youtube.com/watch?v=UU5T0GOmfvE", search:"rice myth water damaged phone what to do instead"},
+  "9.1": {title:"Factory Reset Android Phone from Recovery Mode", channel:"", url:"https://www.youtube.com/watch?v=xUXiEZU8iIM", search:"factory reset Android from recovery mode tutorial"},
+  "9.2": {title:"How To Put An iPhone In DFU Mode & DFU Restore", channel:"Payette Forward", url:"https://www.youtube.com/watch?v=iIchFgJJXNA", search:"Payette Forward iPhone DFU mode restore"},
+  "9.3": {title:"Access secret diagnostic menu on Android", channel:"", url:"https://www.youtube.com/watch?v=v579RB6YY4I", search:"Samsung *#0*# hardware diagnostic test menu"},
+  "10.1": {title:"How To Start Your Own Cellphone Repair Business - 5 Key Points!", channel:"", url:"https://www.youtube.com/watch?v=-YggTiNasKQ", search:"how to start a cell phone repair business"},
+  "10.2": {title:"", channel:"", url:"", search:"how to price phone repairs repair shop customer service"},
+  "10.3": {title:"", channel:"", url:"", search:"cheap vs expensive iPhone screen comparison aftermarket parts"}
+};

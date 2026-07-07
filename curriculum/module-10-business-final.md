@@ -1,10 +1,10 @@
 # Module 10 — Repair Business Skills + Final Assessment
 
-**Duration:** 2 h theory + 4 h exam
-**Slides:** `slides/module-10-business-final.html`
-**Practical:** `practicals/practical-10-final-exam.md`
-**Videos:** see Module 10 section of `resources/videos.md`
-**Images:** `resources/images/repair-workflow.svg`
+**Duration:** Day 5 · afternoon — ≈1.25 h theory + ≈2 h final exams *(compressed 5-day format; see course overview)*
+**Slides:** [slides/module-10-business-final.html](slides/module-10-business-final.html)
+**Practical:** [practicals/practical-10-final-exam.md](practicals/practical-10-final-exam.md)
+**Videos:** see Module 10 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/repair-workflow.svg](resources/images/repair-workflow.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -26,8 +26,8 @@ By the end of this module, students can:
   the live pricing exercise.
 - Role-play scenario cards (water-damage bad news, angry warranty return, "found
   phone" walk-in, lowball haggler).
-- Final exam materials ready and sealed: `assessments/final-written-exam.md`,
-  `assessments/final-practical-exam.md`, exam phones with planted faults per the
+- Final exam materials ready and sealed: [assessments/final-written-exam.md](assessments/final-written-exam.md),
+  [assessments/final-practical-exam.md](assessments/final-practical-exam.md), exam phones with planted faults per the
   practical exam sheet, graded-rubric folders per student.
 
 ## Session plan
@@ -99,24 +99,24 @@ By the end of this module, students can:
 
 ### 7. Final exam briefing (15 min) — slides 29–31
 - Structure of the finals (see `assessments/`):
-  - **Written exam** — `assessments/final-written-exam.md` — covers all 10 modules;
+  - **Written exam** — [assessments/final-written-exam.md](assessments/final-written-exam.md) — covers all 10 modules;
     20% of the final grade.
-  - **Practical exam** — run from `practicals/practical-10-final-exam.md` with
-    `assessments/final-practical-exam.md` — real faulted phones, full workflow from
+  - **Practical exam** — run from [practicals/practical-10-final-exam.md](practicals/practical-10-final-exam.md) with
+    [assessments/final-practical-exam.md](assessments/final-practical-exam.md) — real faulted phones, full workflow from
     intake form to QC checklist; 30% of the final grade and a hard pass requirement.
 - Remind: quizzes (20%) and lab rubrics (30%) are already banked; safety violations
   fail the practical regardless of skill (trainer-guide rule).
 - Questions, then a short break — exam conditions after.
 
 ### 8. FINAL EXAM (4 h)
-Run `practicals/practical-10-final-exam.md` — this replaces the normal lab:
-- Part 1: **final written exam** (from `assessments/final-written-exam.md`), closed
+Run [practicals/practical-10-final-exam.md](practicals/practical-10-final-exam.md) — this replaces the normal lab:
+- Part 1: **final written exam** (from [assessments/final-written-exam.md](assessments/final-written-exam.md)), closed
   book, ~1 h.
-- Part 2: **final practical exam** (per `assessments/final-practical-exam.md`), ~3 h:
+- Part 2: **final practical exam** (per [assessments/final-practical-exam.md](assessments/final-practical-exam.md)), ~3 h:
   each student receives a faulted phone and a "customer" (trainer/assistant), and
   must run the complete workflow — intake, diagnosis, quote, repair, QC, return —
   graded on the exam rubric.
-- Collect all paperwork; grade against `assessments/certification-checklist.md` and
+- Collect all paperwork; grade against [assessments/certification-checklist.md](assessments/certification-checklist.md) and
   issue certificates at the results session.
 
 ## Homework

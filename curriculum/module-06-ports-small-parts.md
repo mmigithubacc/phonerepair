@@ -1,10 +1,10 @@
 # Module 6 — Charging Ports, Buttons & Small-Part Repairs
 
-**Duration:** 1.5 h theory + 3 h practical
-**Slides:** `slides/module-06-ports-small-parts.html`
-**Practical:** `practicals/practical-06-ports-small-parts.md`
-**Videos:** see Module 6 section of `resources/videos.md`
-**Images:** `resources/images/charging-circuit.svg`
+**Duration:** Day 3 · afternoon — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-06-ports-small-parts.html](slides/module-06-ports-small-parts.html)
+**Practical:** [practicals/practical-06-ports-small-parts.md](practicals/practical-06-ports-small-parts.md)
+**Videos:** see Module 6 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/charging-circuit.svg](resources/images/charging-circuit.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -91,7 +91,7 @@ By the end of this module, students can:
   the three port mounting types and which is off-limits.
 
 ### 7. PRACTICAL (3 h)
-Run `practicals/practical-06-ports-small-parts.md`:
+Run [practicals/practical-06-ports-small-parts.md](practicals/practical-06-ports-small-parts.md):
 - Station A: port cleaning — take a baseline ammeter reading on a lint-packed phone,
   clean with pick/air/IPA, record the before/after readings on the worksheet.
 - Station B: replace a charging sub-board or port flex on a donor phone; verify with
@@ -102,7 +102,7 @@ Run `practicals/practical-06-ports-small-parts.md`:
 - Grade with the rubric; bench cleanup inspection ends the session.
 
 ### 8. Quiz (10 min)
-Module 6 quiz from `assessments/module-quizzes.md`.
+Module 6 quiz from [assessments/module-quizzes.md → Quiz 6](assessments/module-quizzes.md#quiz-6-charging-ports-buttons-small-part-repairs).
 
 ## Homework
 - Clean the charging port of your own (or a family member's) phone with a wooden pick;

@@ -1,10 +1,10 @@
 # Module 8 — Water Damage & Corrosion Treatment
 
-**Duration:** 1.5 h theory + 3 h practical
-**Slides:** `slides/module-08-water-damage.html`
-**Practical:** `practicals/practical-08-water-damage.md`
-**Videos:** see Module 8 section of `resources/videos.md`
-**Images:** `resources/images/water-damage-flowchart.svg`
+**Duration:** Day 4 · afternoon — ≈1 h theory + ≈1.25 h practical + quiz *(section timings below are full-depth; run at a brisk pace to fit)*
+**Slides:** [slides/module-08-water-damage.html](slides/module-08-water-damage.html)
+**Practical:** [practicals/practical-08-water-damage.md](practicals/practical-08-water-damage.md)
+**Videos:** see Module 8 section of [resources/videos.md](resources/videos.md)
+**Images:** [resources/images/water-damage-flowchart.svg](resources/images/water-damage-flowchart.svg)
 
 ## Learning objectives
 By the end of this module, students can:
@@ -91,7 +91,7 @@ By the end of this module, students can:
 - Assign boards; glasses and gloves on at the cleaning stations.
 
 ### 7. PRACTICAL (3 h)
-Run `practicals/practical-08-water-damage.md` on the pre-dunked donor boards:
+Run [practicals/practical-08-water-damage.md](practicals/practical-08-water-damage.md) on the pre-dunked donor boards:
 - Step 1: photograph the board (before shots), locate and record LCI state.
 - Step 2: full protocol per the flowchart — teardown, battery disconnect, shield
   removal where possible, IPA bath + brushing, ultrasonic cycle (benches rotate
@@ -104,7 +104,7 @@ Run `practicals/practical-08-water-damage.md` on the pre-dunked donor boards:
   its manual) ends the session.
 
 ### 8. Quiz (10 min)
-Module 8 quiz from `assessments/module-quizzes.md`.
+Module 8 quiz from [assessments/module-quizzes.md → Quiz 8](assessments/module-quizzes.md#quiz-8-water-damage-corrosion-treatment).
 
 ## Homework
 - Practice the first-response script on a friend or family member playing a panicked

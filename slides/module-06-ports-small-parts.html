@@ -60,7 +60,7 @@
   <span class="tag">Cellphone Repair Course · Module 6 of 10</span>
   <h1>Charging Ports, Buttons &amp; Small-Part Repairs</h1>
   <p class="sub">Quick jobs, high margins, happy customers — the bread and butter of a repair bench.</p>
-  <p class="sub" style="margin-top:2rem">1.5 h theory &nbsp;·&nbsp; 3 h practical &nbsp;·&nbsp; quiz</p>
+  <p class="sub" style="margin-top:2rem">Day 3 of 5 &nbsp;·&nbsp; afternoon block &nbsp;·&nbsp; ~1 h theory &nbsp;·&nbsp; bench practical &nbsp;·&nbsp; quiz</p>
   <div class="notes"><p>Safety-rule recital first, then collect the homework battery-health numbers from Module 5 — quick round: highest and lowest health in the room. Then hook: "Today I'll teach you a two-minute repair that will make more customers love you than anything else in this course."</p></div>
 </section>
 
@@ -319,7 +319,7 @@
 
 <div class="progress" id="progress"></div>
 <div class="hud"><span id="counter">1 / 20</span></div>
-<div class="helpbar">→/← slides · N notes · F fullscreen · Home/End jump</div>
+<div class="helpbar">→/← slides · N notes · F fullscreen · H course home</div>
 
 <script>
 (function(){
@@ -346,5 +346,19 @@
   show(parseInt(location.hash.slice(1))-1||0);
 })();
 </script>
+<style>
+  .homelink{position:fixed;top:12px;left:18px;z-index:30;color:#94a3b8;text-decoration:none;font-size:.95rem;border:1px solid #334155;border-radius:999px;padding:.25rem .95rem;background:rgba(15,23,42,.85)}
+  .homelink:hover{color:#38bdf8;border-color:#38bdf8}
+  .videobar{margin-top:.8rem;display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+  .vbtn{background:#f59e0b;color:#0f172a;border:none;border-radius:8px;padding:.4rem 1.1rem;font-size:1.05rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;font-family:inherit}
+  .vbtn.ghost{background:transparent;border:1px solid #f59e0b;color:#f59e0b;font-weight:600}
+  .vbtn:hover{filter:brightness(1.15)}
+  .vtitle{color:#94a3b8;font-size:1rem}
+  .videoframe{margin:.9rem 0}
+  .videoframe iframe{width:100%;max-width:850px;height:min(45vh,480px);border:0;border-radius:10px;background:#000}
+  @media print{.homelink,.videobar,.videoframe{display:none}}
+</style>
+<script src="../resources/videos.js"></script>
+<script src="../resources/deck-extras.js"></script>
 </body>
 </html>

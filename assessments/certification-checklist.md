@@ -71,7 +71,7 @@ Grade bands (optional, for the certificate): 70–79 Pass • 80–89 Merit • 
 >
 > **______________________________**
 >
-> has successfully completed the **60-hour Cellphone Repair Technician Training Course**,
+> has successfully completed the **25-hour (5-day) Cellphone Repair Technician Training Course**,
 > comprising workshop safety and ESD practice, device disassembly and reassembly,
 > screen, battery, charging-port and small-part replacement, soldering fundamentals,
 > water-damage treatment, software diagnostics, and repair business skills,
